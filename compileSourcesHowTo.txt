@@ -9,7 +9,7 @@ The Bob the blob project has three dependencies:
 - The CMake build tool.
 - The WarrenGamesCustomLibs, that you can download on my repository (infos on how to use them are indicated
 	in the 'compileSourcesHowTo.txt' of theses libraries). You will have to set in the main CMakeLists.txt of
-	the Breakout4 project the path of the built WarrenGamesCustomLibs libraries for the following variable:
+	the 'Bob the blob' project the path of the built WarrenGamesCustomLibs libraries for the following variable:
 	'WARREN_LIBS_BUILDING_PATH' (line 18)
 
 The source code is divided in several libraries (in the 'libraries' sub directory) and some executables 
