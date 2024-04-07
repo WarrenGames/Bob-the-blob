@@ -1,0 +1,6 @@
+#ifndef COMMON_FILES_INCLUDE_OPTIONS_H
+#define COMMON_FILES_INCLUDE_OPTIONS_H
+
+#include "consts/squareSize.h"
+
+#endif //COMMON_FILES_INCLUDE_OPTIONS_H

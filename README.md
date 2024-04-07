@@ -1,0 +1,3 @@
+This is a game in which the player moves in a maze trying to avoid the enemies and other entities. You must grab all the gold ingots and sometimes the diamonds to finish each level. The levels are to be played separately (there is no campaign for instance).
+
+The game is still in building phase but it is well advanced, the most important wanted features being there already. You can download this game (with the ready binaries and data) on my personal web site: 'https://www.ant01.fr' If you want this game to run on unixoids systems you can compile the sources.
