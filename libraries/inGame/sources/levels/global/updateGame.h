@@ -1,6 +1,8 @@
 #ifndef BOB_THE_BLOB_IN_GAME_UPDATE_GAME_H
 #define BOB_THE_BLOB_IN_GAME_UPDATE_GAME_H
 
+#include <cstdlib>
+
 struct Essentials;
 struct PlayerAttributes;
 struct SinglePlayerData;
@@ -10,6 +12,7 @@ class Ability;
 struct ScreenScrolling;
 struct LevelMandatoryData;
 namespace demos{ struct DataPackage; }
+class BobsPackage;
 
 void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMandatoryData& levelData, ScoreDisplay& scoreDisplay, demos::DataPackage* demoDataPackage);
 
@@ -28,5 +31,7 @@ void updateInfoGradient(InfoGradient& infoGradient, Ability& ability);
 void updateWithSoundsEventsStack(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage);
 
 void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage);
+
+void updateBobbysExplosionsIfAny(BobsPackage& bobsPackage, std::size_t explosionFramesNumber);
 
 #endif //BOB_THE_BLOB_IN_GAME_UPDATE_GAME_H

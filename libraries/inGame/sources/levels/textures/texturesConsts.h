@@ -10,6 +10,7 @@ namespace textures{
 	
 	constexpr unsigned DiamondFrameDuration = 120;
 	constexpr unsigned GoldIngotFrameDuration = 1000 / 16;
+	constexpr unsigned BlueSmokeFrameDuration = 80;
 	
 	enum : std::size_t {
 		BlobColorGreen,
@@ -66,6 +67,8 @@ namespace textures{
 	constexpr char DiamondsTexturesFilePath[] = "data/textures/objects/diamondsTextures.txt";
 	
 	constexpr char GoldIngotTexturesFilePath[] = "data/textures/objects/goldIngot.txt";
+	
+	constexpr char BlueSmokeTexturesFilePath[] = "data/textures/elements/blueSmoke.txt";
 }
 
 

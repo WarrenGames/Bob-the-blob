@@ -57,6 +57,7 @@ void MexicanGameObject::drawLevel(sdl2::RendererWindow& rndWnd)
 	drawBobsLightBulbs(rndWnd, mexicanSprites.commonSprites.lightBulbSprites, levelData.bobsPackage, levelData.screenScrolling);
 	drawCacti(rndWnd, mexicanSprites.cactiSprites, cactiPackage, levelData.screenScrolling);
 	drawOrbs(rndWnd, mexicanSprites.commonSprites.magicOrbSprites, greenOrbs, levelData.screenScrolling);
+	drawBlueSmokeExplosion(rndWnd, mexicanSprites.commonSprites.blueSmokeSprites, levelData.bobsPackage, levelData.screenScrolling);
 	drawBalloonsIfAny(rndWnd, balloonsPack.sprites, levelData.balloonsPositions);
 	mexicanInfosPanel.drawEverything(rndWnd);
 	drawRosterGradient(rndWnd, mexicanSprites.commonSprites.bobsCanBeEatenIcon, mexicanInfosPanel.canBeEatenBobsGradient, levelData.playerData.abilities[abilities::CanEatBob] );
@@ -74,6 +75,7 @@ void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& pla
 	updateInfoGradient(mexicanInfosPanel.canBeEatenCactiGradient, levelData.playerData.abilities[abilities::CanEatCacti] );
 	updateBonusesAnimation(levelData.bonusesMap, mexicanSprites.commonSprites);
 	mexicanInfosPanel.goldIngotsCountDisplay.updateText(essentials, levelData.bonusesMap.getElementNumber(bonuses::BonusGoldIngot) );
+	updateBobbysExplosionsIfAny(levelData.bobsPackage, mexicanSprites.commonSprites.blueSmokeSprites.size() );
 }
 
 void MexicanGameObject::updateGreenOrbs(PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage)

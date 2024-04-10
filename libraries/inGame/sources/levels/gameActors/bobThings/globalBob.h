@@ -3,6 +3,7 @@
 
 #include "levels/monstersMoves/pathFinder.h"
 #include "levels/gameActors/bobThings/bobTheBlob.h"
+#include "levels/textures/drawing/explosionInfos.h"
 #include "time/accurateTime.h"
 
 struct CrossRoadsRandoms;
@@ -17,6 +18,7 @@ struct GlobalBob
 	std::size_t colorIndex;
 	std::size_t frameNumber;
 	unsigned demoUniqueId;
+	ExplosionInfos blueSpawnExplosion;
 	bool canSeekPlayer;
 	bool hasPlayedUhOhSound;
 	bool isActive;

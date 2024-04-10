@@ -20,8 +20,10 @@ class BobsPackage
 private:
 	std::vector< std::unique_ptr< GlobalBob > > bobs;
 	AccurateTimeDelay moveTime;
+	AccurateTimeDelay spawnTime;
 	std::chrono::microseconds bobsMoveDelay;
 	std::chrono::milliseconds bobsAnimDelay;
+	std::chrono::milliseconds bobsSpawnDelay;
 	
 public:
 	explicit BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType);
@@ -38,6 +40,7 @@ public:
 	std::vector< std::unique_ptr< GlobalBob > >::const_iterator end() const;
 	
 	std::size_t size() const;
+	std::size_t getActiveBobsCount() const;
 	const GlobalBob& getElement(std::size_t index) const;
 	GlobalBob& getElement(std::size_t index);
 	
@@ -54,6 +57,9 @@ public:
 	void disableAllBobs();
 	
 	void initFirstDirection(const CrossRoadsRandoms& crossRoads);
+	
+	void spawnBobIfAny(const PlayerMoving& playerMove);
+	void updateExplosionIfAny(std::size_t totalFrameNumber);
 };
 
 #endif //BOB_THE_BLOB_IN_GAME_BOBS_PACKAGE_H

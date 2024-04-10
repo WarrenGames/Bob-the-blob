@@ -18,7 +18,8 @@
 
 BobsPackage::BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType):
 	bobsMoveDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsMoveDelayFile, "Bobs move delay" ) },
-	bobsAnimDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsAnimDelayFile, "Bobs anim delay" ) }
+	bobsAnimDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsAnimDelayFile, "Bobs anim delay" ) },
+	bobsSpawnDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsSpawnDelay, "Bobs spawn delay" ) }
 {
 	if( demoType == demos::GameHasPlayerInputs || demoType == demos::GameIsRecording )
 	{
@@ -49,6 +50,22 @@ std::vector< std::unique_ptr< GlobalBob > >::const_iterator BobsPackage::end() c
 std::size_t BobsPackage::size() const
 {
 	return bobs.size();
+}
+
+std::size_t BobsPackage::getActiveBobsCount() const
+{
+	std::size_t count{0};
+	for( auto const &bob : bobs )
+	{
+		if( bob )
+		{
+			if( bob->isActive )
+			{
+				count++;
+			}
+		}
+	}
+	return count;
 }
 
 const GlobalBob& BobsPackage::getElement(std::size_t index) const
@@ -200,6 +217,38 @@ void BobsPackage::initFirstDirection(const CrossRoadsRandoms& crossRoads)
 		if( bob )
 		{
 			bob->initFirstDirection(crossRoads);
+		}
+	}
+}
+
+void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove)
+{
+	if( getActiveBobsCount() < size() )
+	{
+		if( spawnTime.hasTimeElapsed( bobsSpawnDelay ) )
+		{
+			spawnTime.joinTimePoints();
+			for( auto const &bob : bobs )
+			{
+				if( false == bob->isActive && false == isPlayerNearEnemySpawnCoordinates(playerMove, bob->bobTheBlob) )
+				{
+					bob->resetBobPosition();
+					bob->makeBobForgetPlayer();
+					bob->blueSpawnExplosion.resetExplosionDisplay();
+					return;
+				}
+			}
+		}
+	}
+}
+
+void BobsPackage::updateExplosionIfAny(std::size_t totalFrameNumber)
+{
+	for( auto const &bob : bobs )
+	{
+		if( bob->blueSpawnExplosion.isExplosionActive() )
+		{
+			bob->blueSpawnExplosion.incrementFrame(totalFrameNumber);
 		}
 	}
 }

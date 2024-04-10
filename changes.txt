@@ -1,0 +1,5 @@
+version 0.1.1
+	- Added a enemy respawn feature.
+	
+version 0.1.0
+	- New beta version of bob the blob.

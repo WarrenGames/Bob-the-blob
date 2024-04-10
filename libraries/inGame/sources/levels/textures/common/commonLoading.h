@@ -12,6 +12,7 @@ struct CommonTexturesLoading
 	TexturesFilesList magicOrbTextures;
 	TexturesFilesList diamondsTextures;
 	TexturesFilesList goldIngotTextures;
+	TexturesFilesList blueSmokeTextures;
 	
 	explicit CommonTexturesLoading(AppLogFiles& logs, sdl2::RendererWindow& rndWnd);
 	~CommonTexturesLoading() = default;

@@ -26,6 +26,7 @@ set( HEADERS
 	sources/levels/textures/drawing/drawElements.h
 	sources/levels/textures/drawing/drawMap.h
 	sources/levels/textures/drawing/screenScrolling.h
+	sources/levels/textures/drawing/explosionInfos.h
 	sources/levels/textures/drawing/scoreDisplay.h
 	sources/levels/textures/drawing/inferDrawingPosition.h
 	sources/levels/textures/drawing/axisScrolling.h
@@ -122,6 +123,7 @@ set( SOURCES
 	sources/levels/textures/drawing/screenScrolling.cpp
 	sources/levels/textures/drawing/drawElements.cpp
 	sources/levels/textures/drawing/inferDrawingPosition.cpp
+	sources/levels/textures/drawing/explosionInfos.cpp
 	sources/levels/textures/drawing/scoreDisplay.cpp
 	sources/levels/textures/drawing/drawMap.cpp
 	sources/levels/textures/drawing/axisScrolling.cpp

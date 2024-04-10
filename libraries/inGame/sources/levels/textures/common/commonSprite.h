@@ -16,6 +16,7 @@ struct CommonTexturesSprites
 	sdl2::Sprite bobsCanBeEatenIcon;
 	ConstAnimDraw diamondsSprites;
 	ConstAnimDraw goldIngotSprites;
+	ConstAnimDraw blueSmokeSprites;
 	
 	explicit CommonTexturesSprites(const CommonTexturesLoading& loadedTextures, const Matrix2DTexturesLoading& bobsTextures);
 	~CommonTexturesSprites() = default;

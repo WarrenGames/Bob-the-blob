@@ -13,7 +13,8 @@ CommonTexturesSprites::CommonTexturesSprites(const CommonTexturesLoading& loaded
 	magicOrbSprites{ loadedTextures.magicOrbTextures },
 	bobsCanBeEatenIcon{ bobsTextures( 0, textures::BlobColorGreen ) },
 	diamondsSprites{ loadedTextures.diamondsTextures },
-	goldIngotSprites{ loadedTextures.goldIngotTextures }
+	goldIngotSprites{ loadedTextures.goldIngotTextures },
+	blueSmokeSprites{ loadedTextures.blueSmokeTextures }
 {
 	bobsCanBeEatenIcon.multiplyBoth(0.5);
 	bobsCanBeEatenIcon.setTexturePosition( TexturePosition{ SQR_SIZE / 2, GameScreenHeight - SQR_SIZE / 2, true, true } );

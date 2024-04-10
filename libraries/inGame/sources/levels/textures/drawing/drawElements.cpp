@@ -28,7 +28,7 @@ void drawBobs(sdl2::RendererWindow& rndWnd, Matrix2DTexturesDrawing& blobSprites
 		{
 			if( bob->isActive )
 			{
-				if( ability.isAbilityActive() )//Ability here is wether bob is eatable by player
+				if( ability.isAbilityActive() )//Ability here is whether bob is eatable by player
 				{
 					blobSprites.drawToCenter(rndWnd, Coord2D{bob->frameNumber, textures::BlobColorGreen}, getElementPosition(screenScrolling, bob->bobTheBlob.getRealPosition() ) );
 				}
@@ -110,5 +110,19 @@ void drawRosterGradient(sdl2::RendererWindow& rndWnd, const sdl2::Sprite& sprite
 	{
 		gradient.draw(rndWnd, ability);
 		spriteIcon.draw(rndWnd);
+	}
+}
+
+void drawBlueSmokeExplosion(sdl2::RendererWindow& rndWnd, ConstAnimDraw& blueSmokeExplosion, const BobsPackage& bobsPackage, const ScreenScrolling& screenScrolling)
+{
+	for( auto const &bob : bobsPackage )
+	{
+		if( bob->blueSpawnExplosion.isExplosionActive() )
+		{
+			blueSmokeExplosion.drawToCenter(rndWnd, 
+				getOnAxisElementPosition(screenScrolling.xAxisScrolling, static_cast<int>(bob->bobTheBlob.getStartingPosition().width) * SQR_SIZE + SQR_SIZE / 2),
+				getOnAxisElementPosition(screenScrolling.yAxisScrolling, static_cast<int>(bob->bobTheBlob.getStartingPosition().height) * SQR_SIZE + SQR_SIZE / 2), 
+				bob->blueSpawnExplosion.getCurrentFrame() );
+		}
 	}
 }

@@ -14,6 +14,7 @@ GlobalBob::GlobalBob(const Coord2D& startingPos, std::size_t colorEnum, unsigned
 	colorIndex{ colorEnum },
 	frameNumber{ 0 },
 	demoUniqueId{ demoIdParam },
+	blueSpawnExplosion{ true , textures::BlueSmokeFrameDuration },
 	canSeekPlayer{false},
 	hasPlayedUhOhSound{false},
 	isActive{ true }
@@ -129,6 +130,7 @@ void GlobalBob::resetBobPosition()
 	bobTheBlob.resetBobbyPosition();
 	canSeekPlayer = false;
 	hasPlayedUhOhSound = false;
+	isActive = true;
 }
 
 void GlobalBob::avoidWallCollisionWhileSeekingPlayer(const GameMap& gameMap, CrossRoadsRandoms& crossRoads)

@@ -92,10 +92,8 @@ void BobTheBlob::setMatrixPosition()
 
 void BobTheBlob::resetBobbyPosition()
 {
-	inMatrixPosition.width = startingPosition.width;
-	inMatrixPosition.height = startingPosition.height;
+	inMatrixPosition = startingPosition;
 	setRealPosition();
-	
 }
 
 void BobTheBlob::avoidMapLeaving(const GameMap& gameMap)

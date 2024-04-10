@@ -8,7 +8,8 @@ CommonTexturesLoading::CommonTexturesLoading(AppLogFiles& logs, sdl2::RendererWi
 	lightBulbAnimation{ logs, rndWnd, textures::LightBulbTexturesFilePath },
 	magicOrbTextures{ logs, rndWnd, textures::MagicOrbTexturesFilePath },
 	diamondsTextures{ logs, rndWnd, textures::DiamondsTexturesFilePath },
-	goldIngotTextures{ logs, rndWnd, textures::GoldIngotTexturesFilePath }
+	goldIngotTextures{ logs, rndWnd, textures::GoldIngotTexturesFilePath },
+	blueSmokeTextures{ logs, rndWnd, textures::BlueSmokeTexturesFilePath }
 {
 	
 }

@@ -27,4 +27,6 @@ void drawOrbs(sdl2::RendererWindow& rndWnd, ConstAnimDraw& magicOrbSprites, cons
 
 void drawRosterGradient(sdl2::RendererWindow& rndWnd, const sdl2::Sprite& spriteIcon, const InfoGradient& gradient, const Ability& ability);
 
+void drawBlueSmokeExplosion(sdl2::RendererWindow& rndWnd, ConstAnimDraw& blueSmokeExplosion, const BobsPackage& bobsPackage, const ScreenScrolling& screenScrolling);
+
 #endif //BOB_THE_BLOB_IN_GAME_DRAW_MAP_ELEMENTS_H

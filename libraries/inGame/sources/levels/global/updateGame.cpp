@@ -18,7 +18,6 @@
 void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMandatoryData& levelData, ScoreDisplay& scoreDisplay, demos::DataPackage* demoDataPackage)
 {
 	updateWithSoundsEventsStack(levelData, demoDataPackage);
-	//levelData.actWithLevelEnd(demoDataPackage);
 	levelData.updateLevelExiting();
 	updatePlayerThings(levelData, demoDataPackage);
 	updateEnemyProtagonists(levelData, demoDataPackage, playerAttributes);
@@ -73,6 +72,7 @@ void bothRecordAndStandardGamePlaying(LevelMandatoryData& levelData, demos::Data
 	wrapPlayerThatHasLeftOnSouth(levelData.playerData.move, levelData.bobsPackage, levelData.gameMap);
 	resetPlayerDirectionChangementPossibility(levelData.playerData.move);
 	updateBobbysDetectionWithSound(levelData.playerData, levelData.bobsPackage, levelData.gameMap, levelData.gameSoundSystem.soundSystem.soundPlayer, demoDataPackage);
+	levelData.bobsPackage.spawnBobIfAny(levelData.playerData.move);
 }
 
 void updateEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage, PlayerAttributes& playerAttributes)
@@ -119,4 +119,9 @@ void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demo
 	levelData.bobsPackage.movePackage();
 	levelData.bobsPackage.animatePackage();
 	demos::makeBobbysStartMoving(levelData.bobsPackage, demoDataPackage->spritesPositions.enemyBobsMoves, demoDataPackage->haveBobbysStartMoving);
+}
+
+void updateBobbysExplosionsIfAny(BobsPackage& bobsPackage, std::size_t explosionFramesNumber)
+{
+	bobsPackage.updateExplosionIfAny(explosionFramesNumber);
 }

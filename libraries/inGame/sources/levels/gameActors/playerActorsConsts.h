@@ -2,6 +2,7 @@
 #define BOB_THE_BLOB_IN_GAME_BOB_THE_BLOB_ACTORS_CONSTS_H
 
 #include "consts/includeOptions.h"
+#include <cstdlib>
 
 namespace actors{
 	
@@ -12,6 +13,8 @@ namespace actors{
 	constexpr int PlayerDetectionRange = 5;//4 before
 	
 	constexpr std::size_t PathFinderLength = 16;
+	
+	constexpr int WithPlayerEnemySpawnDelta = 7;
 }
 
 namespace abilities{

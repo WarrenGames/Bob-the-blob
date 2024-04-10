@@ -39,6 +39,7 @@ void GameGlobalObject::drawLevel(sdl2::RendererWindow& rndWnd)
 	drawBobs(rndWnd, texturesSprites.blobSprites, levelData.bobsPackage, levelData.playerData.abilities[abilities::CanEatBob], levelData.screenScrolling);
 	drawPlayerMoving(rndWnd, texturesSprites.commonSprites.playerSprites, levelData.playerData, levelData.screenScrolling);
 	drawBobsLightBulbs(rndWnd, texturesSprites.commonSprites.lightBulbSprites, levelData.bobsPackage, levelData.screenScrolling);
+	drawBlueSmokeExplosion(rndWnd, texturesSprites.commonSprites.blueSmokeSprites, levelData.bobsPackage, levelData.screenScrolling);
 	drawBalloonsIfAny(rndWnd, balloonsPack.sprites, levelData.balloonsPositions);
 	infosPanel.drawEverything(rndWnd);
 	drawRosterGradient(rndWnd, texturesSprites.commonSprites.bobsCanBeEatenIcon, infosPanel.canBeEatenBobsGradient, levelData.playerData.abilities[abilities::CanEatBob] );
@@ -53,6 +54,7 @@ void GameGlobalObject::updateGame(Essentials& essentials, PlayerAttributes& play
 	updateInfoGradient(infosPanel.canBeEatenBobsGradient, levelData.playerData.abilities[abilities::CanEatBob] );
 	updateBonusesAnimation(levelData.bonusesMap, texturesSprites.commonSprites);
 	infosPanel.goldIngotsCountDisplay.updateText(essentials, levelData.bonusesMap.getElementNumber(bonuses::BonusGoldIngot) );
+	updateBobbysExplosionsIfAny(levelData.bobsPackage, texturesSprites.commonSprites.blueSmokeSprites.size() );
 }
 
 bool GameGlobalObject::hasPlayerRequestedToExit() const
