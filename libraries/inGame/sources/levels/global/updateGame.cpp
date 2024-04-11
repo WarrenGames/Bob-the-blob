@@ -52,6 +52,7 @@ void updatePlayerThings(LevelMandatoryData& levelData, demos::DataPackage* demoD
 			levelData.playerData.move.checkMoveDelayToMove();
 			levelData.playerData.anim.changeCurrentFrameWithBasicAnim();
 			updateBobbysDetectionWithSound(levelData.playerData, levelData.bobsPackage, levelData.gameMap, levelData.gameSoundSystem.soundSystem.soundPlayer, demoDataPackage);
+			levelData.bobsPackage.spawnBobWithDemoStack(demoDataPackage);
 			break;
 	}
 }
@@ -72,7 +73,7 @@ void bothRecordAndStandardGamePlaying(LevelMandatoryData& levelData, demos::Data
 	wrapPlayerThatHasLeftOnSouth(levelData.playerData.move, levelData.bobsPackage, levelData.gameMap);
 	resetPlayerDirectionChangementPossibility(levelData.playerData.move);
 	updateBobbysDetectionWithSound(levelData.playerData, levelData.bobsPackage, levelData.gameMap, levelData.gameSoundSystem.soundSystem.soundPlayer, demoDataPackage);
-	levelData.bobsPackage.spawnBobIfAny(levelData.playerData.move);
+	levelData.bobsPackage.spawnBobIfAny(levelData.playerData.move, demoDataPackage);
 }
 
 void updateEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage, PlayerAttributes& playerAttributes)

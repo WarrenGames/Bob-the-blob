@@ -54,9 +54,13 @@ struct LevelMandatoryData
 	void actWithLevelEnd(demos::DataPackage* demoDataPackage, bool externWinningCondition);
 	
 	void checkLevelEndCondition(bool externWinningCondition);
+	void checkLevelEndCondition(demos::DataPackage* demoDataPackage, bool externWinningCondition);
 	void updateLevelExiting();
 	
 	bool canQuitLevel() const;
+	
+	void claimVictory();
+	void claimVictoryWithRecordedDemoData(demos::DataPackage* demoDataPackage);
 };
 
 #endif //BOB_THE_BLOB_IN_GAME_GLOBAL_LEVEL_MANDATORY_DATA_H

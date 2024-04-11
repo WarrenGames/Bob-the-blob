@@ -7,11 +7,20 @@
 #include "pathsFunctions/pathsFunctions.h"
 #include "demos/consts/demoConfigFilesConsts.h"
 #include "demos/consts/dataRecordingConsts.h"
+#include "demos/consts/gameEventsConsts.h"
+
+demos::SpritesPositions::SpritesPositions(Essentials& essentials, unsigned demoType_):
+	enemyBobsRespawn{essentials.logs, demos::fetchStackReservedSize(essentials.logs, path::getDemoConfigRelatedFile(essentials.prefPath, demos::files::GameEvents) ), 
+			demoType_, "Enemy bobs respawn"}
+{
+	
+}
 
 void demos::SpritesPositions::joinAllTimePoints(const AccurateTimeDelay& newDelay)
 {
 	joinPlayersTimePoints(newDelay);
 	joinBobbyMovesTimePoints(newDelay);
+	enemyBobsRespawn.transferDelayTimePointValue(newDelay);
 }
 
 void demos::SpritesPositions::joinPlayersTimePoints(const AccurateTimeDelay& newDelay)
@@ -64,6 +73,14 @@ void demos::SpritesPositions::recordCactiStartingPositions(const CactiPackage& c
 		itemsStartingPosition.emplace_back( 
 			demos::StartingPosition{ cactus.coordinates, demosData::ItemCactiStartPos, static_cast<unsigned>(cactus.cactusTexture), cactus.itemId } 
 		);
+	}
+}
+
+void demos::SpritesPositions::recordBobRespawnEvent(std::size_t bobId, unsigned demoType)
+{
+	if( demoType == demos::GameIsRecording )
+	{
+		enemyBobsRespawn.emplaceElement( demos::GameEvent{ enemyBobsRespawn.getCurrentElapsedMicroSecondsTime(), demos::eventCat::Bob, demos::eventSubBob::Respawn, bobId } );
 	}
 }
 

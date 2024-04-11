@@ -221,7 +221,7 @@ void BobsPackage::initFirstDirection(const CrossRoadsRandoms& crossRoads)
 	}
 }
 
-void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove)
+void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove, demos::DataPackage *demoDataPackage)
 {
 	if( getActiveBobsCount() < size() )
 	{
@@ -232,10 +232,38 @@ void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove)
 			{
 				if( false == bob->isActive && false == isPlayerNearEnemySpawnCoordinates(playerMove, bob->bobTheBlob) )
 				{
-					bob->resetBobPosition();
-					bob->makeBobForgetPlayer();
-					bob->blueSpawnExplosion.resetExplosionDisplay();
+					spawnSingleBob(*bob);
+					if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
+					{
+						demoDataPackage->spritesPositions.recordBobRespawnEvent(bob->demoUniqueId, demoDataPackage->demoType);
+					}
 					return;
+				}
+			}
+		}
+	}
+}
+
+void BobsPackage::spawnSingleBob(GlobalBob& globalBob)
+{
+	globalBob.resetBobPosition();
+	globalBob.makeBobForgetPlayer();
+	globalBob.blueSpawnExplosion.resetExplosionDisplay();
+}
+
+void BobsPackage::spawnBobWithDemoStack(demos::DataPackage *demoDataPackage)
+{
+	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
+	{
+		while( demoDataPackage->spritesPositions.enemyBobsRespawn.getCommandsNumber() > 0 && demoDataPackage->spritesPositions.enemyBobsRespawn.hasLastTimeElapsed() )
+		{
+			for( auto &bob : bobs )
+			{
+				if( static_cast<std::size_t>(bob->demoUniqueId) == demoDataPackage->spritesPositions.enemyBobsRespawn.getLastElement().id )
+				{
+					spawnSingleBob(*bob);
+					demoDataPackage->spritesPositions.enemyBobsRespawn.pop_back();
+					break;
 				}
 			}
 		}

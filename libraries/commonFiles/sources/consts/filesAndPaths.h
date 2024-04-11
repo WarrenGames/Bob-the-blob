@@ -24,6 +24,7 @@ namespace files{
 	constexpr char BobsEatableDelayFile[] = "bobsVulnerabilityDelay.txt";
 	constexpr char GreenOrbDurationFile[] = "greenOrbDuration.txt";
 	constexpr char GreenOrbCreationDelay[] = "greenOrbCreation.txt";
+	constexpr char BobsSpawnDelay[] = "bobsSpawnDelay.txt";
 	
 	constexpr char InputsDir[] = "inputs";
 	constexpr char KeyboardInputsFile[] = "keyboardInputs.txt";

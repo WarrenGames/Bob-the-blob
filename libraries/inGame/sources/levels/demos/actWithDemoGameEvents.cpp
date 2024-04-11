@@ -26,6 +26,9 @@ void demos::actWithSingleEvent(LevelMandatoryData& levelData, const demos::GameE
 		case demos::eventCat::Bob:
 			demos::actWithEnemyBobEvent(levelData, gameEvent, playerAttributes, haveBobbysStartMoving);
 			break;
+		case demos::eventCat::GameWon:
+		
+			break;
 		default:
 			assert( false && "Error: bad event category value !" );
 			break;

@@ -9,6 +9,7 @@
 demos::DataPackage::DataPackage(Essentials& essentials, const std::string& levelName_, unsigned demoType_, unsigned gameAmbience_):
 	demoType{ demoType_ },
 	gameAmbience{ gameAmbience_ },
+	spritesPositions{ essentials, demoType_ },
 	playerInputsData{ essentials, demoType },
 	soundsPlaying{ essentials.logs, demos::fetchStackReservedSize(essentials.logs, path::getDemoConfigRelatedFile(essentials.prefPath, demos::files::SoundsPlaying) ), 
 					demoType, "sounds playing" },

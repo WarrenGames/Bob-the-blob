@@ -4,6 +4,7 @@
 #include "demos/dataToRecord/moveAndPosition.h"
 #include "demos/dataToRecord/startingPositions.h"
 #include "demos/dataToRecord/playerMove.h"
+#include "demos/dataToRecord/gameEvents.h"
 #include "demos/templates/demoStack.h"
 
 struct Essentials;
@@ -19,8 +20,9 @@ struct SpritesPositions
 	std::vector< demos::StartingPosition > itemsStartingPosition;//Cacti for example, if any
 	std::vector< demos::Stack< demos::PlayerMove > > playersMoves;
 	std::vector< demos::Stack< demos::MoveAndPosition > > enemyBobsMoves;
+	demos::Stack< demos::GameEvent > enemyBobsRespawn;
 	
-	SpritesPositions() = default;
+	explicit SpritesPositions(Essentials& essentials, unsigned demoType_);
 	~SpritesPositions() = default;
 	SpritesPositions( const SpritesPositions& ) = delete;
 	SpritesPositions& operator= ( const SpritesPositions& ) = delete;
@@ -36,6 +38,7 @@ struct SpritesPositions
 	void recordPlayerStartingPosition(const SinglePlayerData& singlePlayerData, unsigned demoType);
 	void recordProtagonistsStartingPosition(const BobsPackage& bobsPackage, unsigned demoType);
 	void recordCactiStartingPositions(const CactiPackage& cactiPackage);
+	void recordBobRespawnEvent(std::size_t bobId, unsigned demoType);
 	
 	//At start initialization of game for a demo (from stacks to game data)
 	void setBobbysLevelDataFromDemoData(BobsPackage& bobsPackage, unsigned demoType) const;

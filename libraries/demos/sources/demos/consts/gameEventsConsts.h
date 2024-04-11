@@ -10,6 +10,7 @@ namespace demos{
 			CactusAndPlayer,
 			CactusLife,
 			PlayerPower,
+			GameWon,
 			Max
 		};
 	}
@@ -18,6 +19,7 @@ namespace demos{
 		enum : unsigned{
 			CatchPlayer,
 			EatenByPlayer,
+			Respawn,
 			Max
 		};
 	}

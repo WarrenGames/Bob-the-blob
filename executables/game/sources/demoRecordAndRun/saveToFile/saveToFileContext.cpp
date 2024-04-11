@@ -17,6 +17,7 @@ void saveDemo::mainContext(Essentials& essentials, const demos::DataPackage& dem
 		saveDemo::saveDemoDataAndQuit(essentials, fileMenu, quitMenu, demoDataPackage);
 		saveDemo::quitScreenWithoutSaving(essentials, fileMenu, quitMenu);
 		saveDemo::drawScreen(essentials, fileMenu);
+		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 	}
 }
 

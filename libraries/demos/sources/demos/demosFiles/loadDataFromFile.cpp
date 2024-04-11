@@ -87,6 +87,9 @@ void loadDemo::actAccordingToIndex(const fs::path& demoFilePath, demos::DataPack
 		case demosData::EnemyBobsMoves:
 			loadDemo::loadProtagonistsMoves(demoFilePath, lineStream, dataPackage.spritesPositions.enemyBobsMoves, fileLineNumber);
 			break;
+		case demosData::EnemyBobsRespawn:
+			loadDemo::loadGameEvents(demoFilePath, lineStream, dataPackage.spritesPositions.enemyBobsRespawn, fileLineNumber);
+			break;
 		case demosData::GameEvents:
 			loadDemo::loadGameEvents(demoFilePath, lineStream, dataPackage.gameEvents, fileLineNumber);
 			break;

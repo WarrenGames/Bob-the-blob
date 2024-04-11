@@ -25,9 +25,10 @@ void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::PlayerMoveDelayFile), std::to_string( actors::DefaultMoveMicroSecDelay ) );
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::PlayerCanEatCacti), "7000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsAnimDelayFile), "100");
-		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsEatableDelayFile), "20000");
+		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsEatableDelayFile), "9000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::GreenOrbDurationFile), "14000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::GreenOrbCreationDelay), "20000");
+		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsSpawnDelay), "2000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, sounds::SoundVolumeConfigFileName), "1 " + std::to_string(MIX_MAX_VOLUME / 2) );
 		filesSetup::createFileInPath(logs, path::getPrefPathFilePath(prefPath, files::ChosenLanguageFile), files::DefaultLanguage );
 		filesSetup::createFileInPath(logs, path::getPrefPathFilePath(prefPath, files::SdlLogoDisplayStatusFile), "1" );

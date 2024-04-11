@@ -8,6 +8,7 @@
 #include "consts/screenConsts.h"
 #include "consts/filesAndPaths.h"
 #include "demos/consts/demosConsts.h"
+#include "demos/consts/gameEventsConsts.h"
 #include "levels/levelFinish/levelFinishConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include <cassert>
@@ -30,7 +31,11 @@ LevelMandatoryData::LevelMandatoryData(Essentials& essentials, const fs::path& l
 {
 	loadAndInitializeGameComponents(essentials, *this, levelPrefix, demoDataPackage);
 	actWithDemoStatus(demoDataPackage);
-	bobsPackage.initFirstDirection(crossRoadsRandoms);
+	
+	if( demoType != demos::GameIsDemo )
+	{
+		bobsPackage.initFirstDirection(crossRoadsRandoms);
+	}
 }
 
 void LevelMandatoryData::recordStartingData(demos::DataPackage& demoDataPackage) const
@@ -109,7 +114,7 @@ void LevelMandatoryData::actWithLevelEnd(demos::DataPackage* demoDataPackage, bo
 			checkLevelEndCondition(externWinningCondition);
 			break;
 		case demos::GameIsRecording:
-			checkLevelEndCondition(externWinningCondition);
+			checkLevelEndCondition(demoDataPackage, externWinningCondition);
 			break;
 		case demos::GameHasPlayerInputs:
 			checkLevelEndCondition(externWinningCondition);
@@ -124,10 +129,16 @@ void LevelMandatoryData::checkLevelEndCondition(bool externWinningCondition)
 {
 	if( hasLevelEnded == false && externWinningCondition)
 	{
-		bobsPackage.disableAllBobs();
-		playerData.move.stopPlayer();
-		levelFinishDelay.joinTimePoints();
-		hasLevelEnded = true;
+		claimVictory();
+	}
+}
+
+void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPackage, bool externWinningCondition)
+{
+	if( hasLevelEnded == false && externWinningCondition)
+	{
+		claimVictory();
+		demoDataPackage->recordGameEvent(demos::eventCat::GameWon, 0, 0);
 	}
 }
 
@@ -142,4 +153,27 @@ void LevelMandatoryData::updateLevelExiting()
 bool LevelMandatoryData::canQuitLevel() const
 {
 	return quitLevel;
+}
+
+void LevelMandatoryData::claimVictory()
+{
+	bobsPackage.disableAllBobs();
+	playerData.move.stopPlayer();
+	levelFinishDelay.joinTimePoints();
+	hasLevelEnded = true;
+}
+
+void LevelMandatoryData::claimVictoryWithRecordedDemoData(demos::DataPackage* demoDataPackage)
+{
+	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
+	{
+		if( demoDataPackage->gameEvents.getCommandsNumber() > 0 )
+		{
+			if( demoDataPackage->gameEvents.getLastElement().category == demos::eventCat::GameWon )
+			{
+				claimVictory();
+				demoDataPackage->gameEvents.pop_back();
+			}
+		}
+	}
 }

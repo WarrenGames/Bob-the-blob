@@ -58,7 +58,10 @@ public:
 	
 	void initFirstDirection(const CrossRoadsRandoms& crossRoads);
 	
-	void spawnBobIfAny(const PlayerMoving& playerMove);
+	void spawnBobIfAny(const PlayerMoving& playerMove, demos::DataPackage *demoDataPackage);
+	void spawnSingleBob(GlobalBob& globalBob);
+	void spawnBobWithDemoStack(demos::DataPackage *demoDataPackage);
+	
 	void updateExplosionIfAny(std::size_t totalFrameNumber);
 };
 
