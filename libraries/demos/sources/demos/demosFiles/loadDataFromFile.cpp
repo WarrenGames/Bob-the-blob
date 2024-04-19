@@ -93,6 +93,9 @@ void loadDemo::actAccordingToIndex(const fs::path& demoFilePath, demos::DataPack
 		case demosData::GameEvents:
 			loadDemo::loadGameEvents(demoFilePath, lineStream, dataPackage.gameEvents, fileLineNumber);
 			break;
+		case demosData::LevelWonEvents:
+			loadDemo::loadGameEvents(demoFilePath, lineStream, dataPackage.levelWonEvents, fileLineNumber);
+			break;
 		case demosData::GreenOrb:
 			loadDemo::loadItemData(demoFilePath, lineStream, dataPackage.greenOrbRelatedItemsData.greenOrb, fileLineNumber);
 			break;

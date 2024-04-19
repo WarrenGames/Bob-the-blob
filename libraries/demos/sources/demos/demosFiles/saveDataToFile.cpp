@@ -36,6 +36,7 @@ void saveDemo::saveData(const fs::path& demoFilePath, const demos::DataPackage& 
 	saveDemo::saveIdRelatedMoves(demoFilePath, dataPackage.spritesPositions.enemyBobsMoves, demoFile, demosData::EnemyBobsMoves);
 	saveDemo::saveGameEvents(demoFilePath, dataPackage.spritesPositions.enemyBobsRespawn, demoFile, demosData::EnemyBobsRespawn);
 	saveDemo::saveGameEvents(demoFilePath, dataPackage.gameEvents, demoFile, demosData::GameEvents);
+	saveDemo::saveGameEvents(demoFilePath, dataPackage.levelWonEvents, demoFile, demosData::LevelWonEvents);
 	saveDemo::saveItemsData(demoFilePath, dataPackage.greenOrbRelatedItemsData.greenOrb, demoFile, demosData::GreenOrb);
 	saveDemo::saveGameEvents(demoFilePath, dataPackage.greenOrbRelatedItemsData.greenOrbsAndPlayer, demoFile, demosData::GreenOrbPlayerPower);
 	saveDemo::saveGameEvents(demoFilePath, dataPackage.greenOrbRelatedItemsData.cactiLife, demoFile, demosData::CactusEvent);

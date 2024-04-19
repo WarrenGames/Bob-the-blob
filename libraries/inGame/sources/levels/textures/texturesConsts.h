@@ -69,6 +69,10 @@ namespace textures{
 	constexpr char GoldIngotTexturesFilePath[] = "data/textures/objects/goldIngot.txt";
 	
 	constexpr char BlueSmokeTexturesFilePath[] = "data/textures/elements/blueSmoke.txt";
+	
+	constexpr char HammerTexturesFilePath[] = "data/textures/objects/hammerItemTextures.txt";
+	
+	constexpr char SparksTexturesFilePath[] = "data/textures/elements/sparks.txt";
 }
 
 

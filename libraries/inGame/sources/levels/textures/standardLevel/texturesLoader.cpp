@@ -4,7 +4,8 @@
 StandardLevelTexturesLoader::StandardLevelTexturesLoader(AppLogFiles& logs, sdl2::RendererWindow& rndWnd):
 	commonTextures{ logs, rndWnd },
 	blobTexturesLoader{ logs, rndWnd, Coord2D{ textures::BlobFramesNumber, textures::BlobColorMax }, textures::BlobTexturesFilePath },
-	mapTextures{ logs, rndWnd, textures::WallsTexturesFilePath }
+	mapTextures{ logs, rndWnd, textures::WallsTexturesFilePath },
+	blueBricksSpecific{ logs, rndWnd }
 {
 	
 }
@@ -13,5 +14,6 @@ bool StandardLevelTexturesLoader::wasLoadingPerfect() const
 {
 	return commonTextures.wasLoadingPerfect()
 		&& blobTexturesLoader.wasLoadingPerfect() 
-		&& mapTextures.wasLoadingPerfect();
+		&& mapTextures.wasLoadingPerfect()
+		&& blueBricksSpecific.wasLoadingPerfect();
 }

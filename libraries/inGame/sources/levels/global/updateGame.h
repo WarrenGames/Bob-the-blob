@@ -34,4 +34,6 @@ void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demo
 
 void updateBobbysExplosionsIfAny(BobsPackage& bobsPackage, std::size_t explosionFramesNumber);
 
+void exitDemo(LevelMandatoryData& levelData);
+
 #endif //BOB_THE_BLOB_IN_GAME_UPDATE_GAME_H

@@ -59,7 +59,7 @@ void GameGlobalObject::updateGame(Essentials& essentials, PlayerAttributes& play
 
 bool GameGlobalObject::hasPlayerRequestedToExit() const
 {
-	return levelData.playerInputs.inputsStates.escapeState || levelData.playerInputs.inputsStates.sdlQuitState;
+	return levelData.playerInputs.inputsStates.getEscapeState() || levelData.playerInputs.inputsStates.getSdlQuit();
 }
 
 bool GameGlobalObject::isLevelComplete() const

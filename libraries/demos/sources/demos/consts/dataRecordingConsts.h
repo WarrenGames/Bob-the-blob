@@ -21,6 +21,7 @@ namespace demosData{
 	constexpr int EnemyBobsMoves = -51;
 	constexpr int EnemyBobsRespawn = -52;
 	constexpr int GameEvents = -60;
+	constexpr int LevelWonEvents = -61;
 	constexpr int GreenOrb = -70;
 	constexpr int GreenOrbPlayerPower = -71;
 	constexpr int CactusEvent = -72;

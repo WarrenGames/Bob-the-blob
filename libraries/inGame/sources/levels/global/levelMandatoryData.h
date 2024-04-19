@@ -55,6 +55,7 @@ struct LevelMandatoryData
 	
 	void checkLevelEndCondition(bool externWinningCondition);
 	void checkLevelEndCondition(demos::DataPackage* demoDataPackage, bool externWinningCondition);
+	void checkLevelEndCondition(demos::DataPackage* demoDataPackage);
 	void updateLevelExiting();
 	
 	bool canQuitLevel() const;

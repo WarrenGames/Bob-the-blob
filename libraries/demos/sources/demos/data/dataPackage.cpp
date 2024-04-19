@@ -4,6 +4,7 @@
 #include "demos/demosFiles/demoConfigFiles.h"
 #include "demos/consts/demoConfigFilesConsts.h"
 #include "demos/consts/dataRecordingConsts.h"
+#include "demos/consts/gameEventsConsts.h"
 #include <cassert>
 
 demos::DataPackage::DataPackage(Essentials& essentials, const std::string& levelName_, unsigned demoType_, unsigned gameAmbience_):
@@ -15,6 +16,8 @@ demos::DataPackage::DataPackage(Essentials& essentials, const std::string& level
 					demoType, "sounds playing" },
 	gameEvents{ essentials.logs, demos::fetchStackReservedSize(essentials.logs, path::getDemoConfigRelatedFile(essentials.prefPath, demos::files::GameEvents) ),
 					demoType, "game events" },
+	levelWonEvents{ essentials.logs, demos::fetchStackReservedSize(essentials.logs, path::getDemoConfigRelatedFile(essentials.prefPath, demos::files::GameEvents) ),
+					demoType, "level won events" },
 	greenOrbRelatedItemsData{ essentials, demoType },
 	mapsElements{},
 	levelName{ levelName_ },
@@ -40,6 +43,13 @@ void demos::DataPackage::recordGameEvent(unsigned eventCategory, unsigned eventS
 	}
 }
 
+void demos::DataPackage::setLevelIsWon()
+{
+	if( demoType == demos::GameIsRecording )
+	{
+		levelWonEvents.emplaceElement( demos::GameEvent{ gameEvents.getCurrentElapsedMicroSecondsTime(), demos::eventCat::GameWon, 0, 0 } );
+	}
+}
 
 
 

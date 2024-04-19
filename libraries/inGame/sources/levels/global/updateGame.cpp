@@ -53,6 +53,7 @@ void updatePlayerThings(LevelMandatoryData& levelData, demos::DataPackage* demoD
 			levelData.playerData.anim.changeCurrentFrameWithBasicAnim();
 			updateBobbysDetectionWithSound(levelData.playerData, levelData.bobsPackage, levelData.gameMap, levelData.gameSoundSystem.soundSystem.soundPlayer, demoDataPackage);
 			levelData.bobsPackage.spawnBobWithDemoStack(demoDataPackage);
+			exitDemo(levelData);
 			break;
 	}
 }
@@ -125,4 +126,12 @@ void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demo
 void updateBobbysExplosionsIfAny(BobsPackage& bobsPackage, std::size_t explosionFramesNumber)
 {
 	bobsPackage.updateExplosionIfAny(explosionFramesNumber);
+}
+
+void exitDemo(LevelMandatoryData& levelData)
+{
+	if( levelData.playerInputs.inputsStates.getSdlQuit() || levelData.playerInputs.inputsStates.getEscapeState() )
+	{
+		levelData.quitLevel = true;
+	}
 }

@@ -4,6 +4,7 @@
 #include "levels/textures/common/commonLoading.h"
 #include "advancedDrawing/texturesLoading/2dimTexturesLoading.h"
 #include "levels/textures/mappingTextures/mappingTextures.h"
+#include "levels/textures/blueBricksThings/blueBricksTextures.h"
 
 struct AppLogFiles;
 namespace sdl2{ class RendererWindow; }
@@ -13,6 +14,7 @@ struct StandardLevelTexturesLoader
 	CommonTexturesLoading commonTextures;
 	Matrix2DTexturesLoading blobTexturesLoader;
 	MappingTextures mapTextures;
+	BlueBricksTexturesLoader blueBricksSpecific;
 	
 	explicit StandardLevelTexturesLoader(AppLogFiles& logs, sdl2::RendererWindow& rndWnd);
 	~StandardLevelTexturesLoader() = default;

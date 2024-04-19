@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 
-namespace sdl2{ class RendererWindow; }
+namespace sdl2{ class RendererWindow; class Sprite; }
 struct BalloonsSprites;
 class BalloonsPositions;
 struct BalloonInfos;
@@ -18,5 +18,7 @@ void drawBalloonContent(sdl2::RendererWindow& rndWnd, BalloonsSprites& balloonsS
 void drawEnemyLogoIfAny(sdl2::RendererWindow& rndWnd, ConstAnimDraw& enemyLogo, const BalloonInfos& balloonInfos);
 
 void drawOrbLogoIfAny(sdl2::RendererWindow& rndWnd, ConstAnimDraw& orbsLogo, const BalloonInfos& balloonInfos);
+
+void drawHammerlogoIfAny(sdl2::RendererWindow& rndWnd, sdl2::Sprite& hammerLogo, const BalloonInfos& balloonInfos);
 
 #endif //BOB_THE_BLOB_IN_GAME_DRAW_BALLOONS_H

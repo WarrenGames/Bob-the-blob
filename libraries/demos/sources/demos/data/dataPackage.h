@@ -21,6 +21,7 @@ struct DataPackage
 	demos::PlayerInputsData playerInputsData;
 	demos::Stack< demos::SoundPlaying > soundsPlaying;
 	demos::Stack< demos::GameEvent > gameEvents;
+	demos::Stack< demos::GameEvent > levelWonEvents;
 	demos::GreenOrbDataStack greenOrbRelatedItemsData;
 	demos::MapElements mapsElements;
 	const std::string levelName;
@@ -36,6 +37,7 @@ struct DataPackage
 	void joinTimePoints(const AccurateTimeDelay& newDelay);
 	
 	void recordGameEvent(unsigned eventCategory, unsigned eventSubType, std::size_t newId);
+	void setLevelIsWon();
 };
 
 }

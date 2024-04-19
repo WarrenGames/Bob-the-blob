@@ -4,7 +4,8 @@
 BalloonsSprites::BalloonsSprites(const BalloonsTexturesLoader& loadedTextures):
 	balloonsSprites{ loadedTextures.balloonsTextures },
 	enemyLogos{ loadedTextures.enemyLogos },
-	orbsLogos{ loadedTextures.orbsLogos }
+	orbsLogos{ loadedTextures.orbsLogos },
+	hammerLogo{ loadedTextures.hammerLogo }
 {
 	
 }

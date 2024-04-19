@@ -21,6 +21,7 @@ enum : unsigned {
 	BalContentIsEnemy,
 	BalContentIsApple,
 	BalContentIsOrb,
+	BalContentIsHammer,
 	BalContentIsMax
 };
 
@@ -29,6 +30,8 @@ constexpr char BalloonsTexturesListFile[] = "data/textures/objects/balloonsTextu
 constexpr char BalloonsEnemyLogoListFile[] = "data/textures/objects/balloonsEnemyLogo.txt";
 
 constexpr char BalloonsOrbsLogoListFile[] = "data/textures/objects/balloonsOrbsLogo.txt";
+
+constexpr char BalloonsHammerLogoFile[] = "textures/sprites/balloons/hammerLogo.png";
 
 constexpr char BalloonsPositionsFile[] = "data/textures/balloons/balloonsPositions.txt";
 

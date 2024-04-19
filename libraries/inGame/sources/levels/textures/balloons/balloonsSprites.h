@@ -10,6 +10,7 @@ struct BalloonsSprites
 	ConstAnimDraw balloonsSprites;
 	ConstAnimDraw enemyLogos;
 	ConstAnimDraw orbsLogos;
+	sdl2::Sprite hammerLogo;
 	
 	explicit BalloonsSprites(const BalloonsTexturesLoader& loadedTextures);
 	~BalloonsSprites() = default;

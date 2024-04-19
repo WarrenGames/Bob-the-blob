@@ -15,8 +15,8 @@ BonusesMap::BonusesMap(const GameMap& gameMap, const fs::path& levelPrefix, unsi
 	if( demoType == demos::GameHasPlayerInputs || demoType == demos::GameIsRecording )
 	{
 		openBonusesDataFile(*this, path::getGameConfigFilePath(levelPrefix, files::DefaultBonusesFileSuffix), "load bonuses data");
-		countAllBonuses();
 	}
+	countAllBonuses();
 }
 
 std::vector< BonusElement >::iterator BonusesMap::begin()

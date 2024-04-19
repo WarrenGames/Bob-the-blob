@@ -73,21 +73,21 @@ void PlayerInputs::updateKeysStates(SDL_Keycode keycode, bool valueToSet)
 		if( keyboardInputsConfig.getKeycode(i) == keycode )
 		{
 			recordAndEvent(i, valueToSet);
-			inputsStates.funcStates[i] = valueToSet;
+			inputsStates.setState(i, valueToSet);
 		}
 	}
 }
 
 void PlayerInputs::setSdlQuit()
 {
-	inputsStates.sdlQuitState = true;
+	inputsStates.setSdlQuitFlag(true);
 }
 
 void PlayerInputs::setEscapeState(SDL_Keycode keycode, bool valueToSet)
 {
 	if( keycode == SDLK_ESCAPE )
 	{
-		inputsStates.escapeState = valueToSet;
+		inputsStates.setEscapeKeyFlag(valueToSet);
 	}
 }
 
@@ -111,7 +111,7 @@ void PlayerInputs::setInputsStatesWithRecordedEvents()
 void PlayerInputs::actWithRecordedDemoActionData(const demos::ActionData& actionData)
 {
 	assert( actionData.funcEnum < MoveMax );
-	inputsStates.funcStates[actionData.funcEnum] = actionData.actionState;
+	inputsStates.setState(actionData.funcEnum, actionData.actionState);
 }
 
 void PlayerInputs::setQuitCommandDuringDemo()
@@ -120,7 +120,7 @@ void PlayerInputs::setQuitCommandDuringDemo()
 	{
 		if( recordedEvents.hasQuitCommandComeOut() )
 		{
-			inputsStates.sdlQuitState = recordedEvents.sdlQuitEvent.actionState;
+			inputsStates.setSdlQuitFlag( recordedEvents.sdlQuitEvent.actionState );
 		}
 	}
 }
@@ -131,7 +131,7 @@ void PlayerInputs::setEscapeCommandDuringDemo()
 	{
 		if( recordedEvents.hasEscapeCommandComeOut() )
 		{
-			inputsStates.escapeState = recordedEvents.escapeCommand.actionState;
+			inputsStates.setEscapeKeyFlag( recordedEvents.escapeCommand.actionState );
 		}
 	}
 }

@@ -106,7 +106,7 @@ void MexicanGameObject::updateGreenOrbs(PlayerAttributes& playerAttributes, demo
 
 bool MexicanGameObject::hasPlayerRequestedToExit() const
 {
-	return levelData.playerInputs.inputsStates.escapeState || levelData.playerInputs.inputsStates.sdlQuitState;
+	return levelData.playerInputs.inputsStates.getEscapeState() || levelData.playerInputs.inputsStates.getSdlQuit();
 }
 
 void MexicanGameObject::loadCactiPositions(const demos::DataPackage* demoDataPackage)

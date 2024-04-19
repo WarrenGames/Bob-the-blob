@@ -11,6 +11,7 @@ struct BalloonsTexturesLoader
 	TexturesFilesList balloonsTextures;
 	TexturesFilesList enemyLogos;
 	TexturesFilesList orbsLogos;
+	sdl2::TextureLoader hammerLogo;
 	
 	explicit BalloonsTexturesLoader(AppLogFiles& logs, sdl2::RendererWindow& rndWnd);
 	~BalloonsTexturesLoader() = default;

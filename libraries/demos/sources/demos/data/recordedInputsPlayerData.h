@@ -11,7 +11,6 @@ namespace demos{
 struct PlayerInputsData
 {
 	demos::Stack< demos::ActionData > playerInputs;
-	//demos::Stack< demos::ActionData > movesInputs;//Must be a copy of 'playerInputs'
 	demos::ActionData sdlQuitEvent;
 	demos::ActionData escapeCommand;
 	
@@ -21,8 +20,6 @@ struct PlayerInputsData
 	PlayerInputsData& operator= ( const PlayerInputsData& ) = delete;
 	PlayerInputsData( PlayerInputsData&& ) = default;
 	PlayerInputsData& operator= ( PlayerInputsData&& ) = default;
-	
-	//void copyPlayerInputsToMovesInputs();
 	
 	void joinTimePoints(const AccurateTimeDelay& newDelay);
 };

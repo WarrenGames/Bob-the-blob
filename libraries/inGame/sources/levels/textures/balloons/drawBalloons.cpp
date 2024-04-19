@@ -39,6 +39,9 @@ void drawBalloonContent(sdl2::RendererWindow& rndWnd, BalloonsSprites& balloonsS
 		case BalContentIsOrb:
 			drawOrbLogoIfAny(rndWnd, balloonsSprites.orbsLogos, balloonInfos);
 			break;
+		case BalContentIsHammer:
+			drawHammerlogoIfAny(rndWnd, balloonsSprites.hammerLogo, balloonInfos);
+			break;
 	}
 }
 
@@ -52,4 +55,9 @@ void drawOrbLogoIfAny(sdl2::RendererWindow& rndWnd, ConstAnimDraw& orbsLogo, con
 {
 	assert( balloonInfos.typeSubValue < orbsLogo.size() );
 	orbsLogo[balloonInfos.typeSubValue].drawToCenter(rndWnd, balloonInfos.accuratePosition.x + SQR_SIZE / 2, balloonInfos.accuratePosition.y + SQR_SIZE / 2);
+}
+
+void drawHammerlogoIfAny(sdl2::RendererWindow& rndWnd, sdl2::Sprite& hammerLogo, const BalloonInfos& balloonInfos)
+{
+	hammerLogo.drawToCenter(rndWnd, balloonInfos.accuratePosition.x + SQR_SIZE / 2, balloonInfos.accuratePosition.y + SQR_SIZE / 2);
 }

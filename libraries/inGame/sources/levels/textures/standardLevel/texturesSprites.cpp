@@ -4,7 +4,8 @@
 StandardLevelSprites::StandardLevelSprites(const StandardLevelTexturesLoader& textures):
 	commonSprites{ textures.commonTextures, textures.blobTexturesLoader },
 	blobSprites{ textures.blobTexturesLoader },
-	mapSprites{ textures.mapTextures }
+	mapSprites{ textures.mapTextures },
+	blueBricksSprites{ textures.blueBricksSpecific }
 {
 	
 }

@@ -3,12 +3,14 @@
 
 #include <vector>
 
-struct InputsStates
+class InputsStates
 {
+private:
 	std::vector< bool > funcStates;
 	bool escapeState;
 	bool sdlQuitState;
-	
+
+public:
 	InputsStates();
 	~InputsStates() = default;
 	InputsStates( const InputsStates& ) = delete;
@@ -16,7 +18,13 @@ struct InputsStates
 	InputsStates( InputsStates&& ) = default;
 	InputsStates& operator= ( InputsStates&& ) = default;
 	
+	bool getEscapeState() const;
+	bool getSdlQuit() const;
+	void setEscapeKeyFlag(bool state);
+	void setSdlQuitFlag(bool state);
+	
 	bool getState(std::size_t stateIndex) const;
+	void setState(std::size_t stateIndex, bool state);
 	std::size_t size() const;
 };
 

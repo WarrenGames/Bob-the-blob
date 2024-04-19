@@ -111,7 +111,7 @@ void LevelMandatoryData::actWithLevelEnd(demos::DataPackage* demoDataPackage, bo
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
 		case demos::GameIsDemo:
-			checkLevelEndCondition(externWinningCondition);
+			checkLevelEndCondition(demoDataPackage);
 			break;
 		case demos::GameIsRecording:
 			checkLevelEndCondition(demoDataPackage, externWinningCondition);
@@ -138,7 +138,19 @@ void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPack
 	if( hasLevelEnded == false && externWinningCondition)
 	{
 		claimVictory();
-		demoDataPackage->recordGameEvent(demos::eventCat::GameWon, 0, 0);
+		demoDataPackage->setLevelIsWon();
+	}
+}
+
+void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPackage)
+{
+	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
+	{
+		if( demoDataPackage->levelWonEvents.getCommandsNumber() > 0 && demoDataPackage->levelWonEvents.hasLastTimeElapsed() )
+		{
+			claimVictory();
+			demoDataPackage->levelWonEvents.pop_back();
+		}
 	}
 }
 

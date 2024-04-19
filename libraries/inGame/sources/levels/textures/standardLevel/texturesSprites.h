@@ -4,6 +4,7 @@
 #include "levels/textures/common/commonSprite.h"
 #include "advancedDrawing/texturesDrawing/2dimTexturesDrawing.h"
 #include "levels/textures/mappingTextures/mappingSprites.h"
+#include "levels/textures/blueBricksThings/blueBricksSprites.h"
 
 struct StandardLevelTexturesLoader;
 
@@ -12,6 +13,7 @@ struct StandardLevelSprites
 	CommonTexturesSprites commonSprites;
 	Matrix2DTexturesDrawing blobSprites;
 	MappingSprites mapSprites;
+	BlueBricksSprites blueBricksSprites;
 	
 	explicit StandardLevelSprites(const StandardLevelTexturesLoader& textures);
 	~StandardLevelSprites() = default;
