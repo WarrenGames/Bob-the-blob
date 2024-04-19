@@ -30,6 +30,8 @@ set( HEADERS
 	sources/levels/textures/drawing/scoreDisplay.h
 	sources/levels/textures/drawing/inferDrawingPosition.h
 	sources/levels/textures/drawing/axisScrolling.h
+	sources/levels/textures/blueBricksThings/blueBricksTextures.h
+	sources/levels/textures/blueBricksThings/blueBricksSprites.h
 	sources/levels/textures/texturesConsts.h
 	sources/levels/textures/mexicanTexturesConsts.h
 	sources/levels/demos/joinTimePoints.h
@@ -127,6 +129,8 @@ set( SOURCES
 	sources/levels/textures/drawing/scoreDisplay.cpp
 	sources/levels/textures/drawing/drawMap.cpp
 	sources/levels/textures/drawing/axisScrolling.cpp
+	sources/levels/textures/blueBricksThings/blueBricksSprites.cpp
+	sources/levels/textures/blueBricksThings/blueBricksTextures.cpp
 	sources/levels/demos/updateEnemiesWithDemoData.cpp
 	sources/levels/demos/transferDemoStacks.cpp
 	sources/levels/demos/initializeDemoStacks.cpp
