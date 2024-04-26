@@ -28,18 +28,6 @@ The CMake project configuration tool can be downloaded from this web site: 'htt
 The WarrenGamesCustomLibs can be downloaded at this address: 
 	"https://github.com/WarrenGames/WarrenGameCustomLibs"
 
-Compile time project options:
-Most of the textures used in Breakout4 are generated with the raytracer POVRay. In this texture generator
-system, that you can download on 'https://www.ant01.fr' on the project page, you must specify before the 
-generation starts the size in pixels of the Square size in the game. Once done, you get all the textures with
-a proportional size of the given pixel size. In the source code of the Bob the blob game, the executable windows
-size is defined like this: width = 20 * 'SquareSize' and height 15 * 'SquareSize'; so if you generated the 
-textures with a square size of 64 you must configure the compilation with a square size value of 64 too and 
-you will play the game with a windows size of 1280 x 960 ( Width 20 * 64 and Height 15 * 64). To have a 
-concrete example of these proportional textures sizes check the screenshots on 'https://www.ant01.fr'. There 
-are pregenerated textures pack on this web site too if you don't have time to make them on your computer or
-if you don't want to install POVRay and image magick on your system.
-
 -----------------
 Run compilation configuration with CMake under Ubuntu in a terminal:
 Open a terminal in the top project directory and run cmake with this command:

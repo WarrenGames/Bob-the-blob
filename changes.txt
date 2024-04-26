@@ -1,6 +1,3 @@
-version 0.1.4
-	- Update of InGame library CMakeLists.txt file
-
 version 0.1.3
 	Several bug fixes:
 	- The 'level won' events is now recorded and happens when the user plays a demo.
