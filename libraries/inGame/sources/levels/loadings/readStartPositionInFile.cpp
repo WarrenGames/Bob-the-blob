@@ -1,8 +1,11 @@
 #include "levels/loadings/readStartPositionInFile.h"
 #include "levels/gameActors/bobThings/bobsPackage.h"
 #include "exceptions/readErrorExcept.h"
+#include "consts/skillLevelsConsts.h"
 #include "matrices/matrixStructs.h"
 #include <fstream>
+#include <bitset>
+#include <cassert>
 
 void loadPositionFromFile(Coord2D& coordinates, const fs::path& dataFilePath, const std::string& filePurpose)
 {
@@ -18,7 +21,7 @@ void loadPositionFromFile(Coord2D& coordinates, const fs::path& dataFilePath, co
 	}
 }
 
-void loadBobsDataFromFile(BobsPackage& bobsPackage, const fs::path& dataFilePath, const std::string& filePurpose)
+void loadBobsDataFromFile(BobsPackage& bobsPackage, const fs::path& dataFilePath, const std::string& filePurpose, unsigned skillLevel)
 {
 	if( std::ifstream bobsDataFile{ dataFilePath } )
 	{
@@ -29,7 +32,7 @@ void loadBobsDataFromFile(BobsPackage& bobsPackage, const fs::path& dataFilePath
 			if( fileLine[0] != '#' )
 			{
 				std::istringstream lineStream{ fileLine };
-				loadSingleBobData(bobsPackage, dataFilePath, filePurpose, lineStream, fileLineNum);
+				loadSingleBobData(bobsPackage, dataFilePath, filePurpose, lineStream, fileLineNum, skillLevel);
 			}
 			fileLineNum++;
 		}
@@ -39,16 +42,24 @@ void loadBobsDataFromFile(BobsPackage& bobsPackage, const fs::path& dataFilePath
 	}
 }
 
-void loadSingleBobData(BobsPackage& bobsPackage, const fs::path& dataFilePath, const std::string& filePurpose, std::istringstream& lineStream, std::size_t fileLineNum)
+void loadSingleBobData(BobsPackage& bobsPackage, const fs::path& dataFilePath, const std::string& filePurpose, std::istringstream& lineStream, std::size_t fileLineNum,
+						unsigned skillLevel)
 {
+	assert( skillLevel < SkillLevelMax );
 	Coord2D coordinates;
 	std::size_t colorIndex{0};
-	if( lineStream >> coordinates.width >> coordinates.height >> colorIndex )
+	unsigned readCombinedSkillLevel{ SkillLevelMax };
+	
+	if( lineStream >> coordinates.width >> coordinates.height >> colorIndex >> readCombinedSkillLevel )
 	{
-		bobsPackage.emplaceBackBob( coordinates, colorIndex );
+		std::bitset< SkillLevelMax > combinedSkillData{ readCombinedSkillLevel };
+		if( combinedSkillData[skillLevel] )
+		{
+			bobsPackage.emplaceBackBob( coordinates, colorIndex );
+		}
 	}
 	else{
-		throw ReadError{"The file for " + filePurpose + "'" + dataFilePath.string() + "' was open with success but reading data failed at line number " 
+		throw ReadError{"The file for " + filePurpose + " '" + dataFilePath.string() + "' was open with success but reading data failed at line number " 
 						+ std::to_string( fileLineNum ) + ".\n"};
 	}
 }

@@ -15,11 +15,13 @@ demosRecording::Menu::Menu(Essentials& essentials):
 	levelsListing{ essentials, menuFont, levelChoice::LevelsListFilePath },
 	menuTitle{essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtTitle], GreenCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE, true, true } },
 	precedentPageButton{ essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtPrecedent], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
+							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },
 	nextPageButton{ essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtNext], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
+							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },
 	quitButton{ essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtQuit], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, SQR_SIZE, true, true } }
+							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, SQR_SIZE, true, true } },
+	skillLevelCursor{ essentials, TexturePosition{ GameScreenWidth / 2, GameScreenHeight - SQR_SIZE, true, true } },
+	skillTexts{ essentials, TexturePosition{ GameScreenWidth / 2, GameScreenHeight - SQR_SIZE * 2, true, true } }
 {
 	
 }
@@ -30,6 +32,7 @@ void demosRecording::Menu::updateButtons(Essentials& essentials)
 	precedentPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	nextPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	quitButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
+	skillLevelCursor.changeCursorPosition(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 }
 
 void demosRecording::Menu::drawEverything(Essentials& essentials) const
@@ -39,4 +42,6 @@ void demosRecording::Menu::drawEverything(Essentials& essentials) const
 	precedentPageButton.drawButton(essentials.rndWnd);
 	nextPageButton.drawButton(essentials.rndWnd);
 	quitButton.drawButton(essentials.rndWnd);
+	skillLevelCursor.drawEverything(essentials);
+	skillTexts.drawSelectedSkill(essentials, skillLevelCursor.getSkillLevel() );
 }

@@ -10,6 +10,7 @@
 #include "consts/colors.h"
 #include "demos/consts/demosConsts.h"
 #include "consts/levelsTypesConsts.h"
+#include "consts/skillLevelsConsts.h"
 
 void demosRecording::mainContext(Essentials& essentials)
 {
@@ -76,10 +77,10 @@ void demosRecording::runDemoRecording(Essentials& essentials, const demosRecordi
 				switch( level.levelType )
 				{
 					case LevelBlueBrick:
-						demosRecording::prepareStandardLevelData(essentials, level.levelName);
+						demosRecording::prepareStandardLevelData(essentials, level.levelName, menu.skillLevelCursor.getSkillLevel() );
 						break;
 					case LevelMexican:
-						demosRecording::prepareMexicanLevelData(essentials, level.levelName);
+						demosRecording::prepareMexicanLevelData(essentials, level.levelName, menu.skillLevelCursor.getSkillLevel() );
 						break;
 				}
 			}
@@ -87,9 +88,9 @@ void demosRecording::runDemoRecording(Essentials& essentials, const demosRecordi
 	}
 }
 
-void demosRecording::prepareStandardLevelData(Essentials& essentials, const std::string& levelName)
+void demosRecording::prepareStandardLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel)
 {
-	PlayerAttributes playerAttributes;
+	PlayerAttributes playerAttributes{skillLevel};
 	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelBlueBrick};
 	
 	standardLevel::levelContext(essentials, playerAttributes, levelName, &demoDataPackage);
@@ -97,9 +98,9 @@ void demosRecording::prepareStandardLevelData(Essentials& essentials, const std:
 	saveDemo::mainContext(essentials, demoDataPackage);
 }
 
-void demosRecording::prepareMexicanLevelData(Essentials& essentials, const std::string& levelName)
+void demosRecording::prepareMexicanLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel)
 {
-	PlayerAttributes playerAttributes;
+	PlayerAttributes playerAttributes{skillLevel};
 	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelMexican};
 	
 	mexican::levelContext(essentials, playerAttributes, levelName, &demoDataPackage);

@@ -4,9 +4,10 @@
 struct PlayerAttributes
 {
 	unsigned score;
+	unsigned skillLevel;
 	bool updateScore;
 	
-	PlayerAttributes();
+	PlayerAttributes(unsigned selectedSkillLevel);
 	~PlayerAttributes() = default;
 	PlayerAttributes( const PlayerAttributes& ) = delete;
 	PlayerAttributes& operator= ( const PlayerAttributes& ) = delete;

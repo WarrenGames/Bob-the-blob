@@ -4,6 +4,7 @@
 namespace demosData{
 	
 	constexpr int GameAmbience = -1;
+	constexpr int SkillLevel = -2;
 	constexpr int MatrixSizeData = -10;
 	constexpr int MatrixElementData = -11;
 	constexpr int MatrixSubdivisionsNumber = -15;

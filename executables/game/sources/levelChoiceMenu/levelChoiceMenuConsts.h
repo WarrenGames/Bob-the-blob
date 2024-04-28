@@ -12,6 +12,8 @@ namespace levelChoice{
 	
 	constexpr char InterfaceTexts[] = "levelChoiceMenu/interface.txt";
 	
+	constexpr char SkillLevelsTextsEnum[] = "levelChoiceMenu/skillLevelsEnum.txt";
+	
 	enum{
 		TxtLevelList,
 		TxtPrecedentBtn,

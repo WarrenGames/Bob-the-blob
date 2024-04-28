@@ -42,6 +42,9 @@ void loadDemo::actAccordingToIndex(const fs::path& demoFilePath, demos::DataPack
 		case demosData::GameAmbience:
 			loadDemo::loadGameAmbience(demoFilePath, lineStream, dataPackage.gameAmbience, fileLineNumber);
 			break;
+		case demosData::SkillLevel:
+			loadDemo::loadSkillLevel(demoFilePath, lineStream, dataPackage.skillLevel, fileLineNumber);
+			break;
 		case demosData::MatrixSizeData:
 			loadDemo::loadMatrixSizeData(demoFilePath, lineStream, dataPackage, fileLineNumber);
 			break;
@@ -111,6 +114,14 @@ void loadDemo::actAccordingToIndex(const fs::path& demoFilePath, demos::DataPack
 void loadDemo::loadGameAmbience(const fs::path& demoFilePath, std::istringstream& lineStream, unsigned& gameAmbience, std::size_t fileLineNumber)
 {
 	if( ! ( lineStream >> gameAmbience ) )
+	{
+		loadDemo::throwReadError(demoFilePath, fileLineNumber);
+	}
+}
+
+void loadDemo::loadSkillLevel(const fs::path& demoFilePath, std::istringstream& lineStream, unsigned& skillLevel, std::size_t fileLineNumber)
+{
+	if( ! ( lineStream >> skillLevel ) )
 	{
 		loadDemo::throwReadError(demoFilePath, fileLineNumber);
 	}

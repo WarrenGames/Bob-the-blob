@@ -16,14 +16,14 @@
 #include <algorithm>
 #include <cassert>
 
-BobsPackage::BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType):
+BobsPackage::BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel):
 	bobsMoveDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsMoveDelayFile, "Bobs move delay" ) },
 	bobsAnimDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsAnimDelayFile, "Bobs anim delay" ) },
 	bobsSpawnDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsSpawnDelay, "Bobs spawn delay" ) }
 {
 	if( demoType == demos::GameHasPlayerInputs || demoType == demos::GameIsRecording )
 	{
-		loadBobsDataFromFile(*this, bobsDataFilePath, "load bobs data");	
+		loadBobsDataFromFile(*this, bobsDataFilePath, "load bobs data", skillLevel);	
 	}
 }
 

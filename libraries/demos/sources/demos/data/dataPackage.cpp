@@ -5,11 +5,13 @@
 #include "demos/consts/demoConfigFilesConsts.h"
 #include "demos/consts/dataRecordingConsts.h"
 #include "demos/consts/gameEventsConsts.h"
+#include "consts/skillLevelsConsts.h"
 #include <cassert>
 
 demos::DataPackage::DataPackage(Essentials& essentials, const std::string& levelName_, unsigned demoType_, unsigned gameAmbience_):
 	demoType{ demoType_ },
 	gameAmbience{ gameAmbience_ },
+	skillLevel{ SkillLevelMax },
 	spritesPositions{ essentials, demoType_ },
 	playerInputsData{ essentials, demoType },
 	soundsPlaying{ essentials.logs, demos::fetchStackReservedSize(essentials.logs, path::getDemoConfigRelatedFile(essentials.prefPath, demos::files::SoundsPlaying) ), 

@@ -7,12 +7,13 @@
 #include "levels/playerAttributes/playerAttributes.h"
 #include "consts/colors.h"
 #include "consts/levelsTypesConsts.h"
+#include "consts/skillLevelsConsts.h"
 #include <cassert>
 
 void levelChoice::mainContext(Essentials& essentials)
 {
 	levelChoice::MenuElements interface{essentials};
-	PlayerAttributes playerAttributes;
+	PlayerAttributes playerAttributes{SkillLevelMedium};
 	bool quitMenu{false};
 	essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 	
@@ -77,6 +78,7 @@ void levelChoice::runLevel(Essentials& essentials, const levelChoice::MenuElemen
 		{
 			if( level.textButton.buttonClicked() )
 			{
+				playerAttributes.skillLevel = interface.skillLevelCursor.getSkillLevel();
 				switch( level.levelType )
 				{
 					case LevelBlueBrick:

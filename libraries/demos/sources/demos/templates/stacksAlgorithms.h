@@ -3,7 +3,7 @@
 
 #include "demos/templates/demoStack.h"
 
-//This template function is used to display demos stacks templates that were not enough in reserved size at time of saving demo data to file
+//This template function is used to display demos stacks templates that didn't have enough reserved size at time of saving demo data to file
 
 namespace demos{
 

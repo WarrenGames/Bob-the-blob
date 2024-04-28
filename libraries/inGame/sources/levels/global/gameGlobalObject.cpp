@@ -17,7 +17,7 @@
 #include "consts/screenConsts.h"
 
 GameGlobalObject::GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage):
-	levelData{ essentials, levelPrefix, demoDataPackage },
+	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage },
 	texturesLoader{ essentials.logs, essentials.rndWnd },
 	texturesSprites{ texturesLoader },
 	balloonsPack{ essentials.logs, essentials.rndWnd },

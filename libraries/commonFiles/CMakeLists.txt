@@ -11,6 +11,7 @@ set( HEADERS
 	sources/consts/playerInputsConsts.h
 	sources/consts/levelsTypesConsts.h
 	sources/consts/filesAndPaths.h
+	sources/consts/skillLevelsConsts.h
 	sources/consts/fontsSizes.h
 	sources/consts/squareSize.h
 	sources/consts/colors.h

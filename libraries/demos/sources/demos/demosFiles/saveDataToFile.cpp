@@ -19,6 +19,7 @@ void saveDemo::openFile(const fs::path& demoFilePath, const demos::DataPackage& 
 void saveDemo::saveData(const fs::path& demoFilePath, const demos::DataPackage& dataPackage, std::ofstream& demoFile)
 {
 	saveDemo::saveGameAmbience(demoFilePath, dataPackage.gameAmbience, demoFile);
+	saveDemo::saveSkillLevel(demoFilePath, dataPackage.skillLevel, demoFile);
 	saveDemo::saveMatrixSize(demoFilePath, dataPackage.mapsElements.gameMap, demoFile);
 	saveDemo::savePlayedMatrix(demoFilePath, dataPackage.mapsElements.gameMap, demoFile);
 	saveDemo::saveMapSubdivisionsNumber(demoFilePath, dataPackage.mapsElements.subDivisionFileData, demoFile);
@@ -47,6 +48,14 @@ void saveDemo::saveGameAmbience(const fs::path& demoFilePath, unsigned gameAmbie
 	if( ! ( demoFile << demosData::GameAmbience << " " << gameAmbience << '\n' ) )
 	{
 		saveDemo::throwWriteError(demoFilePath, demosData::GameAmbience);
+	}
+}
+
+void saveDemo::saveSkillLevel(const fs::path& demoFilePath, unsigned skillLevel, std::ofstream& demoFile)
+{
+	if( ! ( demoFile << demosData::SkillLevel << " " << skillLevel << '\n' ) )
+	{
+		saveDemo::throwWriteError(demoFilePath, demosData::SkillLevel);
 	}
 }
 

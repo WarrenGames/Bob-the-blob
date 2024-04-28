@@ -26,7 +26,7 @@ private:
 	std::chrono::milliseconds bobsSpawnDelay;
 	
 public:
-	explicit BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType);
+	explicit BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel);
 	~BobsPackage() = default;
 	BobsPackage( const BobsPackage& ) = delete;
 	BobsPackage& operator= ( const BobsPackage& ) = delete;

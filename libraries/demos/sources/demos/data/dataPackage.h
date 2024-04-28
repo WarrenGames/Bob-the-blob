@@ -17,6 +17,7 @@ struct DataPackage
 {
 	unsigned demoType;
 	unsigned gameAmbience;
+	unsigned skillLevel;
 	demos::SpritesPositions spritesPositions;
 	demos::PlayerInputsData playerInputsData;
 	demos::Stack< demos::SoundPlaying > soundsPlaying;

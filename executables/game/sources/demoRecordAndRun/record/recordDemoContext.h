@@ -20,9 +20,9 @@ namespace demosRecording{
 	
 	void runDemoRecording(Essentials& essentials, const demosRecording::Menu& menu);
 	
-	void prepareStandardLevelData(Essentials& essentials, const std::string& levelName);
+	void prepareStandardLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel);
 	
-	void prepareMexicanLevelData(Essentials& essentials, const std::string& levelName);
+	void prepareMexicanLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel);
 }
 
 

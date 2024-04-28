@@ -1,6 +1,8 @@
 #ifndef BOB_THE_BLOB_GAME_RECORD_DEMO_MENU_H
 #define BOB_THE_BLOB_GAME_RECORD_DEMO_MENU_H
 
+#include "levelChoiceMenu/skillLevelTextsInterface.h"
+#include "levelChoiceMenu/skillLevelCursorInterface.h"
 #include "levelChoiceMenu/levelsListing.h"
 #include "texts/textLoader.h"
 
@@ -25,6 +27,8 @@ struct Menu
 	TextButton precedentPageButton;
 	TextButton nextPageButton;
 	TextButton quitButton;
+	SkillLevelCursor skillLevelCursor;
+	SkillLevelTextsInterface skillTexts;
 	
 	explicit Menu(Essentials& essentials);
 	~Menu() = default;

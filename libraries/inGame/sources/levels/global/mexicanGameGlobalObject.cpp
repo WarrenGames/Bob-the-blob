@@ -29,7 +29,7 @@
 #include <algorithm>
 
 MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage):
-	levelData{ essentials, levelPrefix, demoDataPackage },
+	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage },
 	greenOrbs{ essentials.prefPath, bonuses::OrbGreen, map::GreenOrbWorth, files::GreenOrbCreationDelay, files::GreenOrbDurationFile },
 	mexicanTextures{ essentials.logs, essentials.rndWnd },
 	mexicanSprites{ mexicanTextures },

@@ -15,6 +15,7 @@
 #include "fileSystem/fileSystem.h"
 
 struct Essentials;
+struct PlayerAttributes;
 namespace demos{ struct DataPackage; }
 
 struct LevelMandatoryData
@@ -36,7 +37,7 @@ struct LevelMandatoryData
 	AccurateTimeDelay levelFinishDelay;
 	LevelFinishInterface levelFinishInterface;
 	
-	explicit LevelMandatoryData(Essentials& essentials, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage);
+	explicit LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage);
 	~LevelMandatoryData() = default;
 	LevelMandatoryData( const LevelMandatoryData& ) = delete;
 	LevelMandatoryData& operator= ( const LevelMandatoryData& ) = delete;

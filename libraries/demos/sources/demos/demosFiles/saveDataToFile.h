@@ -29,6 +29,8 @@ namespace saveDemo{
 	
 	void saveGameAmbience(const fs::path& demoFilePath, unsigned gameAmbience, std::ofstream& demoFile);
 	
+	void saveSkillLevel(const fs::path& demoFilePath, unsigned skillLevel, std::ofstream& demoFile);
+	
 	void saveStartingPositions(const fs::path& demoFilePath, const std::vector< demos::StartingPosition >& startingPositions, std::ofstream& demoFile, int fileIndex);
 	
 	void saveProtagonistsNumber(const fs::path& demoFilePath, std::size_t size, std::ofstream& demoFile, int fileIndex);

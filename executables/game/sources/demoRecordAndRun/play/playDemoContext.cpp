@@ -82,11 +82,11 @@ void demosPlaying::runDemo(Essentials& essentials, const demosPlaying::DemoChoic
 
 void demosPlaying::loadData(Essentials& essentials, const fs::path& demoFilePath)
 {
-	PlayerAttributes playerAttributes;
 	demos::DataPackage demoDataPackage{essentials, "demo play type", demos::GameIsDemo, LevelBlueBrick};
 	
 	loadDemo::openFile(demoFilePath, demoDataPackage);
-	
+	PlayerAttributes playerAttributes{demoDataPackage.skillLevel};
+		
 	switch( demoDataPackage.gameAmbience )
 	{
 		case LevelBlueBrick:

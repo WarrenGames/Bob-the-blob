@@ -23,6 +23,8 @@ set( HEADERS
 	sources/levelChoiceMenu/levelChoiceMenuContext.h
 	sources/levelChoiceMenu/levelChoiceMenuConsts.h
 	sources/levelChoiceMenu/levelsListing.h
+	sources/levelChoiceMenu/skillLevelTextsInterface.h
+	sources/levelChoiceMenu/skillLevelCursorInterface.h
 	sources/consts/gameConsts.h
 )
 
@@ -44,6 +46,8 @@ set( SOURCES
 	sources/gameStarting/openPrefPath.cpp
 	sources/gameStarting/packageEssentials.cpp
 	sources/gameStarting/openLogsFiles.cpp
+	sources/levelChoiceMenu/skillLevelCursorInterface.cpp
+	sources/levelChoiceMenu/skillLevelTextsInterface.cpp
 	sources/levelChoiceMenu/levelChoiceThings.cpp
 	sources/levelChoiceMenu/levelsListing.cpp
 	sources/levelChoiceMenu/levelChoiceMenuContext.cpp

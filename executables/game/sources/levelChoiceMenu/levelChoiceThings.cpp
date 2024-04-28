@@ -11,11 +11,13 @@ levelChoice::MenuElements::MenuElements(Essentials& essentials):
 	listFont{ essentials.logs.error, ArialFontPath, MediumFontSize },
 	levelsListing{ essentials, listFont, levelChoice::LevelsListFilePath },
 	precedentPageButton{ essentials.logs, essentials.rndWnd, listFont, interfaceTexts[levelChoice::TxtPrecedentBtn], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
+							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },
 	nextPageButton{ essentials.logs, essentials.rndWnd, listFont, interfaceTexts[levelChoice::TxtNextBtn], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
+							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },
 	quitButton{ essentials.logs, essentials.rndWnd, listFont, interfaceTexts[levelChoice::TxtQuit], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
-							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, SQR_SIZE, true, true } }
+							TexturePosition{ GameScreenWidth - SQR_SIZE * 2, SQR_SIZE, true, true } },
+	skillLevelCursor{ essentials, TexturePosition{ GameScreenWidth / 2, GameScreenHeight - SQR_SIZE, true, true } },
+	skillTexts{ essentials, TexturePosition{ GameScreenWidth / 2, GameScreenHeight - SQR_SIZE * 2, true, true } }
 {
 	
 }
@@ -26,6 +28,8 @@ void levelChoice::MenuElements::drawInterface(Essentials& essentials) const
 	precedentPageButton.drawButton(essentials.rndWnd);
 	nextPageButton.drawButton(essentials.rndWnd);
 	quitButton.drawButton(essentials.rndWnd);
+	skillLevelCursor.drawEverything(essentials);
+	skillTexts.drawSelectedSkill(essentials, skillLevelCursor.getSkillLevel() );
 }
 
 void levelChoice::MenuElements::updateButtons(Essentials& essentials)
@@ -34,6 +38,7 @@ void levelChoice::MenuElements::updateButtons(Essentials& essentials)
 	nextPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	quitButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	updateListPageButtons(essentials);
+	skillLevelCursor.changeCursorPosition(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 }
 
 void levelChoice::MenuElements::updateListPageButtons(Essentials& essentials)

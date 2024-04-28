@@ -32,6 +32,8 @@ namespace loadDemo{
 	
 	void loadGameAmbience(const fs::path& demoFilePath, std::istringstream& lineStream, unsigned& gameAmbience, std::size_t fileLineNumber);
 	
+	void loadSkillLevel(const fs::path& demoFilePath, std::istringstream& lineStream, unsigned& skillLevel, std::size_t fileLineNumber);
+	
 	void loadMatrixSizeData(const fs::path& demoFilePath, std::istringstream& lineStream, demos::DataPackage& dataPackage, std::size_t fileLineNumber);
 	
 	void loadMatrixElement(const fs::path& demoFilePath, std::istringstream& lineStream, MatrixTemp2D< MapElement >& gameMap, std::size_t fileLineNumber);
