@@ -3,9 +3,9 @@
 #include "levels/gameActors/playerThings/singlePlayerData.h"
 #include "levels/demos/soundsEventsWithDemos.h"
 #include "levels/gameActors/playerThings/playerMapRelativeAbilities.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include "consts/soundsConsts.h"
 
@@ -60,11 +60,20 @@ void recordOrb::stackOrbDestruction(OrbsPackage& orbsPackage, demos::Stack< demo
 	}
 }
 
-void recordOrb::stackOrbPowerForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower)
+void recordOrb::stackOrbPowerEnableForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower)
 {
-	if( playerAbilities.hasDemoFlag(abilityIndex) )
+	if( playerAbilities.getFlag(abilityIndex) == AbilityStatusOn )
 	{
-		stack.emplaceElement( demos::GameEvent{stack.getCurrentElapsedMicroSecondsTime(), demos::eventCat::PlayerPower, playerPower, 0 } );
-		playerAbilities.setDemoFlag(abilityIndex, false);
+		stack.emplaceElement( demos::GameEvent{stack.getCurrentElapsedMicroSecondsTime(), demos::eventCat::PlayerPowerEnable, playerPower, 0 } );
+		playerAbilities.setDemoFlag(abilityIndex, AbilityStatusOnAndRecorded);
+	}
+}
+
+void recordOrb::stackOrbPowerDisableForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower)
+{
+	if( playerAbilities.getFlag(abilityIndex) == AbilityStatusOff )
+	{
+		stack.emplaceElement( demos::GameEvent{stack.getCurrentElapsedMicroSecondsTime(), demos::eventCat::PlayerPowerDisable, playerPower, 0 } );
+		playerAbilities.setDemoFlag(abilityIndex, AbilityStatusOffAndRecorded);
 	}
 }

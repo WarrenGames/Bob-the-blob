@@ -10,6 +10,7 @@ struct Essentials;
 struct PlayerAttributes;
 namespace sdl2{ class RendererWindow; }
 class BonusesMap;
+struct GameConfigData;
 
 struct StdLevelInfosPanel
 {
@@ -18,7 +19,7 @@ struct StdLevelInfosPanel
 	InfoGradient canBeEatenBobsGradient;
 	ElementCountDisplay goldIngotsCountDisplay;
 	
-	explicit StdLevelInfosPanel(Essentials& essentials, PlayerAttributes& playerAttributes, const BonusesMap& bonusesMap);
+	explicit StdLevelInfosPanel(Essentials& essentials, PlayerAttributes& playerAttributes, const BonusesMap& bonusesMap, const GameConfigData& gameConfigData);
 	~StdLevelInfosPanel() = default;
 	StdLevelInfosPanel( const StdLevelInfosPanel& ) = delete;
 	StdLevelInfosPanel& operator= ( const StdLevelInfosPanel& ) = delete;

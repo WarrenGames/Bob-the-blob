@@ -1,8 +1,8 @@
 #include "levels/demos/transferDemoStacks.h"
 #include "levels/inputs/eventsRecording.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
 void demos::transferEventsStackInCaseOfDemo(demos::DataPackage *demoDataPackage, RecordedEvents& recordedEvents)
 {

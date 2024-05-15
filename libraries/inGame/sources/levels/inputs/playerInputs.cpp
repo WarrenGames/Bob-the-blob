@@ -3,7 +3,7 @@
 #include "consts/filesAndPaths.h"
 #include "prefPath/prefPathFinder.h"
 #include "logging/logsStruct.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 #include "consts/playerInputsConsts.h"
 #include <cassert>
 
@@ -118,7 +118,7 @@ void PlayerInputs::setQuitCommandDuringDemo()
 {
 	if( demoType == demos::GameIsDemo )
 	{
-		if( recordedEvents.hasQuitCommandComeOut() )
+		if( recordedEvents.hasQuitCommandComeOut() && recordedEvents.sdlQuitEvent.actionState == true )
 		{
 			inputsStates.setSdlQuitFlag( recordedEvents.sdlQuitEvent.actionState );
 		}
@@ -129,7 +129,7 @@ void PlayerInputs::setEscapeCommandDuringDemo()
 {
 	if( demoType == demos::GameIsDemo )
 	{
-		if( recordedEvents.hasEscapeCommandComeOut() )
+		if( recordedEvents.hasEscapeCommandComeOut() && recordedEvents.escapeCommand.actionState == true )
 		{
 			inputsStates.setEscapeKeyFlag( recordedEvents.escapeCommand.actionState );
 		}

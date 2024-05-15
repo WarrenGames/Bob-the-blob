@@ -1,9 +1,9 @@
 #include "levels/demos/actWithDemoGameEvents.h"
 #include "levels/global/levelMandatoryData.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/playerAttributes/playerAttributes.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/maps/mapsConsts.h"
 #include <cassert>
 

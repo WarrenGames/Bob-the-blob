@@ -20,6 +20,7 @@ enum : std::size_t{
 };
 
 demosPlaying::DemoChoiceMenu::DemoChoiceMenu(Essentials& essentials):
+	backgroundImage{ essentials.logs, essentials.rndWnd, "textures/wallpapers/cave1.png", TexturePosition{ 0, 0 } },
 	interfaceTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, MenuTexts) },
 	font{ essentials.logs.error, ArialFontPath, MediumFontSize },
 	demosFilesList{essentials, font, essentials.prefPath.getFsPath() / files::DemosDir},
@@ -38,6 +39,7 @@ demosPlaying::DemoChoiceMenu::DemoChoiceMenu(Essentials& essentials):
 
 void demosPlaying::DemoChoiceMenu::drawInterface(Essentials& essentials) const
 {
+	backgroundImage.draw(essentials.rndWnd);
 	demosFilesList.drawCurrentPage(essentials);
 	precedentPageButton.drawButton(essentials.rndWnd);
 	nextPageButton.drawButton(essentials.rndWnd);

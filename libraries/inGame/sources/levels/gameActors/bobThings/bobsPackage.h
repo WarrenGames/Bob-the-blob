@@ -7,6 +7,7 @@
 #include <vector>
 #include <memory>
 
+struct GameConfigData;
 struct Essentials;
 struct PlayerAttributes;
 struct CrossRoadsRandoms;
@@ -26,7 +27,7 @@ private:
 	std::chrono::milliseconds bobsSpawnDelay;
 	
 public:
-	explicit BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel);
+	explicit BobsPackage(const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel, const GameConfigData& gameConfigData);
 	~BobsPackage() = default;
 	BobsPackage( const BobsPackage& ) = delete;
 	BobsPackage& operator= ( const BobsPackage& ) = delete;

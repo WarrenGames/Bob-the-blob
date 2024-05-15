@@ -1,9 +1,9 @@
 #include "levels/demos/updatePlayerWithDemoData.h"
 #include "levels/gameActors/playerThings/singlePlayerData.h"
 #include "levels/maps/gameMap.h"
-#include "demos/templates/demoStack.h"
-#include "demos/dataToRecord/playerMove.h"
-#include "demos/consts/dataRecordingConsts.h"
+#include "levels/demosRecordingAndPlaying/templates/demoStack.h"
+#include "levels/demosRecordingAndPlaying/dataToRecord/playerMove.h"
+#include "levels/demosRecordingAndPlaying/consts/dataRecordingConsts.h"
 #include "consts/playerInputsConsts.h"
 #include "levels/gameActors/playerActorsConsts.h"
 

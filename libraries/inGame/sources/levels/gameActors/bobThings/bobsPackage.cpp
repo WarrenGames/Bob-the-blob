@@ -1,25 +1,26 @@
 #include "levels/gameActors/bobThings/bobsPackage.h"
 #include "levels/gameActors/playerThings/singlePlayerData.h"
 #include "levels/playerAttributes/playerAttributes.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "package/essentials.h"
 #include "levels/loadings/readStartPositionInFile.h"
 #include "levels/loadings/getConfigFileNumber.h"
 #include "levels/monstersMoves/collisionBetweenPlayerAndBobs.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/gameActors/playerActorsConsts.h"
 #include "consts/includeOptions.h"
 #include "levels/maps/mapsConsts.h"
 #include "consts/filesAndPaths.h"
-#include "demos/consts/demosConsts.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include <algorithm>
 #include <cassert>
 
-BobsPackage::BobsPackage(Essentials& essentials, const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel):
-	bobsMoveDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsMoveDelayFile, "Bobs move delay" ) },
-	bobsAnimDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsAnimDelayFile, "Bobs anim delay" ) },
-	bobsSpawnDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsSpawnDelay, "Bobs spawn delay" ) }
+BobsPackage::BobsPackage(const fs::path& bobsDataFilePath, unsigned demoType, unsigned skillLevel, const GameConfigData& gameConfigData):
+	bobsMoveDelay{ gameConfigData.bobMoveDelay },
+	bobsAnimDelay{ gameConfigData.bobAnimDelay },
+	bobsSpawnDelay{ gameConfigData.bobSpawnDelay }
 {
 	if( demoType == demos::GameHasPlayerInputs || demoType == demos::GameIsRecording )
 	{

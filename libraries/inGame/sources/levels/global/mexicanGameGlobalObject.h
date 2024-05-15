@@ -14,6 +14,7 @@ struct Essentials;
 struct PlayerAttributes;
 namespace sdl2{ class RendererWindow; }
 namespace demos{ struct DataPackage; }
+struct GameConfigData;
 
 struct MexicanGameObject
 {
@@ -25,7 +26,8 @@ struct MexicanGameObject
 	BalloonsPack balloonsPack;
 	MexicanInfosPanel mexicanInfosPanel;
 	
-	explicit MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage);
+	explicit MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage, 
+								const GameConfigData& gameConfigData);
 	~MexicanGameObject() = default;
 	MexicanGameObject( const MexicanGameObject& ) = delete;
 	MexicanGameObject& operator= ( const MexicanGameObject& ) = delete;

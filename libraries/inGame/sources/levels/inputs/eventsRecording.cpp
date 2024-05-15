@@ -1,5 +1,5 @@
 #include "levels/inputs/eventsRecording.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 #include "consts/playerInputsConsts.h"
 
 RecordedEvents::RecordedEvents(AppLogFiles& logs, unsigned demoType):

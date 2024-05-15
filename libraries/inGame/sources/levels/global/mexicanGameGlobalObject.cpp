@@ -5,12 +5,13 @@
 #include "levels/textures/balloons/drawBalloons.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "levels/loadings/gameComponentsLoading.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/global/updateGame.h"
 #include "levels/balloons/updateBalloons.h"
 #include "levels/global/actWithBonuses.h"
 #include "levels/gameActors/cactus/placeCactusOnMap.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/gameActors/magicOrbs/handleOrbsCollection.h"
 #include "levels/gameActors/magicOrbs/orbsPlayerPower.h"
 #include "levels/gameActors/magicOrbs/orbsAndDemos.h"
@@ -25,17 +26,19 @@
 #include "levels/maps/bonusesConsts.h"
 #include "consts/filesAndPaths.h"
 #include "consts/screenConsts.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include <algorithm>
 
-MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage):
-	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage },
-	greenOrbs{ essentials.prefPath, bonuses::OrbGreen, map::GreenOrbWorth, files::GreenOrbCreationDelay, files::GreenOrbDurationFile },
+MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+									const GameConfigData& gameConfigData):
+	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage, gameConfigData },
+	greenOrbs{ bonuses::OrbGreen, map::GreenOrbWorth, gameConfigData.greenOrbCreation, gameConfigData.greenOrbDuration },
 	mexicanTextures{ essentials.logs, essentials.rndWnd },
 	mexicanSprites{ mexicanTextures },
 	balloonsPack{ essentials.logs, essentials.rndWnd },
-	mexicanInfosPanel{essentials, playerAttributes, levelData.bonusesMap}
+	mexicanInfosPanel{essentials, playerAttributes, levelData.bonusesMap, gameConfigData}
 {
+	createBonusesAnimationData(levelData.bonusesMap, mexicanSprites.commonSprites);
 	loadCactiPositions(demoDataPackage);
 	recordCactiPositions(demoDataPackage);
 	essentials.logs.error.flushLog();
@@ -73,7 +76,7 @@ void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& pla
 	updateMexicanBalloons(levelData, greenOrbs);
 	updateInfoGradient(mexicanInfosPanel.canBeEatenBobsGradient, levelData.playerData.abilities[abilities::CanEatBob] );
 	updateInfoGradient(mexicanInfosPanel.canBeEatenCactiGradient, levelData.playerData.abilities[abilities::CanEatCacti] );
-	updateBonusesAnimation(levelData.bonusesMap, mexicanSprites.commonSprites);
+	levelData.bonusesMap.incrementBonusesAnimIndex();
 	mexicanInfosPanel.goldIngotsCountDisplay.updateText(essentials, levelData.bonusesMap.getElementNumber(bonuses::BonusGoldIngot) );
 	updateBobbysExplosionsIfAny(levelData.bobsPackage, mexicanSprites.commonSprites.blueSmokeSprites.size() );
 }
@@ -91,14 +94,17 @@ void MexicanGameObject::updateGreenOrbs(PlayerAttributes& playerAttributes, demo
 			cactiPackage.detectCollisionWithPlayer(levelData.playerData, playerAttributes, levelData.bobsPackage);
 			recordOrb::stackOrbCreationAccordingToColorIndex(greenOrbs, demoDataPackage);
 			recordOrb::stackOrbDestructionAccordingToColorIndex(greenOrbs, demoDataPackage);
-			recordOrb::stackOrbPowerForPlayer(levelData.playerData.abilities, demoDataPackage->greenOrbRelatedItemsData.greenOrbsAndPlayer, 
+			recordOrb::stackOrbPowerEnableForPlayer(levelData.playerData.abilities, demoDataPackage->greenOrbRelatedItemsData.greenOrbsAndPlayer, 
 												abilities::CanEatCacti, demos::playerPower::GreenOrb );
+			recordOrb::stackOrbPowerDisableForPlayer(levelData.playerData.abilities, demoDataPackage->greenOrbRelatedItemsData.greenOrbsAndPlayer,
+												abilities::CanEatCacti, demos::playerPower::GreenOrb );
+			
 			recordCactiEvents::stackCactusEvent(cactiPackage, demoDataPackage->greenOrbRelatedItemsData.cactiLife);
 			break;
 		case demos::GameIsDemo:
 			demosOrb::createOrbAccordingToColorIndex(greenOrbs, demoDataPackage);
 			demosOrb::destroyOrbAccordingToColorIndex(greenOrbs, demoDataPackage);
-			greenOrb::checkForPowerEvent(levelData.playerData, playerAttributes, demoDataPackage);
+			greenOrb::checkForPowerEvent(levelData.playerData, demoDataPackage);
 			demosCactiEvents::actWithCactiEvents(cactiPackage, demoDataPackage->greenOrbRelatedItemsData.cactiLife, levelData.playerData, playerAttributes, levelData.bobsPackage);
 			break;
 	}

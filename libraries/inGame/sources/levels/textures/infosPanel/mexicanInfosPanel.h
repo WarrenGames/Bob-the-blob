@@ -10,6 +10,7 @@ struct Essentials;
 struct PlayerAttributes;
 namespace sdl2{ class RendererWindow; }
 class BonusesMap;
+struct GameConfigData;
 
 struct MexicanInfosPanel
 {
@@ -19,7 +20,7 @@ struct MexicanInfosPanel
 	InfoGradient canBeEatenCactiGradient;
 	ElementCountDisplay goldIngotsCountDisplay;
 	
-	explicit MexicanInfosPanel(Essentials& essentials, PlayerAttributes& playerAttributes, const BonusesMap& bonusesMap);
+	explicit MexicanInfosPanel(Essentials& essentials, PlayerAttributes& playerAttributes, const BonusesMap& bonusesMap, const GameConfigData& gameConfigData);
 	~MexicanInfosPanel() = default;
 	MexicanInfosPanel( const MexicanInfosPanel& ) = delete;
 	MexicanInfosPanel& operator= ( const MexicanInfosPanel& ) = delete;

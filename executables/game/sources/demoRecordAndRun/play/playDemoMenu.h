@@ -10,6 +10,7 @@ namespace demosPlaying{
 	
 struct DemoChoiceMenu
 {
+	const TextureCombo backgroundImage;
 	const TextsBlocks interfaceTexts;
 	const sdl2::Font font;
 	LevelsListing demosFilesList;

@@ -9,6 +9,7 @@ struct SinglePlayerData;
 struct ScoreDisplay;
 class InfoGradient;
 class Ability;
+class PlayerAbilities;
 struct ScreenScrolling;
 struct LevelMandatoryData;
 namespace demos{ struct DataPackage; }
@@ -35,5 +36,7 @@ void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demo
 void updateBobbysExplosionsIfAny(BobsPackage& bobsPackage, std::size_t explosionFramesNumber);
 
 void exitDemo(LevelMandatoryData& levelData);
+
+void abortPlayerAbilities(PlayerAbilities& playerAbilities);
 
 #endif //BOB_THE_BLOB_IN_GAME_UPDATE_GAME_H

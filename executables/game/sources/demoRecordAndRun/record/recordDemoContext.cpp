@@ -1,14 +1,14 @@
 #include "demoRecordAndRun/record/recordDemoContext.h"
 #include "demoRecordAndRun/record/recordDemoMenu.h"
 #include "package/essentials.h"
-#include "demos/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "levels/gameContexts/levelContext.h"
 #include "levels/gameContexts/mexicanZone.h"
 #include "hintsScreen/mexican/mexicanHintScreen.h"
 #include "demoRecordAndRun/saveToFile/saveToFileContext.h"
 #include "consts/colors.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 #include "consts/levelsTypesConsts.h"
 #include "consts/skillLevelsConsts.h"
 
@@ -91,7 +91,7 @@ void demosRecording::runDemoRecording(Essentials& essentials, const demosRecordi
 void demosRecording::prepareStandardLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel)
 {
 	PlayerAttributes playerAttributes{skillLevel};
-	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelBlueBrick};
+	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelBlueBrick, skillLevel};
 	
 	standardLevel::levelContext(essentials, playerAttributes, levelName, &demoDataPackage);
 	
@@ -101,7 +101,7 @@ void demosRecording::prepareStandardLevelData(Essentials& essentials, const std:
 void demosRecording::prepareMexicanLevelData(Essentials& essentials, const std::string& levelName, unsigned skillLevel)
 {
 	PlayerAttributes playerAttributes{skillLevel};
-	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelMexican};
+	demos::DataPackage demoDataPackage{essentials, levelName, demos::GameIsRecording, LevelMexican, skillLevel};
 	
 	mexican::levelContext(essentials, playerAttributes, levelName, &demoDataPackage);
 	

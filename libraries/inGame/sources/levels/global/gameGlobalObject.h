@@ -11,6 +11,7 @@
 namespace sdl2{ class RendererWindow; }
 struct PlayerAttributes;
 struct Essentials;
+struct GameConfigData;
 
 struct GameGlobalObject
 {
@@ -20,7 +21,8 @@ struct GameGlobalObject
 	BalloonsPack balloonsPack;
 	StdLevelInfosPanel infosPanel;
 	
-	explicit GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage);
+	explicit GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+								const GameConfigData& gameConfigData);
 	~GameGlobalObject() = default;
 	GameGlobalObject( const GameGlobalObject& ) = delete;
 	GameGlobalObject& operator= ( const GameGlobalObject& ) = delete;

@@ -1,12 +1,14 @@
 #include "levels/maps/bonusesMap.h"
 #include "levels/maps/readBonusesPositionsAndProperties.h"
 #include "levels/maps/gameMap.h"
+#include "levels/textures/common/commonSprite.h"
 #include "pathsFunctions/pathsFunctions.h"
 #include "levels/maps/mapsConsts.h"
 #include "levels/textures/texturesConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include "consts/filesAndPaths.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
+#include <cassert>
 
 BonusesMap::BonusesMap(const GameMap& gameMap, const fs::path& levelPrefix, unsigned demoType):
 	map{gameMap.matrix.getCoordSize()},
@@ -17,26 +19,6 @@ BonusesMap::BonusesMap(const GameMap& gameMap, const fs::path& levelPrefix, unsi
 		openBonusesDataFile(*this, path::getGameConfigFilePath(levelPrefix, files::DefaultBonusesFileSuffix), "load bonuses data");
 	}
 	countAllBonuses();
-}
-
-std::vector< BonusElement >::iterator BonusesMap::begin()
-{
-	return map.begin();
-}
-
-std::vector< BonusElement >::iterator BonusesMap::end()
-{
-	return map.end();
-}
-
-std::vector< BonusElement >::const_iterator BonusesMap::begin() const
-{
-	return map.begin();
-}
-
-std::vector< BonusElement >::const_iterator BonusesMap::end() const
-{
-	return map.end();
 }
 
 void BonusesMap::setParameterMap(MatrixTemp2D< BonusElement >& newMap) const
@@ -117,4 +99,26 @@ unsigned BonusesMap::getElementNumber(std::size_t index) const
 {
 	assert( index < elementsCount.size() );
 	return elementsCount[index];
+}
+
+void BonusesMap::incrementBonusesAnimIndex()
+{
+	for( auto &data : animData )
+	{
+		data.animIndex();
+	}
+}
+
+void BonusesMap::createAnimData(const CommonTexturesSprites& sprites)
+{
+	animData.emplace_back( BonusesAnimationData{ 1, 0 } );
+	animData.emplace_back( BonusesAnimationData{ 1, 0 } );
+	animData.emplace_back( BonusesAnimationData{ sprites.diamondsSprites.size(), textures::DiamondFrameDuration } );
+	animData.emplace_back( BonusesAnimationData{ sprites.goldIngotSprites.size(), textures::GoldIngotFrameDuration } );
+}
+
+std::size_t BonusesMap::getAnimIndex(std::size_t index) const
+{
+	assert( index < animData.size() );
+	return animData[index].getIndex();
 }

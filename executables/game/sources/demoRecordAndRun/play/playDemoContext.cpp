@@ -4,12 +4,14 @@
 #include "levels/gameContexts/mexicanZone.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "package/essentials.h"
-#include "demos/data/dataPackage.h"
-#include "demos/demosFiles/loadDataFromFile.h"
+#include "exceptions/readErrorExcept.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/demosFiles/loadDataFromFile.h"
 #include "consts/levelsTypesConsts.h"
 #include "consts/filesAndPaths.h"
 #include "consts/fontsSizes.h"
 #include "consts/colors.h"
+#include "consts/skillLevelsConsts.h"
 #include <cassert>
 
 void demosPlaying::demoChoice(Essentials& essentials)
@@ -60,7 +62,6 @@ void demosPlaying::drawEverything(Essentials& essentials, const demosPlaying::De
 	if( essentials.drawDelay.hasTimeElapsed(essentials.microSecondsDelay) )
 	{
 		essentials.drawDelay.joinTimePoints();
-		essentials.rndWnd.clearScreen(BlackCol);
 		demoChoiceMenu.drawInterface(essentials);
 		essentials.rndWnd.displayRenderer();
 	}
@@ -82,21 +83,33 @@ void demosPlaying::runDemo(Essentials& essentials, const demosPlaying::DemoChoic
 
 void demosPlaying::loadData(Essentials& essentials, const fs::path& demoFilePath)
 {
-	demos::DataPackage demoDataPackage{essentials, "demo play type", demos::GameIsDemo, LevelBlueBrick};
+	demos::DataPackage demoDataPackage{essentials, "demo play type", demos::GameIsDemo, LevelBlueBrick, SkillLevelMax};
 	
-	loadDemo::openFile(demoFilePath, demoDataPackage);
-	PlayerAttributes playerAttributes{demoDataPackage.skillLevel};
+	try{
+		loadDemo::openFile(demoFilePath, demoDataPackage);
+		PlayerAttributes playerAttributes{demoDataPackage.skillLevel};
 		
-	switch( demoDataPackage.gameAmbience )
-	{
-		case LevelBlueBrick:
-			standardLevel::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
-			break;
-		case LevelMexican:
-			mexican::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
-			break;
-		default:
-			assert( false && "Error: bad game ambience enum !" );
-			break;
+		switch( demoDataPackage.gameAmbience )
+		{
+			case LevelBlueBrick:
+				standardLevel::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
+				break;
+			case LevelMexican:
+				mexican::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
+				break;
+			default:
+				assert( false && "Error: bad game ambience enum !" );
+				break;
+		}
 	}
+	catch( const ReadError& e )
+	{
+		essentials.logs.error << "An error occured while opening this demo file: '" << demoFilePath.string() << "' with this error: " << e.what() << " .\n";
+	}
+	catch( const std::exception& stde )
+	{
+		essentials.logs.error << "An unhandled exception arise while opening this demo file: '" << demoFilePath.string() << "' with this error: " << stde.what() << " .\n";
+	}
+	
+	
 }

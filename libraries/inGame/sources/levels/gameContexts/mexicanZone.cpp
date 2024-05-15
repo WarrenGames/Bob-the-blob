@@ -3,10 +3,12 @@
 #include "package/essentials.h"
 #include "exceptions/readErrorExcept.h"
 #include "levels/playerAttributes/playerAttributes.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/demos/transferDemoStacks.h"
 #include "levels/demos/initializeDemoStacks.h"
 #include "levels/demos/joinTimePoints.h"
-#include "demos/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/maps/mapsConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include "consts/colors.h"
@@ -15,7 +17,8 @@ void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttri
 {
 	bool quitLevel{false};
 	try{
-		MexicanGameObject mexicanGameObject{essentials, playerAttributes, levelPrefix, demoPackage};
+		GameConfigData gameConfigData{ essentials, demoPackage };
+		MexicanGameObject mexicanGameObject{essentials, playerAttributes, levelPrefix, demoPackage, gameConfigData};
 		demos::initializeStacksNumber(essentials, demoPackage, mexicanGameObject.levelData);
 		demos::transferEventsStackInCaseOfDemo(demoPackage, mexicanGameObject.levelData.playerInputs.recordedEvents);
 		demos::joinTimePoints(demoPackage, mexicanGameObject.levelData);
@@ -27,6 +30,7 @@ void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttri
 			mexican::drawEverything(essentials, mexicanGameObject);
 		}
 		demos::transferEventsStackInCaseOfRecording(demoPackage, mexicanGameObject.levelData.playerInputs.recordedEvents);
+		gameConfigData.setDataToDemoPackage(demoPackage);
 	}
 	catch( const ReadError& readError )
 	{

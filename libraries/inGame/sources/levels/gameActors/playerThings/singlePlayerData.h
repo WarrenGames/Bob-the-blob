@@ -5,7 +5,7 @@
 #include "levels/gameActors/playerThings/playerMoving.h"
 #include "levels/animation/spriteAnimation.h"
 
-class PrefPathFinder;
+struct GameConfigData;
 
 struct SinglePlayerData
 {
@@ -18,7 +18,7 @@ struct SinglePlayerData
 	bool hasStopBeenRecorded;
 	
 	
-	explicit SinglePlayerData(const PrefPathFinder& prefPath, unsigned playerDemoId);
+	explicit SinglePlayerData(const GameConfigData& gameConfigData, unsigned playerDemoId);
 	~SinglePlayerData() = default;
 	SinglePlayerData( const SinglePlayerData& ) = delete;
 	SinglePlayerData& operator= ( const SinglePlayerData& ) = delete;

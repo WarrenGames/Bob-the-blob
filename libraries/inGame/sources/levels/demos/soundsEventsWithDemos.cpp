@@ -1,7 +1,7 @@
 #include "levels/demos/soundsEventsWithDemos.h"
-#include "demos/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "soundSystem/soundsPlayer.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 
 void demos::recordSoundEvent(demos::DataPackage *demoDataPackage, unsigned soundIndex, unsigned channel)
 {

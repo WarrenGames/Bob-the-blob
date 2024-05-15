@@ -48,6 +48,7 @@ set( HEADERS
 	sources/levels/monstersMoves/crossRoadsRandoms.h
 	sources/levels/monstersMoves/monstersMovesConsts.h
 	sources/levels/maps/bonusesConsts.h
+	sources/levels/maps/bonusesAnimation.h
 	sources/levels/maps/gameMap.h
 	sources/levels/maps/loadMapFromFile.h
 	sources/levels/maps/bonusesMap.h
@@ -70,6 +71,28 @@ set( HEADERS
 	sources/levels/mapSubDivisions/coordinatesSet.h
 	sources/levels/mapSubDivisions/subdivisionsConsts.h
 	sources/levels/animation/spriteAnimation.h
+	sources/levels/demosRecordingAndPlaying/demosFiles/demoConfigFiles.h
+	sources/levels/demosRecordingAndPlaying/demosFiles/loadDataFromFile.h
+	sources/levels/demosRecordingAndPlaying/demosFiles/saveDataToFile.h
+	sources/levels/demosRecordingAndPlaying/consts/demoConfigFilesConsts.h
+	sources/levels/demosRecordingAndPlaying/consts/gameEventsConsts.h
+	sources/levels/demosRecordingAndPlaying/consts/dataRecordingConsts.h
+	sources/levels/demosRecordingAndPlaying/consts/demosConsts.h
+	sources/levels/demosRecordingAndPlaying/templates/stacksAlgorithms.h
+	sources/levels/demosRecordingAndPlaying/templates/demoStack.h
+	sources/levels/demosRecordingAndPlaying/data/greenOrbDemosData.h
+	sources/levels/demosRecordingAndPlaying/data/positionElements.h
+	sources/levels/demosRecordingAndPlaying/data/recordedInputsPlayerData.h
+	sources/levels/demosRecordingAndPlaying/data/recordedMapElements.h
+	sources/levels/demosRecordingAndPlaying/data/dataPackage.h
+	sources/levels/demosRecordingAndPlaying/data/determineGameStatus.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/playerMove.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/soundPlaying.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/moveAndPosition.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/itemData.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/gameEvents.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/actionData.h
+	sources/levels/demosRecordingAndPlaying/dataToRecord/startingPositions.h
 	sources/levels/gameContexts/levelContext.h
 	sources/levels/gameContexts/mexicanZone.h
 	sources/levels/levelFinish/levelFinishConsts.h
@@ -96,6 +119,7 @@ set( HEADERS
 	sources/levels/balloons/balloonInfo.h
 	sources/levels/balloons/updateBalloons.h
 	sources/levels/balloons/balloonsPositionsData.h
+	sources/levels/loadings/gameConfigurationData.h
 	sources/levels/loadings/getConfigFileNumber.h
 	sources/levels/loadings/readStartPositionInFile.h
 	sources/levels/loadings/gameComponentsLoading.h
@@ -148,6 +172,7 @@ set( SOURCES
 	sources/levels/maps/mapElements.cpp
 	sources/levels/maps/bonusElement.cpp
 	sources/levels/maps/bonusesMap.cpp
+	sources/levels/maps/bonusesAnimation.cpp
 	sources/levels/maps/loadPlayerPosition.cpp
 	sources/levels/maps/readBonusesPositionsAndProperties.cpp
 	sources/levels/playerAttributes/playerAttributes.cpp
@@ -163,6 +188,22 @@ set( SOURCES
 	sources/levels/mapSubDivisions/loadSubdivisionData.cpp
 	sources/levels/mapSubDivisions/coordinatesSet.cpp
 	sources/levels/animation/spriteAnimation.cpp
+	sources/levels/demosRecordingAndPlaying/demosFiles/saveDataToFile.cpp
+	sources/levels/demosRecordingAndPlaying/demosFiles/loadDataFromFile.cpp
+	sources/levels/demosRecordingAndPlaying/demosFiles/demoConfigFiles.cpp
+	sources/levels/demosRecordingAndPlaying/data/determineGameStatus.cpp
+	sources/levels/demosRecordingAndPlaying/data/positionElements.cpp
+	sources/levels/demosRecordingAndPlaying/data/dataPackage.cpp
+	sources/levels/demosRecordingAndPlaying/data/greenOrbDemosData.cpp
+	sources/levels/demosRecordingAndPlaying/data/recordedInputsPlayerData.cpp
+	sources/levels/demosRecordingAndPlaying/data/recordedMapElements.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/moveAndPosition.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/actionData.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/playerMove.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/itemData.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/soundPlaying.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/startingPositions.cpp
+	sources/levels/demosRecordingAndPlaying/dataToRecord/gameEvents.cpp
 	sources/levels/gameContexts/mexicanZone.cpp
 	sources/levels/gameContexts/levelContext.cpp
 	sources/levels/levelFinish/levelFinishInterface.cpp
@@ -187,6 +228,7 @@ set( SOURCES
 	sources/levels/balloons/balloonsPositionsData.cpp
 	sources/levels/balloons/updateBalloons.cpp
 	sources/levels/loadings/readStartPositionInFile.cpp
+	sources/levels/loadings/gameConfigurationData.cpp
 	sources/levels/loadings/getConfigFileNumber.cpp
 	sources/levels/loadings/gameComponentsLoading.cpp
 	sources/levels/inputs/inputsStates.cpp
@@ -209,11 +251,10 @@ target_include_directories(
 	PRIVATE ${SDL2_TTF_INCLUDE_DIRS}
 	PRIVATE ${SDL2_MIXER_INCLUDE_DIRS}
 	PRIVATE sources
-	PRIVATE ../genericLib/sources
-	PRIVATE ../sdl2_wrapper/sources
-	PRIVATE ../soundSystem/sources
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/genericLib
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdl2_wrapper
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/soundSystem
 	PRIVATE ../commonFiles/sources
-	PRIVATE ../demos/sources
 )
 
 target_link_libraries(
@@ -222,7 +263,6 @@ target_link_libraries(
 	PRIVATE sdl2_wrapper
 	PRIVATE soundSystem
 	PRIVATE commonFiles
-	PRIVATE demos
 )
 
 set_target_properties(	

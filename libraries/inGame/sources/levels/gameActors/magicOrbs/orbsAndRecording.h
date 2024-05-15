@@ -17,7 +17,9 @@ namespace recordOrb{
 	
 	void stackOrbDestruction(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack);
 	
-	void stackOrbPowerForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower);
+	void stackOrbPowerEnableForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower);
+	
+	void stackOrbPowerDisableForPlayer(PlayerAbilities& playerAbilities, demos::Stack< demos::GameEvent >& stack, std::size_t abilityIndex, unsigned playerPower);
 }
 
 #endif //BOB_THE_BLOB_IN_GAME_MAGIC_ORBS_RECORDING_H

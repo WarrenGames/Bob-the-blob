@@ -51,9 +51,9 @@ target_include_directories(
 	PRIVATE ${SDL2_TTF_INCLUDE_DIRS}
 	PRIVATE ${SDL2_MIXER_INCLUDE_DIRS}
 	PRIVATE sources
-	PRIVATE ../genericLib/sources
-	PRIVATE ../sdl2_wrapper/sources
-	PRIVATE ../soundSystem/sources
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/genericLib
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdl2_wrapper
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/soundSystem
 )
 
 target_link_libraries(

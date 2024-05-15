@@ -11,7 +11,7 @@ private:
 	bool isActive;
 
 public:
-	Ability(unsigned readDelay);
+	Ability(long long int readDelay);
 	~Ability() = default;
 	Ability( const Ability& ) = delete;
 	Ability& operator= ( const Ability& ) = delete;
