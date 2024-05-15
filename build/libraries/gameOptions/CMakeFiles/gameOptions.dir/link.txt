@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgameOptions.a CMakeFiles/gameOptions.dir/sources/gameOptions/optionsContext.cpp.o CMakeFiles/gameOptions.dir/sources/gameOptions/joystick/joystickOptions.cpp.o CMakeFiles/gameOptions.dir/sources/gameOptions/mainMenu/optionsMainMenuGraphisms.cpp.o CMakeFiles/gameOptions.dir/sources/gameOptions/keyboard/keyboardOptions.cpp.o CMakeFiles/gameOptions.dir/sources/gameOptions/keyboard/keyboardContext.cpp.o
-/usr/bin/ranlib libgameOptions.a
