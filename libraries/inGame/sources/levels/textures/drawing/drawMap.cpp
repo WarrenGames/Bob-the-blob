@@ -59,13 +59,17 @@ void drawBonuses(sdl2::RendererWindow& rndWnd, CommonTexturesSprites& sprites, c
 		{
 			if( bonusesMap.areCoordinatesInsideBoundaries( getWidthMatrixElement(screenScrolling, width), getHeightMatrixElement(screenScrolling, height) ) )
 			{
-				selectBonusToDraw(rndWnd, sprites, bonusesMap.getElement( getSpecificMatrixElement(screenScrolling, width, height) ), width, height, screenScrolling );
+				selectBonusToDraw(rndWnd, sprites, 
+				bonusesMap,
+				bonusesMap.getElement( getSpecificMatrixElement(screenScrolling, width, height) )
+				, width, height, screenScrolling );
 			}
 		}
 	}
 }
 
-void selectBonusToDraw(sdl2::RendererWindow& rndWnd, CommonTexturesSprites& sprites, const BonusElement& bonusElement, int width, int height, const ScreenScrolling& screenScrolling)
+void selectBonusToDraw(sdl2::RendererWindow& rndWnd, CommonTexturesSprites& sprites, const BonusesMap& bonusesMap, const BonusElement& bonusElement,
+							int width, int height, const ScreenScrolling& screenScrolling)
 {
 	if( bonusElement.isPresent )
 	{
@@ -81,12 +85,12 @@ void selectBonusToDraw(sdl2::RendererWindow& rndWnd, CommonTexturesSprites& spri
 												getMatrixSquarePosition(screenScrolling.yAxisScrolling.getOffset(), height) );
 				break;
 			case bonuses::BonusDiamond:
-				sprites.diamondsSprites[bonusElement.bonusProperty].draw(rndWnd, 
+				sprites.diamondsSprites[bonusesMap.getAnimIndex(bonuses::BonusDiamond)].draw(rndWnd, 
 												getMatrixSquarePosition(screenScrolling.xAxisScrolling.getOffset(), width), 
 												getMatrixSquarePosition(screenScrolling.yAxisScrolling.getOffset(), height) );
 				break;
 			case bonuses::BonusGoldIngot:
-				sprites.goldIngotSprites[bonusElement.bonusProperty].draw(rndWnd,
+				sprites.goldIngotSprites[bonusesMap.getAnimIndex(bonuses::BonusGoldIngot)].draw(rndWnd,
 												getMatrixSquarePosition(screenScrolling.xAxisScrolling.getOffset(), width), 
 												getMatrixSquarePosition(screenScrolling.yAxisScrolling.getOffset(), height) );
 				break;

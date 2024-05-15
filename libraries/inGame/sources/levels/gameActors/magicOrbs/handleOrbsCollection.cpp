@@ -2,8 +2,8 @@
 #include "levels/global/levelMandatoryData.h"
 #include "levels/gameActors/magicOrbs/orbsPackage.h"
 #include "levels/playerAttributes/playerAttributes.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 
 void browseColoredOrbCollection(LevelMandatoryData& levelData, OrbsPackage& orbsPackage, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage, std::size_t abilityIndex)
 {

@@ -1,29 +1,20 @@
 #include "levels/gameActors/playerThings/playerMapRelativeAbilities.h"
-#include "levels/loadings/getConfigFileNumber.h"
-#include "prefPath/prefPathFinder.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/gameActors/playerActorsConsts.h"
 #include "consts/filesAndPaths.h"
 #include <cassert>
 
-PlayerAbilities::PlayerAbilities(const PrefPathFinder& prefPath)
+PlayerAbilities::PlayerAbilities(const GameConfigData& gameConfigData)
 {
-	createData(prefPath);
+	createData(gameConfigData);
 	assert( data.size() == abilities::CanEatMax );
-	demoFlag.resize( data.size(), false );
+	demoFlag.resize( data.size(), AbilityStatusInit );
 }
 
-void PlayerAbilities::createData(const PrefPathFinder& prefPath)
+void PlayerAbilities::createData(const GameConfigData& gameConfigData)
 {
-	data.emplace_back( Ability{ getUnsignedIntFromFile( prefPath.getFsPath() / files::OptionsDir / files::BobsEatableDelayFile, "eatable bobs delay" ) } );
-	data.emplace_back( Ability{ getUnsignedIntFromFile( prefPath.getFsPath() / files::OptionsDir / files::PlayerCanEatCacti, "eatable cacti delay" ) } );
-}
-
-void PlayerAbilities::abortAbilities()
-{
-	for( auto &ability : data )
-	{
-		ability.abortAbility();
-	}
+	data.emplace_back( Ability{ gameConfigData.bobVulnerability.count() } );
+	data.emplace_back( Ability{ gameConfigData.playerCanEatCactiDelay.count() } );
 }
 
 const Ability& PlayerAbilities::operator[] ( std::size_t abilityIndex ) const
@@ -43,13 +34,13 @@ std::size_t PlayerAbilities::demoFlagSize() const
 	return demoFlag.size();
 }
 
-bool PlayerAbilities::hasDemoFlag(std::size_t index) const
+unsigned PlayerAbilities::getFlag(std::size_t index) const
 {
 	assert( index < demoFlag.size() );
 	return demoFlag[index];
 }
 
-void PlayerAbilities::setDemoFlag(std::size_t index, bool flagStatus)
+void PlayerAbilities::setDemoFlag(std::size_t index, unsigned flagStatus)
 {
 	assert( index < demoFlag.size() );
 	demoFlag[index] = flagStatus;

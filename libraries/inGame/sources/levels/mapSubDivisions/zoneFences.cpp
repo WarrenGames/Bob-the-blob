@@ -2,7 +2,7 @@
 #include "levels/maps/gameMap.h"
 #include "levels/mapSubDivisions/loadSubdivisionData.h"
 #include "levels/mapSubDivisions/functions/cutZones.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
 ZonesFences::ZonesFences(const GameMap& gameMap, const fs::path& subDivFilePath, unsigned demoType):
 	subDivisionFileData{ },

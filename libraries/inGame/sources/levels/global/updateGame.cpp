@@ -9,11 +9,11 @@
 #include "levels/demos/updateEnemiesWithDemoData.h"
 #include "levels/demos/soundsEventsWithDemos.h"
 #include "levels/demos/actWithDemoGameEvents.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/gameActors/playerActorsConsts.h"
 #include "levels/maps/bonusesConsts.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
 void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMandatoryData& levelData, ScoreDisplay& scoreDisplay, demos::DataPackage* demoDataPackage)
 {
@@ -23,7 +23,7 @@ void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMan
 	updateEnemyProtagonists(levelData, demoDataPackage, playerAttributes);
 	eatBonusWithPlayer(levelData.playerData, levelData.bonusesMap, levelData.bobsPackage, playerAttributes);
 	scoreDisplay.updateScoreText(essentials, playerAttributes);
-	levelData.playerData.abilities.abortAbilities();
+	abortPlayerAbilities(levelData.playerData.abilities);
 	updateScreenScrolling(levelData.playerData, levelData.screenScrolling);
 	demos::handleGameEvents(levelData, demoDataPackage, playerAttributes);
 }
@@ -133,5 +133,20 @@ void exitDemo(LevelMandatoryData& levelData)
 	if( levelData.playerInputs.inputsStates.getSdlQuit() || levelData.playerInputs.inputsStates.getEscapeState() )
 	{
 		levelData.quitLevel = true;
+	}
+}
+
+void abortPlayerAbilities(PlayerAbilities& playerAbilities)
+{
+	for( std::size_t i{0} ; i < playerAbilities.demoFlagSize() ; ++i )
+	{
+		if( playerAbilities[i].isAbilityActive() )
+		{
+			playerAbilities[i].abortAbility();
+			if( playerAbilities[i].isAbilityActive() == false )
+			{
+				playerAbilities.setDemoFlag(i, AbilityStatusOff);
+			}
+		}
 	}
 }

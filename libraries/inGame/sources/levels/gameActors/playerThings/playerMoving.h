@@ -6,7 +6,7 @@
 #include "time/accurateTime.h"
 #include <cstdlib>
 
-class PrefPathFinder;
+struct GameConfigData;
 struct GameMap;
 
 class PlayerMoving
@@ -23,7 +23,7 @@ private:
 	bool canChangeDirection;
 
 public:
-	PlayerMoving(const PrefPathFinder& prefPath);
+	PlayerMoving(const GameConfigData& gameConfigData);
 	~PlayerMoving() = default;
 	PlayerMoving( const PlayerMoving& ) = delete;
 	PlayerMoving& operator= ( const PlayerMoving& ) = delete;

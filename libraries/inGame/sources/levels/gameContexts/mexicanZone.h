@@ -15,6 +15,7 @@ void levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, co
 void quitContext(const MexicanGameObject& mexicanGameObject, bool& quitLevel);
 
 void drawEverything(Essentials& essentials, MexicanGameObject& mexicanGameObject);
+
 }
 
 #endif //BOB_THE_BLOB_IN_GAME_MEXICAN_ZONE_CONTEXT_H

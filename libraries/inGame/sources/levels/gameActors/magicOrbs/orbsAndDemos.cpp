@@ -1,8 +1,8 @@
 #include "levels/gameActors/magicOrbs/orbsAndDemos.h"
 #include "levels/gameActors/magicOrbs/orbsPackage.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/maps/bonusesConsts.h"
 
 void demosOrb::createOrbAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage)

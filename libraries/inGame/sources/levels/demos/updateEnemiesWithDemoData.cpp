@@ -1,8 +1,8 @@
 #include "levels/demos/updateEnemiesWithDemoData.h"
 #include "levels/gameActors/bobThings/bobsPackage.h"
 #include "levels/monstersMoves/monstersMovesConsts.h"
-#include "demos/templates/demoStack.h"
-#include "demos/dataToRecord/moveAndPosition.h"
+#include "levels/demosRecordingAndPlaying/templates/demoStack.h"
+#include "levels/demosRecordingAndPlaying/dataToRecord/moveAndPosition.h"
 #include <cassert>
 
 void demos::checkNewBobbyPositionEvent(BobsPackage& bobsPackage, std::vector< demos::Stack< demos::MoveAndPosition > >& movesStacks)

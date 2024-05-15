@@ -1,7 +1,6 @@
 #include "levels/gameActors/playerThings/playerMoving.h"
 #include "levels/maps/gameMap.h"
-#include "levels/loadings/getConfigFileNumber.h"
-#include "prefPath/prefPathFinder.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/textures/texturesConsts.h"
 #include "levels/maps/mapsConsts.h"
 #include "consts/playerInputsConsts.h"
@@ -9,12 +8,12 @@
 #include "consts/includeOptions.h"
 #include "consts/filesAndPaths.h"
 
-PlayerMoving::PlayerMoving(const PrefPathFinder& prefPath):
+PlayerMoving::PlayerMoving(const GameConfigData& gameConfigData):
 	textureDirection{ textures::PlayerDirectionWest },
 	wantedNextDirection{ MoveStop },
 	currentDirection{ MoveStop },
 	moveState{ actors::PlayerIsStopped },
-	moveDelay{ getUnsignedIntFromFile(prefPath.getFsPath() / files::OptionsDir / files::PlayerMoveDelayFile, "player move delay" ) },
+	moveDelay{ gameConfigData.bobMoveDelay },
 	canChangeDirection{ true }
 {
 	

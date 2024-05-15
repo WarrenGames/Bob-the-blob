@@ -3,7 +3,7 @@
 #include "exceptions/readErrorExcept.h"
 #include "levels/gameActors/playerThings/singlePlayerData.h"
 #include "logging/logsStruct.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
 void loadPlayerPosition(AppLogFiles& logs, SinglePlayerData& playerObject, const fs::path& positionFilePath, bool& isLoadingPerfect, unsigned demoType)
 {

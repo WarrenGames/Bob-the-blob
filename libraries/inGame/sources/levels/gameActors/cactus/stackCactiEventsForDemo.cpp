@@ -3,9 +3,9 @@
 #include "levels/gameActors/playerThings/singlePlayerData.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "levels/gameActors/bobThings/bobsPackage.h"
-#include "demos/dataToRecord/gameEvents.h"
-#include "demos/templates/demoStack.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/dataToRecord/gameEvents.h"
+#include "levels/demosRecordingAndPlaying/templates/demoStack.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/maps/mapsConsts.h"
 #include <algorithm>
 #include <cassert>

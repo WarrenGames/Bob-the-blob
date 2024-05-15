@@ -2,16 +2,19 @@
 #define BOB_THE_BLOB_IN_GAME_BONUSES_MAP_H
 
 #include "levels/maps/bonusElement.h"
+#include "levels/maps/bonusesAnimation.h"
 #include "matrices/matrix2D.h"
 #include "fileSystem/fileSystem.h"
 
 struct GameMap;
+struct CommonTexturesSprites;
 
 class BonusesMap
 {
 private:
 	MatrixTemp2D< BonusElement > map;
 	std::vector< unsigned > elementsCount;
+	std::vector< BonusesAnimationData > animData;
 
 public:
 	explicit BonusesMap(const GameMap& gameMap, const fs::path& levelPrefix, unsigned demoType);
@@ -21,10 +24,6 @@ public:
 	BonusesMap( BonusesMap&& ) = default;
 	BonusesMap& operator= ( BonusesMap&& ) = default;
 	
-	std::vector< BonusElement >::iterator begin();
-	std::vector< BonusElement >::iterator end();
-	std::vector< BonusElement >::const_iterator begin() const;
-	std::vector< BonusElement >::const_iterator end() const;
 	void setParameterMap(MatrixTemp2D< BonusElement >& newMap) const;
 	void copyMapFromDemoData(const MatrixTemp2D< BonusElement >& newMap);
 	
@@ -39,6 +38,11 @@ public:
 	
 	void decrementElementNumberCount(std::size_t index);
 	unsigned getElementNumber(std::size_t index) const;
+	
+	void incrementBonusesAnimIndex();
+
+	void createAnimData(const CommonTexturesSprites& sprites);
+	std::size_t getAnimIndex(std::size_t index) const;
 };
 
 #endif //BOB_THE_BLOB_IN_GAME_BONUSES_MAP_H

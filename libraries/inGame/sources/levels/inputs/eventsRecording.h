@@ -1,8 +1,8 @@
 #ifndef BOB_THE_BLOB_IN_GAME_PLAYER_INPUTS_RECORDING_H
 #define BOB_THE_BLOB_IN_GAME_PLAYER_INPUTS_RECORDING_H
 
-#include "demos/dataToRecord/actionData.h"
-#include "demos/templates/demoStack.h"
+#include "levels/demosRecordingAndPlaying/dataToRecord/actionData.h"
+#include "levels/demosRecordingAndPlaying/templates/demoStack.h"
 #include "time/accurateTime.h"
 
 struct RecordedEvents

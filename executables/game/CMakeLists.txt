@@ -76,12 +76,10 @@ target_include_directories(
 	PRIVATE ../../libraries/levelsHints/sources
 	PRIVATE ../../libraries/inGame/sources
 	PRIVATE ../../libraries/gameOptions/sources
-	PRIVATE ../../libraries/demos/sources
 )
 
 target_link_libraries(	
 	${PROJECT_NAME}
-	PRIVATE demos
 	PRIVATE inGame
 	PRIVATE gameOptions
 	PRIVATE levelsHints

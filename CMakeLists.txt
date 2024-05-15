@@ -15,7 +15,7 @@ set( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmakeModules)
 
-#set this path to the built WarrenGamesCustomLibs libraries directory (needed below at line 38)
+#set this path to the built WarrenGamesCustomLibs libraries directory (needed below at line 38) (use a canonical path, not a relative one)
 set( WARREN_LIBS_BUILDING_PATH "" )
 
 set( WARREN_STATIC_LIBS_DIR "builtArchives" )
@@ -42,7 +42,6 @@ add_subdirectory(libraries/commonFiles)
 add_subdirectory(libraries/levelsHints)
 add_subdirectory(libraries/gameOptions)
 add_subdirectory(libraries/inGame)
-add_subdirectory(libraries/demos)
 
 if(UNIX)
 	include(GNUInstallDirs)

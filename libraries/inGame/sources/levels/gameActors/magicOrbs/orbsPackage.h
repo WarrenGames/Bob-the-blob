@@ -6,7 +6,6 @@
 #include "fileSystem/fileSystem.h"
 #include <vector>
 
-class PrefPathFinder;
 struct GameMap;
 namespace demos{ struct DataPackage; template<typename T>class Stack; struct ItemData; }
 class SoundPlayer;
@@ -24,7 +23,7 @@ private:
 	bool isLoadingPerfect;
 
 public:
-	explicit OrbsPackage(const PrefPathFinder& prefPath, std::size_t orbColor, int orbWorthValue, const fs::path& creationFile, const fs::path& durationFile);
+	explicit OrbsPackage(std::size_t orbColor, int orbWorthValue, std::chrono::milliseconds creationDelay, std::chrono::milliseconds durationDelay);
 	~OrbsPackage() = default;
 	OrbsPackage( const OrbsPackage& ) = delete;
 	OrbsPackage& operator= ( const OrbsPackage& ) = delete;

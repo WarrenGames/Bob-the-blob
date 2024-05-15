@@ -1,6 +1,13 @@
+version 0.1.5
+	- The 'inGame' and 'demos' libraries have been merged to avoid cyclic dependencies that caused compilation
+		to fail.
+	- The animation of gold ingots and diamonds in the game requires less CPU ressources (same texture index for all
+		theses elements at the same time.
+	- The user can now exit a demo at any time by clicking the window corner cross or pressing the escape key.	
+
 version 0.1.4 ( 2024-04-28 )
 	- A skill level choice (easy, medium or hard) has been added, which changes the number of enemies in the maze.
-	- The binaries releases has been updated for the skill levels implementations.
+	- The binary releases has been updated for the skill levels implementations.
 	
 version 0.1.3
 	Several bug fixes:

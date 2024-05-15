@@ -1,20 +1,20 @@
 #include "levels/gameActors/magicOrbs/orbsPackage.h"
 #include "levels/maps/gameMap.h"
 #include "levels/loadings/getConfigFileNumber.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "exceptions/readErrorExcept.h"
 #include "soundSystem/soundsPlayer.h"
 #include "prefPath/prefPathFinder.h"
 #include "levels/gameActors/playerActorsConsts.h"
 #include "consts/filesAndPaths.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "consts/soundsConsts.h"
 #include <algorithm>
 
-OrbsPackage::OrbsPackage(const PrefPathFinder& prefPath, std::size_t orbColor, int orbWorthValue, const fs::path& creationFile, const fs::path& durationFile):
-	orbDurationDelay{ getUnsignedIntFromFile( prefPath.getFsPath() / files::OptionsDir / durationFile, "orb duration delay" ) },
-	orbCreationDelay{ getUnsignedIntFromFile( prefPath.getFsPath() / files::OptionsDir / creationFile, "orb creation delay" ) },
+OrbsPackage::OrbsPackage(std::size_t orbColor, int orbWorthValue, std::chrono::milliseconds creationDelay, std::chrono::milliseconds durationDelay):
+	orbDurationDelay{ durationDelay },
+	orbCreationDelay{ creationDelay },
 	orbColorIndex{ orbColor },
 	orbWorth{ orbWorthValue },
 	orbsIdentityNumber{ 0 },

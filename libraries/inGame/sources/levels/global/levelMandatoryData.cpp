@@ -1,28 +1,30 @@
 #include "levels/global/levelMandatoryData.h"
 #include "levels/loadings/gameComponentsLoading.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/mapSubDivisions/functions/cutZones.h"
 #include "levels/playerAttributes/playerAttributes.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "package/essentials.h"
 #include "pathsFunctions/pathsFunctions.h"
 #include "consts/screenConsts.h"
 #include "consts/filesAndPaths.h"
-#include "demos/consts/demosConsts.h"
-#include "demos/consts/gameEventsConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/levelFinish/levelFinishConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include <cassert>
 
-LevelMandatoryData::LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage):
+LevelMandatoryData::LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+										const GameConfigData& gameConfigData):
 	isLoadingPerfect{ true },
 	hasLevelEnded{ false },
 	quitLevel{ false },
 	demoType{ demos::getGameStatus(demoDataPackage) },
 	gameMap{ essentials.logs, path::getGameConfigFilePath(levelPrefix, files::DefaultMapsExtension), isLoadingPerfect, demos::getGameStatus(demoDataPackage) },
 	bonusesMap{ gameMap, levelPrefix, demos::getGameStatus(demoDataPackage) },
-	playerData{ essentials.prefPath, 0 },
-	bobsPackage{ essentials, path::getGameConfigFilePath(levelPrefix, files::DefaultEnemyBobsFileSuffix), demos::getGameStatus(demoDataPackage), playerAttributes.skillLevel },
+	playerData{ gameConfigData, 0 },
+	bobsPackage{ path::getGameConfigFilePath(levelPrefix, files::DefaultEnemyBobsFileSuffix), demos::getGameStatus(demoDataPackage), playerAttributes.skillLevel, gameConfigData },
 	crossRoadsRandoms{ gameMap },
 	playerInputs{ essentials.logs, essentials.prefPath, demos::getGameStatus(demoDataPackage) },
 	gameSoundSystem{ essentials.logs, essentials.prefPath },
@@ -157,7 +159,8 @@ void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPack
 
 void LevelMandatoryData::updateLevelExiting()
 {
-	if( hasLevelEnded && levelFinishDelay.hasTimeElapsed( std::chrono::milliseconds{ LevelFinishDisplayMicroSecDelay } ) )
+	if( ( hasLevelEnded && levelFinishDelay.hasTimeElapsed( std::chrono::milliseconds{ LevelFinishDisplayMicroSecDelay } ) ) ||
+		playerInputs.inputsStates.getSdlQuit() || playerInputs.inputsStates.getEscapeState() )
 	{
 		quitLevel = true;
 	}

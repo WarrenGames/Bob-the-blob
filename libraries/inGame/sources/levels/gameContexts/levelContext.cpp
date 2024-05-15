@@ -3,10 +3,11 @@
 #include "package/essentials.h"
 #include "exceptions/readErrorExcept.h"
 #include "levels/playerAttributes/playerAttributes.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "levels/demos/transferDemoStacks.h"
 #include "levels/demos/initializeDemoStacks.h"
 #include "levels/demos/joinTimePoints.h"
-#include "demos/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "levels/maps/mapsConsts.h"
 #include "levels/maps/bonusesConsts.h"
 #include "consts/colors.h"
@@ -15,7 +16,9 @@ void standardLevel::levelContext(Essentials& essentials, PlayerAttributes& playe
 {
 	bool quitLevel{false};
 	try{
-		GameGlobalObject gameGlobalObject{essentials, playerAttributes, levelPrefix, demoPackage};
+		GameConfigData gameConfigData{essentials, demoPackage};
+		
+		GameGlobalObject gameGlobalObject{essentials, playerAttributes, levelPrefix, demoPackage, gameConfigData};
 		demos::initializeStacksNumber(essentials, demoPackage, gameGlobalObject.levelData);
 		demos::transferEventsStackInCaseOfDemo(demoPackage, gameGlobalObject.levelData.playerInputs.recordedEvents);
 		demos::joinTimePoints(demoPackage, gameGlobalObject.levelData);
@@ -27,6 +30,7 @@ void standardLevel::levelContext(Essentials& essentials, PlayerAttributes& playe
 			standardLevel::drawEverything(essentials, gameGlobalObject);
 		}
 		demos::transferEventsStackInCaseOfRecording(demoPackage, gameGlobalObject.levelData.playerInputs.recordedEvents);
+		gameConfigData.setDataToDemoPackage(demoPackage);
 	}
 	catch( const ReadError& readError )
 	{

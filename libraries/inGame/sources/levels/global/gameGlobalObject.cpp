@@ -7,6 +7,7 @@
 #include "levels/global/actWithBonuses.h"
 #include "levels/balloons/updateBalloons.h"
 #include "levels/loadings/gameComponentsLoading.h"
+#include "levels/loadings/gameConfigurationData.h"
 #include "pathsFunctions/pathsFunctions.h"
 #include "levels/maps/mapsConsts.h"
 #include "levels/gameActors/playerActorsConsts.h"
@@ -16,13 +17,15 @@
 #include "consts/filesAndPaths.h"
 #include "consts/screenConsts.h"
 
-GameGlobalObject::GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage):
-	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage },
+GameGlobalObject::GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+									const GameConfigData& gameConfigData):
+	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage, gameConfigData },
 	texturesLoader{ essentials.logs, essentials.rndWnd },
 	texturesSprites{ texturesLoader },
 	balloonsPack{ essentials.logs, essentials.rndWnd },
-	infosPanel{ essentials, playerAttributes, levelData.bonusesMap }
+	infosPanel{ essentials, playerAttributes, levelData.bonusesMap, gameConfigData }
 {
+	createBonusesAnimationData(levelData.bonusesMap, texturesSprites.commonSprites);
 	essentials.logs.error.flushLog();
 	essentials.logs.warning.flushLog();
 }
@@ -52,7 +55,7 @@ void GameGlobalObject::updateGame(Essentials& essentials, PlayerAttributes& play
 	levelData.actWithLevelEnd(demoDataPackage, isLevelComplete() );
 	updateBalloons(levelData);//Can be a different function according to level items and level theme
 	updateInfoGradient(infosPanel.canBeEatenBobsGradient, levelData.playerData.abilities[abilities::CanEatBob] );
-	updateBonusesAnimation(levelData.bonusesMap, texturesSprites.commonSprites);
+	levelData.bonusesMap.incrementBonusesAnimIndex();
 	infosPanel.goldIngotsCountDisplay.updateText(essentials, levelData.bonusesMap.getElementNumber(bonuses::BonusGoldIngot) );
 	updateBobbysExplosionsIfAny(levelData.bobsPackage, texturesSprites.commonSprites.blueSmokeSprites.size() );
 }

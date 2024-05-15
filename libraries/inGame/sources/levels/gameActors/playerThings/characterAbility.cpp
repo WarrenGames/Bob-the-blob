@@ -1,6 +1,6 @@
 #include "levels/gameActors/playerThings/characterAbility.h"
 
-Ability::Ability(unsigned readDelay):
+Ability::Ability(long long int readDelay):
 	delay{ readDelay },
 	isActive{ false }
 {

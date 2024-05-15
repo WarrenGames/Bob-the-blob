@@ -3,12 +3,12 @@
 #include "levels/global/levelMandatoryData.h"
 #include "levels/maps/loadPlayerPosition.h"
 #include "levels/mapSubDivisions/loadSubdivisionData.h"
-#include "demos/data/dataPackage.h"
-#include "demos/data/determineGameStatus.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
+#include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "pathsFunctions/pathsFunctions.h"
 #include "levels/gameActors/playerActorsConsts.h"
 #include "consts/filesAndPaths.h"
-#include "demos/consts/demosConsts.h"
+#include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
 void loadAndInitializeGameComponents(Essentials& essentials, LevelMandatoryData& levelData, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage)
 {

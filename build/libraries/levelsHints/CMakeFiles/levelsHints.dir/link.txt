@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblevelsHints.a CMakeFiles/levelsHints.dir/sources/hintsScreen/mexican/mexicanHintScreen.cpp.o CMakeFiles/levelsHints.dir/sources/hintsScreen/mexican/mexicanHintsData.cpp.o
+/usr/bin/ranlib liblevelsHints.a
