@@ -68,10 +68,10 @@ target_include_directories(
 	PRIVATE ${SDL2_TTF_INCLUDE_DIRS}
 	PRIVATE ${SDL2_MIXER_INCLUDE_DIRS}
 	PRIVATE sources
-	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/genericLib
-	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdl2_wrapper
-	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/soundSystem
-	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdlLogoDisplay
+	PRIVATE ../../libraries/genericLib/sources
+	PRIVATE ../../libraries/sdl2_wrapper/sources
+	PRIVATE ../../libraries/soundSystem/sources
+	PRIVATE ../../libraries/sdlLogoDisplay/sources
 	PRIVATE ../../libraries/commonFiles/sources
 	PRIVATE ../../libraries/levelsHints/sources
 	PRIVATE ../../libraries/inGame/sources
