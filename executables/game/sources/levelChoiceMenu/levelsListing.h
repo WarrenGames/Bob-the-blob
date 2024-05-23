@@ -10,6 +10,12 @@ struct Essentials;
 namespace sdl2{ class Font; }
 struct TexturePosition;
 
+enum : unsigned { 
+	ListOfLevels,
+	ListOfDemosFilesInDir,
+	ListMax
+};
+
 struct LevelChunk
 {
 	TextButton textButton;
@@ -31,7 +37,7 @@ private:
 	std::size_t listCurrentPage;
 	
 public:
-	explicit LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path);
+	explicit LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path, unsigned listGoal);
 	~LevelsListing() = default;
 	LevelsListing( const LevelsListing& ) = delete;
 	LevelsListing& operator= ( const LevelsListing& ) = delete;

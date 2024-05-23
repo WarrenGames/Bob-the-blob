@@ -9,7 +9,7 @@
 levelChoice::MenuElements::MenuElements(Essentials& essentials):
 	interfaceTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, levelChoice::InterfaceTexts) },
 	listFont{ essentials.logs.error, ArialFontPath, MediumFontSize },
-	levelsListing{ essentials, listFont, levelChoice::LevelsListFilePath },
+	levelsListing{ essentials, listFont, levelChoice::LevelsListFilePath, ListOfLevels },
 	precedentPageButton{ essentials.logs, essentials.rndWnd, listFont, interfaceTexts[levelChoice::TxtPrecedentBtn], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
 							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },
 	nextPageButton{ essentials.logs, essentials.rndWnd, listFont, interfaceTexts[levelChoice::TxtNextBtn], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,

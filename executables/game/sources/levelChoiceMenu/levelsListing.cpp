@@ -1,9 +1,13 @@
 #include "levelChoiceMenu/levelsListing.h"
 #include "package/essentials.h"
+#include "pathsFunctions/pathsFunctions.h"
+#include "levelInfos/getGridSize.h"
 #include "texturing/texturePosition.h"
+#include "texts/textLoader.h"
 #include "levelChoiceMenu/levelChoiceMenuConsts.h"
 #include "consts/screenConsts.h"
 #include "consts/levelsTypesConsts.h"
+#include "consts/filesAndPaths.h"
 #include <fstream>
 #include <cassert>
 
@@ -15,15 +19,15 @@ LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std
 	
 }
 
-LevelsListing::LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path):
+LevelsListing::LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path, unsigned listGoal):
 	listCurrentPage{ 0 }
 {
-	if( fs::is_regular_file( path ) )
+	if( fs::is_regular_file( path ) && listGoal == ListOfLevels )
 	{
 		//In case of list file
 		populateList(essentials, listFont, path);
 	}
-	else if( fs::is_directory( path ) )
+	else if( fs::is_directory( path ) && listGoal == ListOfDemosFilesInDir )
 	{
 		//In case of directory (browsing it)
 		readDirectoryFiles(essentials, listFont, path);
@@ -110,6 +114,7 @@ void LevelsListing::populateList(Essentials& essentials, const sdl2::Font& listF
 
 void LevelsListing::createLevelChunk(Essentials& essentials, const sdl2::Font& listFont, std::istringstream& lineStream, int& levelsNumber, std::size_t fileLineNumber)
 {
+	const TextsBlocks languagesTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, LanguageFile), TxtMax };
 	std::string levelName;
 	unsigned levelType{ LevelMax };
 	if( lineStream >> levelName >> levelType )
@@ -118,7 +123,8 @@ void LevelsListing::createLevelChunk(Essentials& essentials, const sdl2::Font& l
 		{
 			levelsList.emplace_back( std::vector<LevelChunk>() );
 		}
-		levelsList.back().emplace_back( LevelChunk{essentials, listFont, levelName, 
+		levelsList.back().emplace_back( LevelChunk{essentials, listFont, levelName 
+			+ getLevelGridSizeText(languagesTexts[TxtGridSize], getLevelGridSize(essentials.logs, path::getGameConfigFilePath(levelName, files::DefaultMapsExtension) ) ), 
 			TexturePosition{GameScreenWidth / 2, (levelsNumber % levelChoice::LevelsPerPage) * SQR_SIZE + SQR_SIZE * 2, true, true}, levelType } );
 		levelsNumber++;
 	}
