@@ -3,6 +3,7 @@ cmake_minimum_required( VERSION 3.13 )
 project( commonFiles LANGUAGES CXX )
 
 set( HEADERS
+	sources/levelInfos/getGridSize.h
 	sources/exceptions/writeErrorExcept.h
 	sources/exceptions/readErrorExcept.h
 	sources/pathsFunctions/pathsFunctions.h
@@ -25,6 +26,7 @@ set( HEADERS
 )
 
 set( SOURCES
+	sources/levelInfos/getGridSize.cpp
 	sources/exceptions/readErrorExcept.cpp
 	sources/exceptions/writeErrorExcept.cpp
 	sources/pathsFunctions/pathsFunctions.cpp

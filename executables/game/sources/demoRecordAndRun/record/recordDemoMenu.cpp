@@ -12,7 +12,7 @@ constexpr char TextsFile[] = "demosMenu/demosRecordingMenu.txt";
 demosRecording::Menu::Menu(Essentials& essentials):
 	menuTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, TextsFile), demosRecording::TxtMax },
 	menuFont{ essentials.logs.error, ArialFontPath, MediumFontSize },
-	levelsListing{ essentials, menuFont, levelChoice::LevelsListFilePath },
+	levelsListing{ essentials, menuFont, levelChoice::LevelsListFilePath, ListOfLevels },
 	menuTitle{essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtTitle], GreenCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE, true, true } },
 	precedentPageButton{ essentials.logs, essentials.rndWnd, menuFont, menuTexts[demosRecording::TxtPrecedent], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
 							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE * 2, true, true } },

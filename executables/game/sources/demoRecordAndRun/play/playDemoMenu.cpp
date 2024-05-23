@@ -23,7 +23,7 @@ demosPlaying::DemoChoiceMenu::DemoChoiceMenu(Essentials& essentials):
 	backgroundImage{ essentials.logs, essentials.rndWnd, "textures/wallpapers/cave1.png", TexturePosition{ 0, 0 } },
 	interfaceTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, MenuTexts) },
 	font{ essentials.logs.error, ArialFontPath, MediumFontSize },
-	demosFilesList{essentials, font, essentials.prefPath.getFsPath() / files::DemosDir},
+	demosFilesList{essentials, font, essentials.prefPath.getFsPath() / files::DemosDir, ListOfDemosFilesInDir},
 	precedentPageButton{ essentials.logs, essentials.rndWnd, font, interfaceTexts[TxtPreviousPage], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
 							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
 	nextPageButton{ essentials.logs, essentials.rndWnd, font, interfaceTexts[TxtNextPage], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
