@@ -22,7 +22,8 @@ struct LevelChunk
 	std::string levelName;
 	unsigned levelType;
 	
-	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string text, const TexturePosition& position, unsigned levelType_);
+	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const std::string& levelName_, const TexturePosition& position, unsigned levelType_);
+	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string& levelName_, const TexturePosition& position, unsigned levelType_);
 	~LevelChunk() = default;
 	LevelChunk( const LevelChunk& ) = delete;
 	LevelChunk& operator= ( const LevelChunk& ) = delete;

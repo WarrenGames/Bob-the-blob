@@ -15,10 +15,6 @@ set( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmakeModules)
 
-if( UNIX )
-	include(GNUInstallDirs)
-endif( UNIX )
-
 if(WIN32)
     set( SDL2_DIR "" )
 endif(WIN32)

@@ -1,3 +1,6 @@
+version 0.1.6
+	- There are levels grid sizes aside the level name in the level choice menu.
+
 version 0.1.5
 	- The 'inGame' and 'demos' libraries have been merged to avoid cyclic dependencies that caused compilation
 		to fail.
