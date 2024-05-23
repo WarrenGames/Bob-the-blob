@@ -11,9 +11,17 @@
 #include <fstream>
 #include <cassert>
 
-LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string text, const TexturePosition& position, unsigned levelType_):
-	textButton{ essentials.logs, essentials.rndWnd, font, text, levelChoice::SelectedButtonColor, levelChoice::OffButtonColor, position },
-	levelName{ text },
+LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const std::string& levelName_, const TexturePosition& position, unsigned levelType_):
+	textButton{ essentials.logs, essentials.rndWnd, font, buttonText, levelChoice::SelectedButtonColor, levelChoice::OffButtonColor, position },
+	levelName{ levelName_ },
+	levelType{ levelType_ }
+{
+	
+}
+
+LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string& levelName_, const TexturePosition& position, unsigned levelType_):
+	textButton{ essentials.logs, essentials.rndWnd, font, levelName_, levelChoice::SelectedButtonColor, levelChoice::OffButtonColor, position },
+	levelName{ levelName_ },
 	levelType{ levelType_ }
 {
 	
@@ -125,6 +133,7 @@ void LevelsListing::createLevelChunk(Essentials& essentials, const sdl2::Font& l
 		}
 		levelsList.back().emplace_back( LevelChunk{essentials, listFont, levelName 
 			+ getLevelGridSizeText(languagesTexts[TxtGridSize], getLevelGridSize(essentials.logs, path::getGameConfigFilePath(levelName, files::DefaultMapsExtension) ) ), 
+			levelName,
 			TexturePosition{GameScreenWidth / 2, (levelsNumber % levelChoice::LevelsPerPage) * SQR_SIZE + SQR_SIZE * 2, true, true}, levelType } );
 		levelsNumber++;
 	}
