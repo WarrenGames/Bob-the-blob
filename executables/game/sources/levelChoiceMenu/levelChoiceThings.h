@@ -27,9 +27,11 @@ struct MenuElements
 	MenuElements& operator= ( MenuElements&& ) = default;
 	
 	void drawInterface(Essentials& essentials) const;
+	void drawPagesButtonsIfNeeded(Essentials& essentials) const;
 	
 	void updateButtons(Essentials& essentials);
 	void updateListPageButtons(Essentials& essentials);
+	void updatePagesButtonsIfNeeded(Essentials& essentials);
 };
 	
 }

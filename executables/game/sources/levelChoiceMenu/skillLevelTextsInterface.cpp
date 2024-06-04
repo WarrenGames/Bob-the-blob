@@ -9,13 +9,13 @@
 #include "consts/colors.h"
 #include <cassert>
 
-SkillLevelTextsInterface::SkillLevelTextsInterface(Essentials& essentials, const TexturePosition& texturePosition):
+SkillLevelTextsInterface::SkillLevelTextsInterface(Essentials& essentials, const TexturePosition& texturePosition, const SDL_Color& textsColor):
 	skillLevelsEnum{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, levelChoice::SkillLevelsTextsEnum), SkillLevelMax },
 	listFont{ essentials.logs.error, ArialFontPath, MediumFontSize }
 {
 	for( auto const &txt : skillLevelsEnum )
 	{
-		skillsTexts.emplace_back( TextureCombo{essentials.logs, essentials.rndWnd, listFont, txt, WhiteCol, texturePosition } );
+		skillsTexts.emplace_back( TextureCombo{essentials.logs, essentials.rndWnd, listFont, txt, textsColor, texturePosition } );
 	}
 }
 

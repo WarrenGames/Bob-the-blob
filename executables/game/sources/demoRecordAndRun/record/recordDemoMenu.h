@@ -29,6 +29,7 @@ struct Menu
 	TextButton quitButton;
 	SkillLevelCursor skillLevelCursor;
 	SkillLevelTextsInterface skillTexts;
+	const TextureCombo backgroundImage;
 	
 	explicit Menu(Essentials& essentials);
 	~Menu() = default;
@@ -39,6 +40,8 @@ struct Menu
 	
 	void updateButtons(Essentials& essentials);
 	void drawEverything(Essentials& essentials) const;
+	void drawPagesButtonsIfNeeded(Essentials& essentials) const;
+	void updatePagesButtonsIfNeeded(Essentials& essentials);
 };
 
 }

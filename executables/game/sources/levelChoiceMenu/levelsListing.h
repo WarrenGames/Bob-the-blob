@@ -22,8 +22,10 @@ struct LevelChunk
 	std::string levelName;
 	unsigned levelType;
 	
-	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const std::string& levelName_, const TexturePosition& position, unsigned levelType_);
-	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string& levelName_, const TexturePosition& position, unsigned levelType_);
+	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const std::string& levelName_, const TexturePosition& position, unsigned levelType_
+						, const SDL_Color& buttonOffColor);
+	explicit LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string& levelName_, const TexturePosition& position, unsigned levelType_
+						, const SDL_Color& buttonOffColor);
 	~LevelChunk() = default;
 	LevelChunk( const LevelChunk& ) = delete;
 	LevelChunk& operator= ( const LevelChunk& ) = delete;
@@ -38,7 +40,7 @@ private:
 	std::size_t listCurrentPage;
 	
 public:
-	explicit LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path, unsigned listGoal);
+	explicit LevelsListing(Essentials& essentials, const sdl2::Font& listFont, const fs::path& path, unsigned listGoal, const SDL_Color& buttonOffColor);
 	~LevelsListing() = default;
 	LevelsListing( const LevelsListing& ) = delete;
 	LevelsListing& operator= ( const LevelsListing& ) = delete;
@@ -55,11 +57,11 @@ public:
 	std::vector< LevelChunk >::const_iterator end() const;
 	
 private:
-	void populateList(Essentials& essentials, const sdl2::Font& listFont, const fs::path& filesList);
+	void populateList(Essentials& essentials, const sdl2::Font& listFont, const fs::path& filesList, const SDL_Color& buttonOffColor);
 	
-	void createLevelChunk(Essentials& essentials, const sdl2::Font& listFont, std::istringstream& lineStream, int& levelsNumber, std::size_t fileLineNumber);
+	void createLevelChunk(Essentials& essentials, const sdl2::Font& listFont, std::istringstream& lineStream, int& levelsNumber, std::size_t fileLineNumber, const SDL_Color& buttonOffColor);
 	
-	void readDirectoryFiles(Essentials& essentials, const sdl2::Font& listFont, const fs::path& initialDirectory);
+	void readDirectoryFiles(Essentials& essentials, const sdl2::Font& listFont, const fs::path& initialDirectory, const SDL_Color& buttonOffColor);
 };
 
 #endif //BOB_THE_BLOB_GAME_LEVEL_CHOICE_LEVELS_LISTING_H

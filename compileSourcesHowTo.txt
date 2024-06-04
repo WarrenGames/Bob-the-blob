@@ -41,8 +41,7 @@ extern dependencies like SDL2 (with 'SDL2_DIR' value).
 
 -----------------
 Run compilation configuration with CMake under Windows with Visual Studio:
-You must set the following string values in the main CMakeLists.txt so the project will use SDL2 and wxWidgets
-libraries:
+You must set the following string values in the main CMakeLists.txt so the project will use SDL2 library:
 - SDL2_DIR "'path of the SDL2 library'" (for example: "C:/prog/library/SDL2-2.0.20/i686-w64-mingw32" for a 
 	32 bits compilation (note the 'i686-w64-mingw32' last dir for that purpose or: 
 	"C:/prog/library/SDL2-2.0.20/x86_64-w64-ming32" for a 64 bits compilation with 'x86_64-w64-mingw32' sub 
