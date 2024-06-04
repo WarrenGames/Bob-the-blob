@@ -16,7 +16,7 @@ private:
 	std::vector< TextureCombo > skillsTexts;
 
 public:
-	explicit SkillLevelTextsInterface(Essentials& essentials, const TexturePosition& texturePosition);
+	explicit SkillLevelTextsInterface(Essentials& essentials, const TexturePosition& texturePosition, const SDL_Color& textsColor);
 	~SkillLevelTextsInterface() = default;
 	SkillLevelTextsInterface( const SkillLevelTextsInterface& ) = delete;
 	SkillLevelTextsInterface& operator= ( const SkillLevelTextsInterface& ) = delete;

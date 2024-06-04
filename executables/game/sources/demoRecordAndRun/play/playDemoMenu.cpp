@@ -19,11 +19,13 @@ enum : std::size_t{
 	TxtMax
 };
 
+constexpr SDL_Color ButtonOffColor = { 128, 128, 128, 255 };
+
 demosPlaying::DemoChoiceMenu::DemoChoiceMenu(Essentials& essentials):
 	backgroundImage{ essentials.logs, essentials.rndWnd, "textures/wallpapers/cave1.png", TexturePosition{ 0, 0 } },
 	interfaceTexts{ essentials.logs.error, path::getLanguageFile(essentials.chosenLanguage, MenuTexts) },
 	font{ essentials.logs.error, ArialFontPath, MediumFontSize },
-	demosFilesList{essentials, font, essentials.prefPath.getFsPath() / files::DemosDir, ListOfDemosFilesInDir},
+	demosFilesList{essentials, font, essentials.prefPath.getFsPath() / files::DemosDir, ListOfDemosFilesInDir, ButtonOffColor },
 	precedentPageButton{ essentials.logs, essentials.rndWnd, font, interfaceTexts[TxtPreviousPage], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
 							TexturePosition{ SQR_SIZE * 2, GameScreenHeight - SQR_SIZE, true, true } },
 	nextPageButton{ essentials.logs, essentials.rndWnd, font, interfaceTexts[TxtNextPage], levelChoice::SelectedButtonColor, levelChoice::OffButtonColor,
@@ -41,18 +43,25 @@ void demosPlaying::DemoChoiceMenu::drawInterface(Essentials& essentials) const
 {
 	backgroundImage.draw(essentials.rndWnd);
 	demosFilesList.drawCurrentPage(essentials);
-	precedentPageButton.drawButton(essentials.rndWnd);
-	nextPageButton.drawButton(essentials.rndWnd);
+	drawPageButtons(essentials);
 	quitButton.drawButton(essentials.rndWnd);
 	drawDemosAbsenceInfo(essentials);
 	menuTitle.draw(essentials.rndWnd);
 }
 
+void demosPlaying::DemoChoiceMenu::drawPageButtons(Essentials& essentials) const
+{
+	if( demosFilesList.size() >= 2 )
+	{
+		precedentPageButton.drawButton(essentials.rndWnd);
+		nextPageButton.drawButton(essentials.rndWnd);
+	}
+}
+
 void demosPlaying::DemoChoiceMenu::updateButtons(Essentials& essentials)
 {
-	precedentPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
-	nextPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	quitButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
+	updatePageButtons(essentials);
 	updateListPageButtons(essentials);
 }
 
@@ -61,6 +70,15 @@ void demosPlaying::DemoChoiceMenu::updateListPageButtons(Essentials& essentials)
 	if( demosFilesList.size() > 0 )
 	{
 		demosFilesList.updateCurrentPageButtons(essentials);
+	}
+}
+
+void demosPlaying::DemoChoiceMenu::updatePageButtons(Essentials& essentials)
+{
+	if( demosFilesList.size() >= 2 )
+	{
+		precedentPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
+		nextPageButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
 	}
 }
 

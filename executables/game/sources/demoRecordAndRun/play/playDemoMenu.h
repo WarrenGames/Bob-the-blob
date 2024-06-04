@@ -28,9 +28,11 @@ struct DemoChoiceMenu
 	DemoChoiceMenu& operator= ( DemoChoiceMenu&& ) = default;
 	
 	void drawInterface(Essentials& essentials) const;
+	void drawPageButtons(Essentials& essentials) const;
 	
 	void updateButtons(Essentials& essentials);
 	void updateListPageButtons(Essentials& essentials);
+	void updatePageButtons(Essentials& essentials);
 	void drawDemosAbsenceInfo(Essentials& essentials) const;
 };
 

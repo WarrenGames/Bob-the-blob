@@ -1,3 +1,6 @@
+version 0.1.7
+	- The list of demo files doesn't display their full paths, only the file name.
+	
 version 0.1.6
 	- There are levels grid sizes aside the level name in the level choice menu.
 
