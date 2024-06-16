@@ -51,6 +51,7 @@ void levelChoice::quitMenu(Essentials& essentials, const levelChoice::MenuElemen
 	if( essentials.inputs.getSdlQuit() || essentials.inputs.isKeyDown(KEY_ESCAPE) || interface.quitButton.buttonClicked() )
 	{
 		quitMenu = true;
+		essentials.inputs.setKeyStateToFalse(KEY_ESCAPE);
 	}
 }
 

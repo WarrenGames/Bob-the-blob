@@ -26,7 +26,7 @@ void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::PlayerCanEatCacti), "8000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsAnimDelayFile), "100");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsEatableDelayFile), "9000");
-		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::GreenOrbDurationFile), "14000");
+		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::GreenOrbDurationFile), "18000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::GreenOrbCreationDelay), "20000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsSpawnDelay), "8000");
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, sounds::SoundVolumeConfigFileName), "1 " + std::to_string(MIX_MAX_VOLUME / 2) );

@@ -14,11 +14,13 @@ struct MainMenuGraphisms
 {
 	const TextsBlocks languagesTexts;
 	const sdl2::Font menuFont;
-	TextureCombo title;
-	TextureCombo keyboardInputsVignette;
-	TextureCombo audioVignette;
-	TextButton keyboardInputsButton;
+	const TextureCombo title;
+	const TextureCombo inputsVignette;
+	const TextureCombo audioVignette;
+	const TextureCombo settingsVignette;
+	TextButton inputsButton;
 	TextButton audioButton;
+	TextButton settingsButton;
 	
 	explicit MainMenuGraphisms(Essentials& essentials);
 	~MainMenuGraphisms() = default;

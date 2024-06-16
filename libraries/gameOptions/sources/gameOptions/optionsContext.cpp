@@ -1,6 +1,7 @@
 #include "gameOptions/optionsContext.h"
 #include "gameOptions/mainMenu/optionsMainMenuGraphisms.h"
 #include "gameOptions/keyboard/keyboardContext.h"
+#include "gameOptions/gameSettings/gameSettingsContext.h"
 #include "package/essentials.h"
 #include "consts/colors.h"
 
@@ -15,7 +16,8 @@ void options::context(Essentials& essentials)
 		mainMenuGraphisms.update(essentials);
 		options::quitMenuWithEscape(essentials, quitOptions);
 		options::closeWindowAsked(essentials, quitOptions);
-		options::goToKeyboardPanel(essentials, mainMenuGraphisms);
+		options::goToInputsPanel(essentials, mainMenuGraphisms);
+		options::goToSettingsPanel(essentials, mainMenuGraphisms);
 		options::drawOptionsMenu(essentials, mainMenuGraphisms);
 		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 	}
@@ -49,12 +51,22 @@ void options::closeWindowAsked(Essentials& essentials, bool& quitMenu)
 	}
 }
 
-void options::goToKeyboardPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms)
+void options::goToInputsPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms)
 {
-	if( mainMenuGraphisms.keyboardInputsButton.buttonClicked() )
+	if( mainMenuGraphisms.inputsButton.buttonClicked() )
 	{
 		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 		options::keyboardMainContext(essentials);
+		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
+	}
+}
+
+void options::goToSettingsPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms)
+{
+	if( mainMenuGraphisms.settingsButton.buttonClicked() )
+	{
+		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
+		options::settings::mainContext(essentials);
 		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 	}
 }

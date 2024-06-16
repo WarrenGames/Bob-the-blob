@@ -1,3 +1,7 @@
+version 0.1.9
+	- Added a settings menu in options where you can change green orbs 'creation' delay, green orbs 'duration' delay and
+		the duration for the player during which he/she can eat the cacti.
+	
 version 0.1.8
 	- Bug fix: the demo couldn't be played in the demo playing menu.
 

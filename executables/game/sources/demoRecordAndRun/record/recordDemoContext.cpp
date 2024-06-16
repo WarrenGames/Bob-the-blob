@@ -80,6 +80,7 @@ void demosRecording::runDemoRecording(Essentials& essentials, const demosRecordi
 						demosRecording::prepareStandardLevelData(essentials, level.levelName.string(), menu.skillLevelCursor.getSkillLevel() );
 						break;
 					case LevelMexican:
+						hintScreen::displayMexicanLevelHelp(essentials);
 						demosRecording::prepareMexicanLevelData(essentials, level.levelName.string(), menu.skillLevelCursor.getSkillLevel() );
 						break;
 				}
