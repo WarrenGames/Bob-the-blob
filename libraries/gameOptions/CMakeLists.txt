@@ -3,6 +3,8 @@ cmake_minimum_required( VERSION 3.13 )
 project( gameOptions LANGUAGES CXX )
 
 set( HEADERS
+	sources/gameOptions/gameSettings/gameSettingsContext.h
+	sources/gameOptions/gameSettings/gameSettingsInterface.h
 	sources/gameOptions/joystick/joystickOptions.h
 	sources/gameOptions/mainMenu/optionsMainMenuGraphisms.h
 	sources/gameOptions/optionsContext.h
@@ -13,6 +15,8 @@ set( HEADERS
 
 set( SOURCES
 	sources/gameOptions/optionsContext.cpp
+	sources/gameOptions/gameSettings/gameSettingsInterface.cpp
+	sources/gameOptions/gameSettings/gameSettingsContext.cpp
 	sources/gameOptions/joystick/joystickOptions.cpp
 	sources/gameOptions/mainMenu/optionsMainMenuGraphisms.cpp
 	sources/gameOptions/keyboard/keyboardOptions.cpp

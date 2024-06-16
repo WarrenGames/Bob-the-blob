@@ -13,7 +13,9 @@ namespace options{
 	
 	void closeWindowAsked(Essentials& essentials, bool& quitMenu);
 	
-	void goToKeyboardPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms);
+	void goToInputsPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms);
+	
+	void goToSettingsPanel(Essentials& essentials, const options::MainMenuGraphisms& mainMenuGraphisms);
 }
 
 #endif //BOB_THE_BLOB_GAME_OPTIONS_MENU_CONTEXT_H

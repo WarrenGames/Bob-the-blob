@@ -6,6 +6,7 @@ set( HEADERS
 	sources/levelInfos/getGridSize.h
 	sources/exceptions/writeErrorExcept.h
 	sources/exceptions/readErrorExcept.h
+	sources/fileDataFetch/fileDataFetch.h
 	sources/pathsFunctions/pathsFunctions.h
 	sources/pathsFunctions/getLanguageFromFile.h
 	sources/inputsConfig/keyboardInputsConfig.h
@@ -29,6 +30,7 @@ set( SOURCES
 	sources/levelInfos/getGridSize.cpp
 	sources/exceptions/readErrorExcept.cpp
 	sources/exceptions/writeErrorExcept.cpp
+	sources/fileDataFetch/fileDataFetch.cpp
 	sources/pathsFunctions/pathsFunctions.cpp
 	sources/pathsFunctions/getLanguageFromFile.cpp
 	sources/inputsConfig/keyboardInputsConfig.cpp
