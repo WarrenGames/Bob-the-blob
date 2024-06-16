@@ -37,6 +37,7 @@ void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::ActionData), std::to_string(demos::DefaultReservedDataForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::SoundsPlaying), std::to_string(demos::DefaultSmallDataReservedForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::GameEvents), std::to_string(demos::DefaultSmallDataReservedForRecording) );
+		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::DemosDirectoryDisplaying), "1");
 	}
 	else{
 		logs.error << "Error: couldn't create directories in '" << prefPath.getFsPath().string() << "' pref path.\n";

@@ -77,10 +77,10 @@ void demosRecording::runDemoRecording(Essentials& essentials, const demosRecordi
 				switch( level.levelType )
 				{
 					case LevelBlueBrick:
-						demosRecording::prepareStandardLevelData(essentials, level.levelName, menu.skillLevelCursor.getSkillLevel() );
+						demosRecording::prepareStandardLevelData(essentials, level.levelName.string(), menu.skillLevelCursor.getSkillLevel() );
 						break;
 					case LevelMexican:
-						demosRecording::prepareMexicanLevelData(essentials, level.levelName, menu.skillLevelCursor.getSkillLevel() );
+						demosRecording::prepareMexicanLevelData(essentials, level.levelName.string(), menu.skillLevelCursor.getSkillLevel() );
 						break;
 				}
 			}

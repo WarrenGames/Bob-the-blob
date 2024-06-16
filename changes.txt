@@ -1,3 +1,6 @@
+version 0.1.8
+	- Bug fix: the demo couldn't be played in the demo playing menu.
+
 version 0.1.7
 	- The list of demo files doesn't display their full paths, only the file name.
 	
@@ -24,7 +27,7 @@ version 0.1.2
 	- Several demos features related bug fixes.
 
 version 0.1.1
-	- Added a enemy respawn feature.
+	- Added an enemy respawn feature.
 
 version 0.1.0
 	- New beta version of bob the blob.

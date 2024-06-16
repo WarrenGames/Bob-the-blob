@@ -19,6 +19,9 @@ struct DemoChoiceMenu
 	TextButton quitButton;
 	TextureCombo demosAbsenceInfos;
 	TextureCombo menuTitle;
+	unsigned demosDirectoryDisplayStatus;
+	TextureCombo demosDirectoryText;
+	TextureCombo demoDirDisplaying;
 	
 	explicit DemoChoiceMenu(Essentials& essentials);
 	~DemoChoiceMenu() = default;
@@ -34,6 +37,9 @@ struct DemoChoiceMenu
 	void updateListPageButtons(Essentials& essentials);
 	void updatePageButtons(Essentials& essentials);
 	void drawDemosAbsenceInfo(Essentials& essentials) const;
+	
+	void readDemosDirectoryDisplayStatus(Essentials& essentials);
+	void displayDemosDirectoryInfo(Essentials& essentials) const;
 };
 
 }
