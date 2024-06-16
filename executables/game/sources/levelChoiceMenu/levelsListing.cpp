@@ -11,18 +11,9 @@
 #include <fstream>
 #include <cassert>
 
-LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const std::string& levelName_, const TexturePosition& position, unsigned levelType_
+LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string buttonText, const fs::path& levelName_, const TexturePosition& position, unsigned levelType_
 						, const SDL_Color& buttonOffColor):
 	textButton{ essentials.logs, essentials.rndWnd, font, buttonText, levelChoice::SelectedButtonColor, buttonOffColor, position },
-	levelName{ levelName_ },
-	levelType{ levelType_ }
-{
-	
-}
-
-LevelChunk::LevelChunk(Essentials& essentials, const sdl2::Font& font, const std::string& levelName_, const TexturePosition& position, unsigned levelType_
-						, const SDL_Color& buttonOffColor):
-	textButton{ essentials.logs, essentials.rndWnd, font, levelName_, levelChoice::SelectedButtonColor, buttonOffColor, position },
 	levelName{ levelName_ },
 	levelType{ levelType_ }
 {
@@ -158,7 +149,7 @@ void LevelsListing::readDirectoryFiles(Essentials& essentials, const sdl2::Font&
 			{
 				levelsList.emplace_back( std::vector< LevelChunk >() );
 			}
-			levelsList.back().emplace_back( LevelChunk{ essentials, listFont, dir_entry.path().filename().string(), 
+			levelsList.back().emplace_back( LevelChunk{ essentials, listFont, dir_entry.path().filename().string(), dir_entry.path(), 
 								TexturePosition{GameScreenWidth / 2, (levelsNumber % levelChoice::LevelsPerPage) * SQR_SIZE + SQR_SIZE * 2, true, true}, 0, buttonOffColor } );
 			levelsNumber++;
 		}

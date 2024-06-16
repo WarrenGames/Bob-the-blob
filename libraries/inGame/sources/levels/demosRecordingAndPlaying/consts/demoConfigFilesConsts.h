@@ -11,6 +11,8 @@ namespace cfgFiles{
 	constexpr char SoundsPlaying[] = "demoConfigSoundsPlaying.txt";
 	
 	constexpr char GameEvents[] = "demoConfigGameEvents.txt";
+	
+	constexpr char DemosDirectoryDisplaying[] = "demosDirectoryDisplaying.txt";
 }
 	
 }
