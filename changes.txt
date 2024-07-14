@@ -1,3 +1,6 @@
+version 0.1.10
+	- The remaining cacti in a given mexican zone is now display on the bottom screen roster.
+
 version 0.1.9
 	- Added a settings menu in options where you can change green orbs 'creation' delay, green orbs 'duration' delay and
 		the duration for the player during which he/she can eat the cacti.

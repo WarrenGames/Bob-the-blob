@@ -27,6 +27,8 @@ public:
 	std::vector< CactusObstacle >::const_iterator begin() const;
 	std::vector< CactusObstacle >::const_iterator end() const;
 	
+	unsigned getEffectiveCactiNumber() const;
+	
 	void addCactus(const Coord2D& coordinates, std::size_t textureIndex, unsigned itemId);
 	void detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttributes& playerAttributes, BobsPackage& bobsPackage);
 };
