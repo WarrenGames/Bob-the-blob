@@ -4,6 +4,7 @@
 #include "levels/gameActors/bobThings/bobsPackage.h"
 #include "levels/maps/mapsConsts.h"
 #include "levels/gameActors/playerActorsConsts.h"
+#include <algorithm>
 
 void CactiPackage::addCactus(const Coord2D& coordinates, std::size_t textureIndex, unsigned itemId)
 {
@@ -33,6 +34,11 @@ void CactiPackage::detectCollisionWithPlayer(SinglePlayerData& player, PlayerAtt
 			}
 		}
 	}
+}
+
+unsigned CactiPackage::getEffectiveCactiNumber() const
+{
+	return static_cast<unsigned>( std::count_if( std::cbegin( cacti ), std::cend( cacti ), [](auto const& cactus){ return cactus.isEffective; } ) );
 }
 
 std::vector< CactusObstacle >::iterator CactiPackage::begin()

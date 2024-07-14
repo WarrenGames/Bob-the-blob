@@ -6,7 +6,7 @@ compiler that provide the 2017 C++ standard functionalities (like fileSystem hea
 
 Note: that branch don't need my external WarrenCustomLibs repository to compile, because that branch already includes 
 the necessary libraries that are inside WarrenGamesCustomLibs
-The Bob the blob project has three dependencies:
+The Bob the blob project has two dependencies:
 - The SimpleDirectMediaLayer v2.x library (also called 'SDL2')
 - The CMake build tool.
 

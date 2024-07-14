@@ -36,7 +36,7 @@ MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& p
 	mexicanTextures{ essentials.logs, essentials.rndWnd },
 	mexicanSprites{ mexicanTextures },
 	balloonsPack{ essentials.logs, essentials.rndWnd },
-	mexicanInfosPanel{essentials, playerAttributes, levelData.bonusesMap, gameConfigData}
+	mexicanInfosPanel{essentials, playerAttributes, levelData.bonusesMap, cactiPackage, gameConfigData}
 {
 	createBonusesAnimationData(levelData.bonusesMap, mexicanSprites.commonSprites);
 	loadCactiPositions(demoDataPackage);
@@ -78,6 +78,7 @@ void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& pla
 	updateInfoGradient(mexicanInfosPanel.canBeEatenCactiGradient, levelData.playerData.abilities[abilities::CanEatCacti] );
 	levelData.bonusesMap.incrementBonusesAnimIndex();
 	mexicanInfosPanel.goldIngotsCountDisplay.updateText(essentials, levelData.bonusesMap.getElementNumber(bonuses::BonusGoldIngot) );
+	mexicanInfosPanel.cactiCountDisplay.updateText(essentials, cactiPackage.getEffectiveCactiNumber() );
 	updateBobbysExplosionsIfAny(levelData.bobsPackage, mexicanSprites.commonSprites.blueSmokeSprites.size() );
 }
 
