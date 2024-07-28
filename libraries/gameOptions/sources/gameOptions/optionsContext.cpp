@@ -1,6 +1,6 @@
 #include "gameOptions/optionsContext.h"
 #include "gameOptions/mainMenu/optionsMainMenuGraphisms.h"
-#include "gameOptions/keyboard/keyboardContext.h"
+#include "gameOptions/inputs/inputsInterface/inputsContext.h"
 #include "gameOptions/gameSettings/gameSettingsContext.h"
 #include "package/essentials.h"
 #include "consts/colors.h"
@@ -56,7 +56,7 @@ void options::goToInputsPanel(Essentials& essentials, const options::MainMenuGra
 	if( mainMenuGraphisms.inputsButton.buttonClicked() )
 	{
 		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
-		options::keyboardMainContext(essentials);
+		options::inputsMainContext(essentials);
 		essentials.inputs.setMouseButtonFalse(SDL_BUTTON_LEFT);
 	}
 }

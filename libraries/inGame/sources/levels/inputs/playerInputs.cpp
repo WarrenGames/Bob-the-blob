@@ -9,10 +9,17 @@
 
 PlayerInputs::PlayerInputs(AppLogFiles& logs, const PrefPathFinder& prefPath, unsigned demoType_):
 	keyboardInputsConfig{ logs, path::getInputsFilePath(prefPath, files::KeyboardInputsFile) },
+	joystickInputsConfig{ logs, prefPath },
 	recordedEvents{ logs, demoType_ },
+	joystickEntity{ 0 },
 	demoType{ demoType_ }
 {
 	
+}
+
+bool PlayerInputs::wasLoadingPerfect() const
+{
+	return keyboardInputsConfig.wasLoadingPerfect() && joystickInputsConfig.wasLoadingPerfect();
 }
 
 void PlayerInputs::actAccordingToDemoStatus()
@@ -62,6 +69,19 @@ void PlayerInputs::updateEvents()
 				setEscapeState(event.key.keysym.sym, false);
 				recordEscapeCommandIfAny(event.key.keysym.sym, false);
 				break;
+			case SDL_JOYBUTTONDOWN:
+				updateWithJoystickButtonState(static_cast<SDL_JoystickID>(event.jbutton.which), static_cast<unsigned>(event.jbutton.button), true);
+				break;
+			case SDL_JOYBUTTONUP:
+				updateWithJoystickButtonState(static_cast<SDL_JoystickID>(event.jbutton.which), static_cast<unsigned>(event.jbutton.button), false);
+				break;
+			case SDL_JOYHATMOTION:
+				updateWithJoystickHat(static_cast<SDL_JoystickID>(event.jhat.which), static_cast<unsigned>(event.jhat.hat), static_cast<unsigned>(event.jhat.value) );
+				break;
+			case SDL_JOYAXISMOTION:
+				updateWithJoystickAxis(static_cast<SDL_JoystickID>(event.jaxis.which), static_cast<unsigned>(event.jaxis.axis), static_cast<int>(event.jaxis.value) );
+				break;
+			
 		}
 	}
 }
@@ -72,8 +92,104 @@ void PlayerInputs::updateKeysStates(SDL_Keycode keycode, bool valueToSet)
 	{
 		if( keyboardInputsConfig.getKeycode(i) == keycode )
 		{
-			recordAndEvent(i, valueToSet);
+			recordAnEvent(i, valueToSet);
 			inputsStates.setState(i, valueToSet);
+		}
+	}
+}
+
+void PlayerInputs::updateWithJoystickButtonState(SDL_JoystickID joystickNumber, unsigned buttonNumber, bool valueToSet)
+{
+	if( joystickEntity && joystickNumber == joystickEntity.getJoystickNumber() )
+	{
+		for( std::size_t i{0} ; i < joystickInputsConfig.size() && i < inputsStates.size() ; ++i )
+		{
+			if( joystickInputsConfig.getJoyElement(i) == JoyButtons && joystickInputsConfig.getElementNumber(i) == buttonNumber )
+			{
+				recordAnEvent(i, valueToSet);
+				setNewDirectionAndAbortOthers(i);
+			}
+		}
+	}
+}
+
+void PlayerInputs::updateWithJoystickHat(SDL_JoystickID joystickNumber, unsigned hatNumber, unsigned hatState)
+{
+	if( joystickEntity && joystickNumber == joystickEntity.getJoystickNumber() )
+	{
+		for( std::size_t i{0} ; i < joystickInputsConfig.size() && i < inputsStates.size() ; ++i )
+		{
+			if( joystickInputsConfig.getJoyElement(i) == JoyHats && joystickInputsConfig.getElementNumber(i) == hatNumber )
+			{
+				if( hatState == joystickInputsConfig.getElementValue(i) )
+				{
+					setNewDirectionAndAbortOthers(i);
+				}
+			}
+		}
+	}
+}
+
+void PlayerInputs::updateWithJoystickAxis(SDL_JoystickID joystickNumber, unsigned axisNumber, int axisValue)
+{
+	if( joystickEntity && joystickNumber == joystickEntity.getJoystickNumber() )
+	{
+		if( ! ( axisValue < joystickInputsConfig.getAxesTheshold() && axisValue >= -joystickInputsConfig.getAxesTheshold() ) )
+		{
+			for( std::size_t i{0} ; i < joystickInputsConfig.size() && i < inputsStates.size() ; ++i )
+			{
+				if( joystickInputsConfig.getJoyElement(i) == JoyAxes && joystickInputsConfig.getElementNumber(i) == axisNumber )
+				{
+					actWithAxisValue(static_cast<unsigned>(i), axisValue);
+				}
+			}
+		}
+	}
+}
+
+void PlayerInputs::actWithAxisValue(unsigned moveEnum, int axisValue)
+{
+	switch( moveEnum )
+	{
+		case MoveEast:
+			if( axisValue >= joystickInputsConfig.getAxesTheshold() )
+			{
+				setNewDirectionAndAbortOthers(MoveEast);
+			}
+			break;
+		case MoveUp:
+			if( axisValue <= -joystickInputsConfig.getAxesTheshold() )
+			{
+				setNewDirectionAndAbortOthers(MoveUp);
+			}
+			break;
+		case MoveWest:
+			if( axisValue <= -joystickInputsConfig.getAxesTheshold() )
+			{
+				setNewDirectionAndAbortOthers(MoveWest);
+			}
+			break;
+		case MoveDown:
+			if( axisValue >= joystickInputsConfig.getAxesTheshold() )
+			{
+				setNewDirectionAndAbortOthers(MoveDown);
+			}
+			break;
+	}
+}
+
+void PlayerInputs::setNewDirectionAndAbortOthers(std::size_t newState)
+{
+	for( std::size_t i{0} ; i < inputsStates.size() ; ++i )
+	{
+		if( i == newState )
+		{
+			recordAnEvent(i, true);
+			inputsStates.setState(i, true);
+		}
+		else{
+			recordAnEvent(i, false);
+			inputsStates.setState(i, false);
 		}
 	}
 }
@@ -91,7 +207,7 @@ void PlayerInputs::setEscapeState(SDL_Keycode keycode, bool valueToSet)
 	}
 }
 
-void PlayerInputs::recordAndEvent(std::size_t funcEnum, bool keyState)
+void PlayerInputs::recordAnEvent(std::size_t funcEnum, bool keyState)
 {
 	if( demoType == demos::GameIsRecording )
 	{
@@ -155,3 +271,4 @@ void PlayerInputs::recordEscapeCommandIfAny(SDL_Keycode lastKeycode, bool isKeyc
 		}
 	}
 }
+

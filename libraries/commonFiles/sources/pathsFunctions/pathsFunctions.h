@@ -19,6 +19,8 @@ fs::path getGameConfigFilePath(const fs::path& levelNamePrefix, const fs::path& 
 
 fs::path getDemoConfigRelatedFile(const PrefPathFinder& prefPath, const fs::path& fileName);
 
+fs::path getBenchmarksFilePath(const PrefPathFinder& prefPath, const fs::path& fileName);
+
 }
 
 #endif //PACMAN_COMMON_FILES_PATHS_FUNCTIONS_H

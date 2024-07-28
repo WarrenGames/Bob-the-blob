@@ -32,6 +32,7 @@ add_subdirectory(libraries/inGame)
 add_subdirectory(libraries/genericLib)
 add_subdirectory(libraries/sdl2_wrapper)
 add_subdirectory(libraries/sdlLogoDisplay)
+add_subdirectory(libraries/joystickTests)
 add_subdirectory(libraries/soundSystem)
 
 if(UNIX)

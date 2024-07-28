@@ -18,6 +18,10 @@ void writeInOptionFile(AppLogFiles& logs, const fs::path& filePath, std::ofstrea
 
 std::string getDefaultKeybInpFileStr();
 
+void createJoystickConfigFileIfMissing(const PrefPathFinder& prefPath, AppLogFiles& logs);
+
+void createJoystickAxesThresholdConfigFileIfMissings(const PrefPathFinder& prefPath, AppLogFiles& logs);
+
 }
 
 #endif // BOB_THE_BLOB_GAME_CREATE_FOLDERS_IN_PREF_PATH_H

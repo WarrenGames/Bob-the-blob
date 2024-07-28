@@ -1,5 +1,5 @@
-#ifndef BOB_THE_BLOB_IN_GAME_INPUTS_CONFIG_H
-#define BOB_THE_BLOB_IN_GAME_INPUTS_CONFIG_H
+#ifndef BOB_THE_BLOB_COMMON_FILES_KEYBOARD_INPUTS_CONFIG_H
+#define BOB_THE_BLOB_COMMON_FILES_KEYBOARD_INPUTS_CONFIG_H
 
 #include "fileSystem/fileSystem.h"
 #include "SDL_keycode.h"
@@ -31,4 +31,4 @@ public:
 	bool wasLoadingPerfect() const;
 };
 
-#endif //BOB_THE_BLOB_IN_GAME_INPUTS_CONFIG_H
+#endif //BOB_THE_BLOB_COMMON_FILES_KEYBOARD_INPUTS_CONFIG_H

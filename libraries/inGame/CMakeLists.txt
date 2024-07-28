@@ -116,6 +116,9 @@ set( HEADERS
 	sources/levels/gameActors/magicOrbs/orbsAndDemos.h
 	sources/levels/gameActors/magicOrbs/singleOrb.h
 	sources/levels/gameActors/magicOrbs/orbsPlayerPower.h
+	sources/levels/benchmarks/benchTypes.h
+	sources/levels/benchmarks/benchmarkObject.h
+	sources/levels/benchmarks/outputBenchmarkData.h
 	sources/levels/balloons/balloonInfo.h
 	sources/levels/balloons/updateBalloons.h
 	sources/levels/balloons/balloonsPositionsData.h
@@ -224,6 +227,9 @@ set( SOURCES
 	sources/levels/gameActors/magicOrbs/singleOrb.cpp
 	sources/levels/gameActors/magicOrbs/orbsPackage.cpp
 	sources/levels/gameActors/magicOrbs/orbsAndDemos.cpp
+	sources/levels/benchmarks/benchmarkObject.cpp
+	sources/levels/benchmarks/outputBenchmarkData.cpp
+	sources/levels/benchmarks/benchTypes.cpp
 	sources/levels/balloons/balloonInfo.cpp
 	sources/levels/balloons/balloonsPositionsData.cpp
 	sources/levels/balloons/updateBalloons.cpp

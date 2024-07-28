@@ -17,6 +17,9 @@ namespace files{
 	constexpr char DemosDir[] = "demos";
 	constexpr char DemosConfigDir[] = "demosConfig";
 	
+	constexpr char BenchmarksConfigDir[] = "benchmarks";
+	constexpr char BenchmarksStatusFile[] = "benchmarks.ini";
+	
 	constexpr char OptionsDir[] = "options";
 	constexpr char PlayerMoveDelayFile[] = "playerMoveDelay.txt";
 	constexpr char BobsMoveDelayFile[] = "bobsMoveDelay.txt";
@@ -28,6 +31,8 @@ namespace files{
 	
 	constexpr char InputsDir[] = "inputs";
 	constexpr char KeyboardInputsFile[] = "keyboardInputs.txt";
+	constexpr char JoystickInputsFile[] = "joystickInputs.txt";
+	constexpr char JoystickAxesThresholdFile[] = "joystickAxesThreshold.txt";
 	
 	constexpr char PlayerCanEatCacti[] = "playerCanEatCactiDelay.txt";
 	
