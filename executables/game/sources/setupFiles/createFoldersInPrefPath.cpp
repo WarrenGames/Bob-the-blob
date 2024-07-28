@@ -1,6 +1,7 @@
 #include "setupFiles/createFoldersInPrefPath.h"
 #include "fileSystem/createNewElementFs.h"
 #include "pathsFunctions/pathsFunctions.h"
+#include "inputsConfig/createJoystickFile.h"
 #include "prefPath/prefPathFinder.h"
 #include "logging/logsStruct.h"
 #include "levels/gameActors/playerActorsConsts.h"
@@ -12,6 +13,7 @@
 #include "SDL_mixer.h"
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 {
@@ -19,6 +21,7 @@ void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 		&& createFs::FsNewError != createFs::mkDirectoryIfMissing(prefPath.getFsPath(), files::InputsDir ) 
 		&& createFs::FsNewError != createFs::mkDirectoryIfMissing(prefPath.getFsPath(), files::DemosDir )
 		&& createFs::FsNewError != createFs::mkDirectoryIfMissing(prefPath.getFsPath(), files::DemosConfigDir )
+		&& createFs::FsNewError != createFs::mkDirectoryIfMissing(prefPath.getFsPath(), files::BenchmarksConfigDir )
 		)
 	{
 		filesSetup::createFileInPath(logs, path::getOptionFilePath(prefPath, files::BobsMoveDelayFile), std::to_string( actors::DefaultMoveMicroSecDelay ) );
@@ -33,11 +36,14 @@ void filesSetup::setupFiles(const PrefPathFinder& prefPath, AppLogFiles& logs)
 		filesSetup::createFileInPath(logs, path::getPrefPathFilePath(prefPath, files::ChosenLanguageFile), files::DefaultLanguage );
 		filesSetup::createFileInPath(logs, path::getPrefPathFilePath(prefPath, files::SdlLogoDisplayStatusFile), "1" );
 		filesSetup::createFileInPath(logs, path::getInputsFilePath(prefPath, files::KeyboardInputsFile), filesSetup::getDefaultKeybInpFileStr() );
+		filesSetup::createJoystickConfigFileIfMissing(prefPath, logs);
+		filesSetup::createJoystickAxesThresholdConfigFileIfMissings(prefPath, logs);
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::NextPositionAndAction), std::to_string(demos::DefaultReservedDataForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::ActionData), std::to_string(demos::DefaultReservedDataForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::SoundsPlaying), std::to_string(demos::DefaultSmallDataReservedForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::GameEvents), std::to_string(demos::DefaultSmallDataReservedForRecording) );
 		filesSetup::createFileInPath(logs, path::getDemoConfigRelatedFile(prefPath, demos::cfgFiles::DemosDirectoryDisplaying), "1");
+		filesSetup::createFileInPath(logs, path::getBenchmarksFilePath(prefPath, files::BenchmarksStatusFile), "0");
 	}
 	else{
 		logs.error << "Error: couldn't create directories in '" << prefPath.getFsPath().string() << "' pref path.\n";
@@ -74,4 +80,26 @@ std::string filesSetup::getDefaultKeybInpFileStr()
 	std::ostringstream keybStream;
 	keybStream << SDLK_RIGHT << " " << SDLK_UP << " " << SDLK_LEFT << " " << SDLK_DOWN << " " << SDLK_SPACE;
 	return keybStream.str();
+}
+
+void filesSetup::createJoystickConfigFileIfMissing(const PrefPathFinder& prefPath, AppLogFiles& logs)
+{
+	if( false == fs::exists( path::getInputsFilePath(prefPath, files::JoystickInputsFile) ) )
+	{
+		if( std::ofstream joystickFile{ path::getInputsFilePath(prefPath, files::JoystickInputsFile) } )
+		{
+			writeJoystickConfigFileDefault(logs, joystickFile);
+		}
+	}
+}
+
+void filesSetup::createJoystickAxesThresholdConfigFileIfMissings(const PrefPathFinder& prefPath, AppLogFiles& logs)
+{
+	if( false == fs::exists( path::getInputsFilePath(prefPath, files::JoystickAxesThresholdFile) ) )
+	{
+		if( std::ofstream joyThresholdFile{ path::getInputsFilePath(prefPath, files::JoystickAxesThresholdFile) } )
+		{
+			writeAxesThreshold(logs, joyThresholdFile, std::numeric_limits<Sint16>::max() / 2 );
+		}
+	}
 }

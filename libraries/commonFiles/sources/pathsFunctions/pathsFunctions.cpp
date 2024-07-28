@@ -33,3 +33,8 @@ fs::path path::getDemoConfigRelatedFile(const PrefPathFinder& prefPath, const fs
 {
 	return fs::path{ prefPath.getFsPath() / files::DemosConfigDir / fileName };
 }
+
+fs::path path::getBenchmarksFilePath(const PrefPathFinder& prefPath, const fs::path& fileName)
+{
+	return fs::path{ prefPath.getFsPath() / files::BenchmarksConfigDir / fileName };
+}

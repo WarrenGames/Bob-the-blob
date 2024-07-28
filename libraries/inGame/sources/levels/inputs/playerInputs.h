@@ -2,8 +2,10 @@
 #define BOB_THE_BLOB_IN_GAME_PLAYER_INPUTS_H
 
 #include "inputsConfig/keyboardInputsConfig.h"
+#include "inputsConfig/joystickInputsConfigData.h"
 #include "levels/inputs/inputsStates.h"
 #include "levels/inputs/eventsRecording.h"
+#include "joystick/joystickEntity.h"
 #include "SDL_events.h"
 
 struct AppLogFiles;
@@ -13,10 +15,12 @@ class PlayerInputs
 {
 private:
 	KeyboardInputsConfig keyboardInputsConfig;
+	JoystickInputsConfig joystickInputsConfig;
 
 public:
 	InputsStates inputsStates;
 	RecordedEvents recordedEvents;
+	sdl2::JoystickEntity joystickEntity;
 
 private:
 	SDL_Event event;
@@ -30,15 +34,22 @@ public:
 	PlayerInputs( PlayerInputs&& ) = default;
 	PlayerInputs& operator= ( PlayerInputs&& ) = default;
 	
+	bool wasLoadingPerfect() const;
 	void actAccordingToDemoStatus();
 	void joinTimePointsForRecording(const AccurateTimeDelay& newDelay);
 
 private:
 	void updateEvents();
 	void updateKeysStates(SDL_Keycode keycode, bool valueToSet);
+	void updateWithJoystickButtonState(SDL_JoystickID joystickNumber, unsigned buttonNumber, bool valueToSet);
+	void updateWithJoystickHat(SDL_JoystickID joystickNumber, unsigned hatNumber, unsigned hatState);
+	void updateWithJoystickAxis(SDL_JoystickID joystickNumber, unsigned axisNumber, int axisValue);
+	void actWithAxisValue(unsigned moveEnum, int axisValue);
+	void setNewDirectionAndAbortOthers(std::size_t newState);
+	
 	void setSdlQuit();
 	void setEscapeState(SDL_Keycode keycode, bool valueToSet);
-	void recordAndEvent(std::size_t funcEnum, bool keyState);
+	void recordAnEvent(std::size_t funcEnum, bool keyState);
 	
 	void setInputsStatesWithRecordedEvents();
 	void actWithRecordedDemoActionData(const demos::ActionData& actionData);

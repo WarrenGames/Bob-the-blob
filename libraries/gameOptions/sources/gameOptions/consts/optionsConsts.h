@@ -9,11 +9,21 @@ namespace options{
 	constexpr SDL_Color BtnsTxtCol = WhiteCol;
 	constexpr SDL_Color BtnsHighLightCol = GreenCol;
 	
-	constexpr int ButtonsWidth = SQR_SIZE * 4;
+	constexpr int ButtonsWidth = SQR_SIZE * 3;
 	constexpr int ButtonsHeight = SQR_SIZE;
 	
-	constexpr char KeyboardFuncLanguageTexts[] = "optionsMenu/keyboardInfos.txt";
+	constexpr int BoxesXCoords = SQR_SIZE * 13;
+	constexpr int EditBoxesWidth = SQR_SIZE;
+	constexpr int EditBoxesHeight = SQR_SIZE / 2;
+	
+	constexpr char KeyboardFuncLanguageTexts[] = "optionsMenu/playerFunctions.txt";
 	constexpr char KeyboardMenuLanguageTexts[] = "optionsMenu/keyboardMenu.txt";
+	
+	constexpr char JoystickElementsTextsPath[] = "optionsMenu/joystickElementsEnum.txt";
+	constexpr char JoystickColumnsTextsPath[] = "optionsMenu/joystickColumns.txt";
+	constexpr char JoystickHatValues[] = "optionsMenu/joystickHatValues.txt";
+	constexpr char InputsInterfaceTexts[] = "optionsMenu/inputsInterfaceTexts.txt";
+	constexpr char JoyCalibrationTextsPath[] = "optionsMenu/joyCalibration.txt";
 	
 	constexpr char BackgroundTexturePath[] = "textures/wallpapers/optionsScreen.png";
 	
@@ -28,6 +38,29 @@ namespace options{
 		KeybKeycodesColumnTxt,
 		KeybChooseNewKey,
 		KeybColumnTxtMax
+	};
+	
+	enum : unsigned{
+		JoystickElementsTxt,
+		JoystickElementNumberTxt,
+		JoystickElementNumberValueTxt,
+		JoystickElementMaxTxt,
+	};
+	
+	enum : unsigned{
+		JoystickHatRight,
+		JoystickHatUp,
+		JoystickHatLeft,
+		JoystickHatDown,
+		JoystickHatMax,
+	};
+	
+	enum : unsigned{
+		InputsMenuTitle,
+		InputsMenuJoyInfos,
+		InputsMenuCalibrateJoy,
+		InputsMenuAxesThreshold,
+		InputsMenuMax
 	};
 }
 

@@ -9,6 +9,8 @@ set( HEADERS
 	sources/fileDataFetch/fileDataFetch.h
 	sources/pathsFunctions/pathsFunctions.h
 	sources/pathsFunctions/getLanguageFromFile.h
+	sources/inputsConfig/joystickInputsConfigData.h
+	sources/inputsConfig/createJoystickFile.h
 	sources/inputsConfig/keyboardInputsConfig.h
 	sources/consts/playerInputsConsts.h
 	sources/consts/levelsTypesConsts.h
@@ -33,6 +35,8 @@ set( SOURCES
 	sources/fileDataFetch/fileDataFetch.cpp
 	sources/pathsFunctions/pathsFunctions.cpp
 	sources/pathsFunctions/getLanguageFromFile.cpp
+	sources/inputsConfig/joystickInputsConfigData.cpp
+	sources/inputsConfig/createJoystickFile.cpp
 	sources/inputsConfig/keyboardInputsConfig.cpp
 	sources/sounds/gameSoundSystem.cpp
 	sources/sounds/soundConfigFilesPaths.cpp

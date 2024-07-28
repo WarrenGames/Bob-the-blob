@@ -5,22 +5,25 @@ project( gameOptions LANGUAGES CXX )
 set( HEADERS
 	sources/gameOptions/gameSettings/gameSettingsContext.h
 	sources/gameOptions/gameSettings/gameSettingsInterface.h
-	sources/gameOptions/joystick/joystickOptions.h
 	sources/gameOptions/mainMenu/optionsMainMenuGraphisms.h
 	sources/gameOptions/optionsContext.h
-	sources/gameOptions/keyboard/keyboardContext.h
-	sources/gameOptions/keyboard/keyboardOptions.h
 	sources/gameOptions/consts/optionsConsts.h
+	sources/gameOptions/inputs/inputsInterface/globalInterface.h
+	sources/gameOptions/inputs/inputsInterface/inputsContext.h
+	sources/gameOptions/inputs/joystick/joystickOptions.h
+	sources/gameOptions/inputs/keyboard/keyboardOptions.h
 )
 
 set( SOURCES
 	sources/gameOptions/optionsContext.cpp
 	sources/gameOptions/gameSettings/gameSettingsInterface.cpp
 	sources/gameOptions/gameSettings/gameSettingsContext.cpp
-	sources/gameOptions/joystick/joystickOptions.cpp
 	sources/gameOptions/mainMenu/optionsMainMenuGraphisms.cpp
-	sources/gameOptions/keyboard/keyboardOptions.cpp
-	sources/gameOptions/keyboard/keyboardContext.cpp
+	sources/gameOptions/inputs/inputsInterface/globalInterface.cpp
+	sources/gameOptions/inputs/inputsInterface/inputsContext.cpp
+	sources/gameOptions/inputs/joystick/joystickOptions.cpp
+	sources/gameOptions/inputs/keyboard/keyboardOptions.cpp
+
 )
 
 add_library(	
@@ -40,6 +43,7 @@ target_include_directories(
 	PRIVATE sources
 	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/genericLib
 	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdl2_wrapper
+	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/joystickTests
 	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/soundSystem
 	PRIVATE ../commonFiles/sources
 )
@@ -48,6 +52,7 @@ target_link_libraries(
 	${PROJECT_NAME} 
 	PRIVATE genericLib
 	PRIVATE sdl2_wrapper
+	PRIVATE joystickTests
 	PRIVATE commonFiles
 )
 

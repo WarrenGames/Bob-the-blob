@@ -4,6 +4,8 @@
 #include "exceptions/readErrorExcept.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "levels/loadings/gameConfigurationData.h"
+#include "levels/benchmarks/benchmarkObject.h"
+#include "levels/benchmarks/outputBenchmarkData.h"
 #include "levels/demos/transferDemoStacks.h"
 #include "levels/demos/initializeDemoStacks.h"
 #include "levels/demos/joinTimePoints.h"
@@ -17,6 +19,7 @@ void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttri
 {
 	bool quitLevel{false};
 	try{
+		Benchs benchs{essentials.logs, essentials.prefPath, levelPrefix};
 		GameConfigData gameConfigData{ essentials, demoPackage };
 		MexicanGameObject mexicanGameObject{essentials, playerAttributes, levelPrefix, demoPackage, gameConfigData};
 		demos::initializeStacksNumber(essentials, demoPackage, mexicanGameObject.levelData);
@@ -25,12 +28,17 @@ void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttri
 		
 		while( false == quitLevel && false == mexicanGameObject.levelData.canQuitLevel() )
 		{
+			benchs.cpuBench.setStartingPoint();
 			mexicanGameObject.updateGame(essentials, playerAttributes, demoPackage);
 			mexican::quitContext(mexicanGameObject, quitLevel);
+			benchs.cpuBench.setFinalPoint();
+			benchs.gpuBench.setStartingPoint();
 			mexican::drawEverything(essentials, mexicanGameObject);
+			benchs.gpuBench.setFinalPoint();
 		}
 		demos::transferEventsStackInCaseOfRecording(demoPackage, mexicanGameObject.levelData.playerInputs.recordedEvents);
 		gameConfigData.setDataToDemoPackage(demoPackage);
+		outputBenchmarkDataToFiles(essentials.logs, essentials.prefPath, benchs);
 	}
 	catch( const ReadError& readError )
 	{

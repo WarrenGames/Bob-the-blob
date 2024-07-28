@@ -84,6 +84,7 @@ target_link_libraries(
 	PRIVATE gameOptions
 	PRIVATE levelsHints
 	PRIVATE commonFiles
+	PRIVATE joystickTests
 	PRIVATE sdlLogoDisplay
 	PRIVATE soundSystem
 	PRIVATE sdl2_wrapper

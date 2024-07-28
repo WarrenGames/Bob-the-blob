@@ -1,5 +1,8 @@
+version 0.1.11
+	- A joystick support has been added (hats, axes and/or buttons). See the options menu in game.
+
 version 0.1.10
-	- The remaining cacti in a given mexican zone is now display on the bottom screen roster.
+	- The remaining cacti in a given mexican zone is now displayed on the bottom screen roster.
 
 version 0.1.9
 	- Added a settings menu in options where you can change green orbs 'creation' delay, green orbs 'duration' delay and
