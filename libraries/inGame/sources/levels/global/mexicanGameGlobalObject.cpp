@@ -29,7 +29,7 @@
 #include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include <algorithm>
 
-MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+MexicanGameObject::MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage,
 									const GameConfigData& gameConfigData):
 	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage, gameConfigData },
 	greenOrbs{ bonuses::OrbGreen, map::GreenOrbWorth, gameConfigData.greenOrbCreation, gameConfigData.greenOrbDuration },
@@ -68,7 +68,7 @@ void MexicanGameObject::drawLevel(sdl2::RendererWindow& rndWnd)
 	levelData.displayLevelEndMessage(rndWnd);
 }
 
-void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage)
+void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	update(essentials, playerAttributes, levelData, mexicanInfosPanel.scoreDisplay, demoDataPackage);
 	levelData.actWithLevelEnd(demoDataPackage, isLevelComplete() );
@@ -82,7 +82,7 @@ void MexicanGameObject::updateGame(Essentials& essentials, PlayerAttributes& pla
 	updateBobbysExplosionsIfAny(levelData.bobsPackage, mexicanSprites.commonSprites.blueSmokeSprites.size() );
 }
 
-void MexicanGameObject::updateGreenOrbs(PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage)
+void MexicanGameObject::updateGreenOrbs(PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -116,7 +116,7 @@ bool MexicanGameObject::hasPlayerRequestedToExit() const
 	return levelData.playerInputs.inputsStates.getEscapeState() || levelData.playerInputs.inputsStates.getSdlQuit();
 }
 
-void MexicanGameObject::loadCactiPositions(const demos::DataPackage* demoDataPackage)
+void MexicanGameObject::loadCactiPositions(const std::optional<demos::DataPackage>& demoDataPackage)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -132,7 +132,7 @@ void MexicanGameObject::loadCactiPositions(const demos::DataPackage* demoDataPac
 	}
 }
 
-void MexicanGameObject::recordCactiPositions(demos::DataPackage* demoDataPackage) const
+void MexicanGameObject::recordCactiPositions(std::optional<demos::DataPackage>& demoDataPackage) const
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{

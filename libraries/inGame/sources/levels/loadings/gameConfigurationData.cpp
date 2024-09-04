@@ -7,7 +7,7 @@
 #include "consts/filesAndPaths.h"
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
-GameConfigData::GameConfigData(Essentials& essentials, const demos::DataPackage* demoPackage):
+GameConfigData::GameConfigData(Essentials& essentials, const std::optional<demos::DataPackage>& demoPackage):
 	bobMoveDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsMoveDelayFile, "Bobs move delay" ) },
 	bobAnimDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsAnimDelayFile, "Bobs anim delay" ) },
 	bobSpawnDelay{ getUnsignedIntFromFile( essentials.prefPath.getFsPath() / files::OptionsDir / files::BobsSpawnDelay, "Bobs spawn delay" ) },
@@ -34,13 +34,13 @@ void GameConfigData::loadDataFromFile(Essentials& essentials)
 	playerCanEatCactiDelay = std::chrono::milliseconds{ getUnsignedIntFromFile( path::getOptionFilePath(essentials.prefPath, files::PlayerCanEatCacti), "player can eat cacti delay") };
 }
 
-void GameConfigData::loadDataFromDemoPackage(const demos::DataPackage* demoPackage)
+void GameConfigData::loadDataFromDemoPackage(const std::optional<demos::DataPackage>& demoPackage)
 {
 	playerCanEatCactiDelay = std::chrono::milliseconds{ demoPackage->greenOrbRelatedItemsData.greenOrbPowerDuration };
 	bobVulnerability = std::chrono::milliseconds{ demoPackage->enemyBobVulnerabilityDelay };
 }
 
-void GameConfigData::setDataToDemoPackage(demos::DataPackage* demoPackage)
+void GameConfigData::setDataToDemoPackage(std::optional<demos::DataPackage>& demoPackage)
 {
 	if( demos::getGameStatus(demoPackage) == demos::GameIsRecording )
 	{

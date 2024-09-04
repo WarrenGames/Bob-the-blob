@@ -139,7 +139,7 @@ void BobsPackage::changeDirectionIfAny(CrossRoadsRandoms& crossRoads, const Game
 	}
 }
 
-void BobsPackage::detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttributes& playerAttributes, const Ability& canEatBobs, demos::DataPackage *demoDataPackage)
+void BobsPackage::detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttributes& playerAttributes, const Ability& canEatBobs, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	for( std::size_t i{0} ; i < bobs.size() ; ++i )
 	{
@@ -167,7 +167,7 @@ void BobsPackage::detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttr
 	}
 }
 
-void BobsPackage::recordBobRelatedGameEvent(demos::DataPackage *demoDataPackage, unsigned eventCategory, unsigned eventSubType, std::size_t newId) const
+void BobsPackage::recordBobRelatedGameEvent(std::optional<demos::DataPackage>& demoDataPackage, unsigned eventCategory, unsigned eventSubType, std::size_t newId) const
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{
@@ -222,7 +222,7 @@ void BobsPackage::initFirstDirection(const CrossRoadsRandoms& crossRoads)
 	}
 }
 
-void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove, demos::DataPackage *demoDataPackage)
+void BobsPackage::spawnBobIfAny(const PlayerMoving& playerMove, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( getActiveBobsCount() < size() )
 	{
@@ -252,7 +252,7 @@ void BobsPackage::spawnSingleBob(GlobalBob& globalBob)
 	globalBob.blueSpawnExplosion.resetExplosionDisplay();
 }
 
-void BobsPackage::spawnBobWithDemoStack(demos::DataPackage *demoDataPackage)
+void BobsPackage::spawnBobWithDemoStack(std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

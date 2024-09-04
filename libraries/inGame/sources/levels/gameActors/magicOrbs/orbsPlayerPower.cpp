@@ -8,7 +8,7 @@
 #include "levels/maps/mapsConsts.h"
 #include <cassert>
 
-void greenOrb::checkForPowerEvent(SinglePlayerData& player, demos::DataPackage* demoDataPackage)
+void greenOrb::checkForPowerEvent(SinglePlayerData& player, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

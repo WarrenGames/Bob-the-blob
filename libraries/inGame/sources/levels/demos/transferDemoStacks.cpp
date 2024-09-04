@@ -4,7 +4,7 @@
 #include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
-void demos::transferEventsStackInCaseOfDemo(demos::DataPackage *demoDataPackage, RecordedEvents& recordedEvents)
+void demos::transferEventsStackInCaseOfDemo(std::optional<demos::DataPackage>& demoDataPackage, RecordedEvents& recordedEvents)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{
@@ -14,7 +14,7 @@ void demos::transferEventsStackInCaseOfDemo(demos::DataPackage *demoDataPackage,
 	}
 }
 
-void demos::transferEventsStackInCaseOfRecording(demos::DataPackage *demoDataPackage, RecordedEvents& recordedEvents)
+void demos::transferEventsStackInCaseOfRecording(std::optional<demos::DataPackage>& demoDataPackage, RecordedEvents& recordedEvents)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{

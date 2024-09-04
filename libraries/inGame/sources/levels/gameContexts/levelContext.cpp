@@ -14,7 +14,7 @@
 #include "levels/maps/bonusesConsts.h"
 #include "consts/colors.h"
 
-void standardLevel::levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage *demoPackage)
+void standardLevel::levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoPackage)
 {
 	bool quitLevel{false};
 	try{

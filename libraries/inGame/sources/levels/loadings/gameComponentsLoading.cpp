@@ -10,7 +10,7 @@
 #include "consts/filesAndPaths.h"
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
-void loadAndInitializeGameComponents(Essentials& essentials, LevelMandatoryData& levelData, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage)
+void loadAndInitializeGameComponents(Essentials& essentials, LevelMandatoryData& levelData, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	loadPlayerPosition(essentials.logs, levelData.playerData, path::getGameConfigFilePath(levelPrefix, files::DefaultPlayerStartingPositionSuffix), levelData.isLoadingPerfect, 
 						levelData.demoType);
@@ -19,7 +19,7 @@ void loadAndInitializeGameComponents(Essentials& essentials, LevelMandatoryData&
 	loadMapSubdivision(levelData, demoDataPackage);
 }
 
-void loadMapSubdivision(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage)
+void loadMapSubdivision(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{

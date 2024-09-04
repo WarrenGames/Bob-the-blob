@@ -66,7 +66,7 @@ void wrapPlayerThatHasLeftOnSouth(PlayerMoving& playerMoving, BobsPackage& bobsP
 	}
 }
 
-void updateBobbysDetectionWithSound(const SinglePlayerData& player, BobsPackage& bobsPackage, const GameMap& gameMap, const SoundPlayer& soundPlayer, demos::DataPackage *demoDataPackage)
+void updateBobbysDetectionWithSound(const SinglePlayerData& player, BobsPackage& bobsPackage, const GameMap& gameMap, const SoundPlayer& soundPlayer, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	for( auto &bob : bobsPackage )
 	{
@@ -84,7 +84,7 @@ void updateBobbysDetectionWithSound(const SinglePlayerData& player, BobsPackage&
 	}
 }
 
-void playUhOhSoundOnce(const SoundPlayer& soundPlayer, demos::DataPackage *demoDataPackage, bool canSeekPlayer, bool& hasPlayedUhOhSound)
+void playUhOhSoundOnce(const SoundPlayer& soundPlayer, std::optional<demos::DataPackage>& demoDataPackage, bool canSeekPlayer, bool& hasPlayedUhOhSound)
 {
 	if( canSeekPlayer && hasPlayedUhOhSound == false )
 	{

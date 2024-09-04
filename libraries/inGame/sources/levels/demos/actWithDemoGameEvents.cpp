@@ -7,7 +7,7 @@
 #include "levels/maps/mapsConsts.h"
 #include <cassert>
 
-void demos::handleGameEvents(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage, PlayerAttributes& playerAttributes)
+void demos::handleGameEvents(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage, PlayerAttributes& playerAttributes)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

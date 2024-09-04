@@ -9,7 +9,7 @@
 #include "levels/maps/bonusesConsts.h"
 #include "consts/soundsConsts.h"
 
-void recordOrb::stackOrbCreationAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage)
+void recordOrb::stackOrbCreationAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{
@@ -22,7 +22,7 @@ void recordOrb::stackOrbCreationAccordingToColorIndex(OrbsPackage& orbsPackage, 
 	}
 }
 
-void recordOrb::stackOrbCreation(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack, demos::DataPackage* demoDataPackage)
+void recordOrb::stackOrbCreation(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	for( auto &orb : orbsPackage )
 	{
@@ -35,7 +35,7 @@ void recordOrb::stackOrbCreation(OrbsPackage& orbsPackage, demos::Stack< demos::
 	}
 }
 
-void recordOrb::stackOrbDestructionAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage)
+void recordOrb::stackOrbDestructionAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{

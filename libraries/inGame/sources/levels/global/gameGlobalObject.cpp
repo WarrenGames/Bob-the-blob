@@ -5,6 +5,7 @@
 #include "levels/textures/balloons/drawBalloons.h"
 #include "levels/global/updateGame.h"
 #include "levels/global/actWithBonuses.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "levels/balloons/updateBalloons.h"
 #include "levels/loadings/gameComponentsLoading.h"
 #include "levels/loadings/gameConfigurationData.h"
@@ -17,7 +18,7 @@
 #include "consts/filesAndPaths.h"
 #include "consts/screenConsts.h"
 
-GameGlobalObject::GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+GameGlobalObject::GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage,
 									const GameConfigData& gameConfigData):
 	levelData{ essentials, playerAttributes, levelPrefix, demoDataPackage, gameConfigData },
 	texturesLoader{ essentials.logs, essentials.rndWnd },
@@ -49,7 +50,7 @@ void GameGlobalObject::drawLevel(sdl2::RendererWindow& rndWnd)
 	levelData.displayLevelEndMessage(rndWnd);
 }
 
-void GameGlobalObject::updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage)
+void GameGlobalObject::updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	update(essentials, playerAttributes, levelData, infosPanel.scoreDisplay, demoDataPackage);
 	levelData.actWithLevelEnd(demoDataPackage, isLevelComplete() );
