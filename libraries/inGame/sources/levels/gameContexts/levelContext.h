@@ -2,6 +2,7 @@
 #define BOB_THE_BLOB_IN_GAME_LEVEL_CONTEXT_H
 
 #include "fileSystem/fileSystem.h"
+#include <optional>
 
 struct Essentials;
 struct PlayerAttributes;
@@ -10,7 +11,7 @@ namespace demos{ struct DataPackage; }
 
 namespace standardLevel{
 
-void levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage *demoPackage);
+void levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoPackage);
 
 void quitContext(const GameGlobalObject& gameGlobalObject, bool& quitLevel);
 

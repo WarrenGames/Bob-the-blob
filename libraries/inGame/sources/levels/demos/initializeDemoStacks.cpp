@@ -5,7 +5,7 @@
 #include "package/essentials.h"
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
-void demos::initializeStacksNumber(Essentials& essentials, demos::DataPackage *demoDataPackage, const LevelMandatoryData& levelData)
+void demos::initializeStacksNumber(Essentials& essentials, std::optional<demos::DataPackage>& demoDataPackage, const LevelMandatoryData& levelData)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{

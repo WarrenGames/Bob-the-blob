@@ -13,6 +13,7 @@
 #include "levels/mapSubDivisions/zoneFences.h"
 #include "levels/levelFinish/levelFinishInterface.h"
 #include "fileSystem/fileSystem.h"
+#include <optional>
 
 struct Essentials;
 struct PlayerAttributes;
@@ -38,7 +39,7 @@ struct LevelMandatoryData
 	AccurateTimeDelay levelFinishDelay;
 	LevelFinishInterface levelFinishInterface;
 	
-	explicit LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage, 
+	explicit LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage, 
 								const GameConfigData& gameConfigData);
 	~LevelMandatoryData() = default;
 	LevelMandatoryData( const LevelMandatoryData& ) = delete;
@@ -48,23 +49,23 @@ struct LevelMandatoryData
 	
 	void recordStartingData(demos::DataPackage& demoDataPackage) const;
 	void setLevelDataFromRecordedDemo(const demos::DataPackage& demoDataPackage);
-	void actWithDemoStatus(demos::DataPackage* demoDataPackage);
+	void actWithDemoStatus(std::optional<demos::DataPackage>& demoDataPackage);
 	
-	Coord2D getGameMapSize(const demos::DataPackage* demoDataPackage) const;
+	Coord2D getGameMapSize(const std::optional<demos::DataPackage>& demoDataPackage) const;
 	
 	void displayLevelEndMessage(sdl2::RendererWindow& rndWnd);
 	
-	void actWithLevelEnd(demos::DataPackage* demoDataPackage, bool externWinningCondition);
+	void actWithLevelEnd(std::optional<demos::DataPackage>& demoDataPackage, bool externWinningCondition);
 	
 	void checkLevelEndCondition(bool externWinningCondition);
-	void checkLevelEndCondition(demos::DataPackage* demoDataPackage, bool externWinningCondition);
-	void checkLevelEndCondition(demos::DataPackage* demoDataPackage);
+	void checkLevelEndCondition(std::optional<demos::DataPackage>& demoDataPackage, bool externWinningCondition);
+	void checkLevelEndCondition(std::optional<demos::DataPackage>& demoDataPackage);
 	void updateLevelExiting();
 	
 	bool canQuitLevel() const;
 	
 	void claimVictory();
-	void claimVictoryWithRecordedDemoData(demos::DataPackage* demoDataPackage);
+	void claimVictoryWithRecordedDemoData(std::optional<demos::DataPackage>& demoDataPackage);
 };
 
 #endif //BOB_THE_BLOB_IN_GAME_GLOBAL_LEVEL_MANDATORY_DATA_H

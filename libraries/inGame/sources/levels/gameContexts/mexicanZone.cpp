@@ -15,7 +15,7 @@
 #include "levels/maps/bonusesConsts.h"
 #include "consts/colors.h"
 
-void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage *demoPackage)
+void mexican::levelContext(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoPackage)
 {
 	bool quitLevel{false};
 	try{

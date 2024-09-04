@@ -15,7 +15,7 @@
 #include "levels/maps/bonusesConsts.h"
 #include <cassert>
 
-LevelMandatoryData::LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+LevelMandatoryData::LevelMandatoryData(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage,
 										const GameConfigData& gameConfigData):
 	isLoadingPerfect{ true },
 	hasLevelEnded{ false },
@@ -67,7 +67,7 @@ void LevelMandatoryData::setLevelDataFromRecordedDemo(const demos::DataPackage& 
 	}
 }
 
-void LevelMandatoryData::actWithDemoStatus(demos::DataPackage* demoDataPackage)
+void LevelMandatoryData::actWithDemoStatus(std::optional<demos::DataPackage>& demoDataPackage)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -80,7 +80,7 @@ void LevelMandatoryData::actWithDemoStatus(demos::DataPackage* demoDataPackage)
 	}
 }
 
-Coord2D LevelMandatoryData::getGameMapSize(const demos::DataPackage* demoDataPackage) const
+Coord2D LevelMandatoryData::getGameMapSize(const std::optional<demos::DataPackage>& demoDataPackage) const
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -109,7 +109,7 @@ void LevelMandatoryData::displayLevelEndMessage(sdl2::RendererWindow& rndWnd)
 	}
 }
 
-void LevelMandatoryData::actWithLevelEnd(demos::DataPackage* demoDataPackage, bool externWinningCondition)
+void LevelMandatoryData::actWithLevelEnd(std::optional<demos::DataPackage>& demoDataPackage, bool externWinningCondition)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -136,7 +136,7 @@ void LevelMandatoryData::checkLevelEndCondition(bool externWinningCondition)
 	}
 }
 
-void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPackage, bool externWinningCondition)
+void LevelMandatoryData::checkLevelEndCondition(std::optional<demos::DataPackage>& demoDataPackage, bool externWinningCondition)
 {
 	if( hasLevelEnded == false && externWinningCondition)
 	{
@@ -145,7 +145,7 @@ void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPack
 	}
 }
 
-void LevelMandatoryData::checkLevelEndCondition(demos::DataPackage* demoDataPackage)
+void LevelMandatoryData::checkLevelEndCondition(std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{
@@ -179,7 +179,7 @@ void LevelMandatoryData::claimVictory()
 	hasLevelEnded = true;
 }
 
-void LevelMandatoryData::claimVictoryWithRecordedDemoData(demos::DataPackage* demoDataPackage)
+void LevelMandatoryData::claimVictoryWithRecordedDemoData(std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

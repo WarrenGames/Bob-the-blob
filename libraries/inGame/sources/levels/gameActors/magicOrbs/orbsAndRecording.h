@@ -1,6 +1,7 @@
 #ifndef BOB_THE_BLOB_IN_GAME_MAGIC_ORBS_RECORDING_H
 #define BOB_THE_BLOB_IN_GAME_MAGIC_ORBS_RECORDING_H
 
+#include <optional>
 #include <cstdlib>
 
 class OrbsPackage;
@@ -9,11 +10,11 @@ class PlayerAbilities;
 
 namespace recordOrb{
 	
-	void stackOrbCreationAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage);
+	void stackOrbCreationAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage);
 	
-	void stackOrbCreation(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack, demos::DataPackage* demoDataPackage);
+	void stackOrbCreation(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack, std::optional<demos::DataPackage>& demoDataPackage);
 	
-	void stackOrbDestructionAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage);
+	void stackOrbDestructionAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage);
 	
 	void stackOrbDestruction(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData >& stack);
 	

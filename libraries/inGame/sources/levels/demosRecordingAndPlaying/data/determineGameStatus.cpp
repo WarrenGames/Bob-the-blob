@@ -3,7 +3,7 @@
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 #include <cassert>
 
-unsigned demos::getGameStatus(const demos::DataPackage *demoDataPackage)
+unsigned demos::getGameStatus(const std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demoDataPackage )
 	{

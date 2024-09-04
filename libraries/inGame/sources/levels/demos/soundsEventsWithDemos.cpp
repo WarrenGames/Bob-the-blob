@@ -3,7 +3,7 @@
 #include "soundSystem/soundsPlayer.h"
 #include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 
-void demos::recordSoundEvent(demos::DataPackage *demoDataPackage, unsigned soundIndex, unsigned channel)
+void demos::recordSoundEvent(std::optional<demos::DataPackage>& demoDataPackage, unsigned soundIndex, unsigned channel)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsRecording )
 	{
@@ -11,7 +11,7 @@ void demos::recordSoundEvent(demos::DataPackage *demoDataPackage, unsigned sound
 	}
 }
 
-void demos::playSoundIfAny(demos::DataPackage *demoDataPackage, const SoundPlayer& soundPlayer)
+void demos::playSoundIfAny(std::optional<demos::DataPackage>& demoDataPackage, const SoundPlayer& soundPlayer)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

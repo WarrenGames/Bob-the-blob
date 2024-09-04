@@ -5,10 +5,12 @@
 #include "levels/gameContexts/mexicanZone.h"
 #include "hintsScreen/mexican/mexicanHintScreen.h"
 #include "levels/playerAttributes/playerAttributes.h"
+#include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "consts/colors.h"
 #include "consts/levelsTypesConsts.h"
 #include "consts/skillLevelsConsts.h"
 #include <cassert>
+#include <optional>
 
 void levelChoice::mainContext(Essentials& essentials)
 {
@@ -80,14 +82,15 @@ void levelChoice::runLevel(Essentials& essentials, const levelChoice::MenuElemen
 			if( level.textButton.buttonClicked() )
 			{
 				playerAttributes.skillLevel = interface.skillLevelCursor.getSkillLevel();
+				std::optional<demos::DataPackage> demoPackage;
 				switch( level.levelType )
 				{
 					case LevelBlueBrick:
-						standardLevel::levelContext(essentials, playerAttributes, level.levelName, nullptr);
+						standardLevel::levelContext(essentials, playerAttributes, level.levelName, demoPackage);
 						break;
 					case LevelMexican:
 						hintScreen::displayMexicanLevelHelp(essentials);
-						mexican::levelContext(essentials, playerAttributes, level.levelName, nullptr);
+						mexican::levelContext(essentials, playerAttributes, level.levelName, demoPackage);
 						break;
 					default:
 						assert( false && "Error: bad level type value!" );

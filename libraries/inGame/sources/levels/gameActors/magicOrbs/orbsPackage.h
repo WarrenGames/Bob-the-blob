@@ -5,6 +5,7 @@
 #include "time/accurateTime.h"
 #include "fileSystem/fileSystem.h"
 #include <vector>
+#include <optional>
 
 struct GameMap;
 namespace demos{ struct DataPackage; template<typename T>class Stack; struct ItemData; }
@@ -30,7 +31,7 @@ public:
 	OrbsPackage( OrbsPackage&& ) = default;
 	OrbsPackage& operator= ( OrbsPackage&& ) = default;
 	
-	void createOrbs(const Coord2D& newCoordinates, const GameMap& gameMap, demos::DataPackage *demoDataPackage, const SoundPlayer& soundPlayer);
+	void createOrbs(const Coord2D& newCoordinates, const GameMap& gameMap, std::optional<demos::DataPackage>& demoDataPackage, const SoundPlayer& soundPlayer);
 	std::vector< SingleOrb >::const_iterator begin() const;
 	std::vector< SingleOrb >::const_iterator end() const;
 	std::vector< SingleOrb >::iterator begin();

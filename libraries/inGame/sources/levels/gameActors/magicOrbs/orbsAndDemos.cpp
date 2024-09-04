@@ -5,7 +5,7 @@
 #include "levels/demosRecordingAndPlaying/consts/gameEventsConsts.h"
 #include "levels/maps/bonusesConsts.h"
 
-void demosOrb::createOrbAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage)
+void demosOrb::createOrbAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{
@@ -23,7 +23,7 @@ void demosOrb::createOrb(OrbsPackage& orbsPackage, demos::Stack< demos::ItemData
 	orbsPackage.createWithDemo(orbsStack);
 }
 
-void demosOrb::destroyOrbAccordingToColorIndex(OrbsPackage& orbsPackage, demos::DataPackage* demoDataPackage)
+void demosOrb::destroyOrbAccordingToColorIndex(OrbsPackage& orbsPackage, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( demos::getGameStatus(demoDataPackage) == demos::GameIsDemo )
 	{

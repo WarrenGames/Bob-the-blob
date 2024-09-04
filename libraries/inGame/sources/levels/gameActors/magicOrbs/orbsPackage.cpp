@@ -23,7 +23,7 @@ OrbsPackage::OrbsPackage(std::size_t orbColor, int orbWorthValue, std::chrono::m
 
 }
 
-void OrbsPackage::createOrbs(const Coord2D& newCoordinates, const GameMap& gameMap, demos::DataPackage *demoDataPackage, const SoundPlayer& soundPlayer)
+void OrbsPackage::createOrbs(const Coord2D& newCoordinates, const GameMap& gameMap, std::optional<demos::DataPackage>& demoDataPackage, const SoundPlayer& soundPlayer)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{

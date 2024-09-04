@@ -7,10 +7,12 @@
 #include "levels/textures/balloons/balloonsPack.h"
 #include "levels/textures/infosPanel/stdLevelInfosPanel.h"
 #include "fileSystem/fileSystem.h"
+#include <optional>
 
 namespace sdl2{ class RendererWindow; }
 struct PlayerAttributes;
 struct Essentials;
+namespace demos{ struct DataPackage; }
 struct GameConfigData;
 
 struct GameGlobalObject
@@ -21,7 +23,7 @@ struct GameGlobalObject
 	BalloonsPack balloonsPack;
 	StdLevelInfosPanel infosPanel;
 	
-	explicit GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage,
+	explicit GameGlobalObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage,
 								const GameConfigData& gameConfigData);
 	~GameGlobalObject() = default;
 	GameGlobalObject( const GameGlobalObject& ) = delete;
@@ -31,7 +33,7 @@ struct GameGlobalObject
 	
 	bool wasLoadingPerfect() const;
 	void drawLevel(sdl2::RendererWindow& rndWnd);
-	void updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage);
+	void updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage);
 	bool hasPlayerRequestedToExit() const;
 	
 	bool isLevelComplete() const;

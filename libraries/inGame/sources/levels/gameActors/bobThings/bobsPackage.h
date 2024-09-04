@@ -6,6 +6,7 @@
 #include "fileSystem/fileSystem.h"
 #include <vector>
 #include <memory>
+#include <optional>
 
 struct GameConfigData;
 struct Essentials;
@@ -51,17 +52,17 @@ public:
 	void movePackage();
 	void changeDirectionIfAny(CrossRoadsRandoms& crossRoads, const GameMap& gameMap, const PlayerMoving& playerMoving);
 	void loadBobsMoveDelay(Essentials& essentials);
-	void detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttributes& playerAttributes, const Ability& canEatBobs, demos::DataPackage *demoDataPackage);
-	void recordBobRelatedGameEvent(demos::DataPackage *demoDataPackage, unsigned eventCategory, unsigned eventSubType, std::size_t newId) const;
+	void detectCollisionWithPlayer(SinglePlayerData& player, PlayerAttributes& playerAttributes, const Ability& canEatBobs, std::optional<demos::DataPackage>& demoDataPackage);
+	void recordBobRelatedGameEvent(std::optional<demos::DataPackage>& demoDataPackage, unsigned eventCategory, unsigned eventSubType, std::size_t newId) const;
 	void resetAllBobsPositions();
 	void makeBobsNotSeekingPlayer();
 	void disableAllBobs();
 	
 	void initFirstDirection(const CrossRoadsRandoms& crossRoads);
 	
-	void spawnBobIfAny(const PlayerMoving& playerMove, demos::DataPackage *demoDataPackage);
+	void spawnBobIfAny(const PlayerMoving& playerMove, std::optional<demos::DataPackage>& demoDataPackage);
 	void spawnSingleBob(GlobalBob& globalBob);
-	void spawnBobWithDemoStack(demos::DataPackage *demoDataPackage);
+	void spawnBobWithDemoStack(std::optional<demos::DataPackage>& demoDataPackage);
 	
 	void updateExplosionIfAny(std::size_t totalFrameNumber);
 };

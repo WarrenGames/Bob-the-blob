@@ -13,6 +13,7 @@
 #include "consts/colors.h"
 #include "consts/skillLevelsConsts.h"
 #include <cassert>
+#include <optional>
 
 void demosPlaying::demoChoice(Essentials& essentials)
 {
@@ -83,19 +84,19 @@ void demosPlaying::runDemo(Essentials& essentials, const demosPlaying::DemoChoic
 
 void demosPlaying::loadData(Essentials& essentials, const fs::path& demoFilePath)
 {
-	demos::DataPackage demoDataPackage{essentials, "demo play type", demos::GameIsDemo, LevelBlueBrick, SkillLevelMax};
+	std::optional<demos::DataPackage> demoDataPackage(demos::DataPackage{ essentials, "demo play type", demos::GameIsDemo, LevelBlueBrick, SkillLevelMax} );
 	
 	try{
-		loadDemo::openFile(demoFilePath, demoDataPackage);
-		PlayerAttributes playerAttributes{demoDataPackage.skillLevel};
+		loadDemo::openFile(demoFilePath, *demoDataPackage);
+		PlayerAttributes playerAttributes{demoDataPackage->skillLevel};
 		
-		switch( demoDataPackage.gameAmbience )
+		switch( demoDataPackage->gameAmbience )
 		{
 			case LevelBlueBrick:
-				standardLevel::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
+				standardLevel::levelContext(essentials, playerAttributes, demoDataPackage->levelName, demoDataPackage);
 				break;
 			case LevelMexican:
-				mexican::levelContext(essentials, playerAttributes, demoDataPackage.levelName, &demoDataPackage);
+				mexican::levelContext(essentials, playerAttributes, demoDataPackage->levelName, demoDataPackage);
 				break;
 			default:
 				assert( false && "Error: bad game ambience enum !" );

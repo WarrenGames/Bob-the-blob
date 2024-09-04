@@ -15,7 +15,7 @@
 #include "levels/maps/bonusesConsts.h"
 #include "levels/demosRecordingAndPlaying/consts/demosConsts.h"
 
-void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMandatoryData& levelData, ScoreDisplay& scoreDisplay, demos::DataPackage* demoDataPackage)
+void update(Essentials& essentials, PlayerAttributes& playerAttributes, LevelMandatoryData& levelData, ScoreDisplay& scoreDisplay, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	updateWithSoundsEventsStack(levelData, demoDataPackage);
 	levelData.updateLevelExiting();
@@ -33,7 +33,7 @@ void updateScreenScrolling(const SinglePlayerData& player, ScreenScrolling& scre
 	screenScrolling.setScrollingOffset(player.move.getRealPosition() );
 }
 
-void updatePlayerThings(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage)
+void updatePlayerThings(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	levelData.playerInputs.actAccordingToDemoStatus();
 	switch( demos::getGameStatus(demoDataPackage) )
@@ -58,7 +58,7 @@ void updatePlayerThings(LevelMandatoryData& levelData, demos::DataPackage* demoD
 	}
 }
 
-void bothRecordAndStandardGamePlaying(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage)
+void bothRecordAndStandardGamePlaying(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	if( levelData.hasLevelEnded == false )
 	{
@@ -77,7 +77,7 @@ void bothRecordAndStandardGamePlaying(LevelMandatoryData& levelData, demos::Data
 	levelData.bobsPackage.spawnBobIfAny(levelData.playerData.move, demoDataPackage);
 }
 
-void updateEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage, PlayerAttributes& playerAttributes)
+void updateEnemyProtagonists(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage, PlayerAttributes& playerAttributes)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
@@ -95,7 +95,7 @@ void updateEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* 
 	}
 }
 
-void bothRecordAndStandardPlayingEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage, PlayerAttributes& playerAttributes)
+void bothRecordAndStandardPlayingEnemyProtagonists(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage, PlayerAttributes& playerAttributes)
 {
 	levelData.bobsPackage.animatePackage();
 	levelData.bobsPackage.movePackage();
@@ -111,12 +111,12 @@ void updateInfoGradient(InfoGradient& infoGradient, Ability& ability)
 	}
 }
 
-void updateWithSoundsEventsStack(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage)
+void updateWithSoundsEventsStack(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	demos::playSoundIfAny(demoDataPackage, levelData.gameSoundSystem.soundSystem.soundPlayer);
 }
 
-void demoGameEnemyUpdate(LevelMandatoryData& levelData, demos::DataPackage* demoDataPackage)
+void demoGameEnemyUpdate(LevelMandatoryData& levelData, std::optional<demos::DataPackage>& demoDataPackage)
 {
 	demos::checkNewBobbyPositionEvent(levelData.bobsPackage, demoDataPackage->spritesPositions.enemyBobsMoves);
 	levelData.bobsPackage.movePackage();

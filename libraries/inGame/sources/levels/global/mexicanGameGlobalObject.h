@@ -9,6 +9,7 @@
 #include "levels/textures/balloons/balloonsPack.h"
 #include "levels/textures/infosPanel/mexicanInfosPanel.h"
 #include "fileSystem/fileSystem.h"
+#include <optional>
 
 struct Essentials;
 struct PlayerAttributes;
@@ -26,7 +27,7 @@ struct MexicanGameObject
 	BalloonsPack balloonsPack;
 	MexicanInfosPanel mexicanInfosPanel;
 	
-	explicit MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, demos::DataPackage* demoDataPackage, 
+	explicit MexicanGameObject(Essentials& essentials, PlayerAttributes& playerAttributes, const fs::path& levelPrefix, std::optional<demos::DataPackage>& demoDataPackage, 
 								const GameConfigData& gameConfigData);
 	~MexicanGameObject() = default;
 	MexicanGameObject( const MexicanGameObject& ) = delete;
@@ -36,14 +37,14 @@ struct MexicanGameObject
 	
 	bool wasLoadingPerfect() const;
 	void drawLevel(sdl2::RendererWindow& rndWnd);
-	void updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage);
+	void updateGame(Essentials& essentials, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage);
 	
-	void updateGreenOrbs(PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage);
+	void updateGreenOrbs(PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage);
 	
 	bool hasPlayerRequestedToExit() const;
 	
-	void loadCactiPositions(const demos::DataPackage* demoDataPackage);
-	void recordCactiPositions(demos::DataPackage* demoDataPackage) const;
+	void loadCactiPositions(const std::optional<demos::DataPackage>& demoDataPackage);
+	void recordCactiPositions(std::optional<demos::DataPackage>& demoDataPackage) const;
 	
 	bool isLevelComplete() const;
 };

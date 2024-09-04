@@ -1,6 +1,8 @@
 #ifndef BOB_THE_BLOB_IN_GAME_UPDATE_PROTAGONISTS_MOVES_H
 #define BOB_THE_BLOB_IN_GAME_UPDATE_PROTAGONISTS_MOVES_H
 
+#include <optional>
+
 class PlayerMoving;
 class BobsPackage;
 struct GameMap;
@@ -17,9 +19,9 @@ void wrapPlayerThatHasLeftOnNorth(PlayerMoving& playerObject, BobsPackage& bobsP
 
 void wrapPlayerThatHasLeftOnSouth(PlayerMoving& playerObject, BobsPackage& bobsPackage, const GameMap& gameMap);
 
-void updateBobbysDetectionWithSound(const SinglePlayerData& player, BobsPackage& bobsPackage, const GameMap& gameMap, const SoundPlayer& soundPlayer, demos::DataPackage *demoDataPackage);
+void updateBobbysDetectionWithSound(const SinglePlayerData& player, BobsPackage& bobsPackage, const GameMap& gameMap, const SoundPlayer& soundPlayer, std::optional<demos::DataPackage>& demoDataPackage);
 
-void playUhOhSoundOnce(const SoundPlayer& soundPlayer, demos::DataPackage *demoDataPackage, bool canSeekPlayer, bool& hasPlayedUhOhSound);
+void playUhOhSoundOnce(const SoundPlayer& soundPlayer, std::optional<demos::DataPackage>& demoDataPackage, bool canSeekPlayer, bool& hasPlayedUhOhSound);
 
 void resetPlayerDirectionChangementPossibility(PlayerMoving& playerObject);
 

@@ -5,7 +5,7 @@
 #include "levels/demosRecordingAndPlaying/data/dataPackage.h"
 #include "levels/demosRecordingAndPlaying/data/determineGameStatus.h"
 
-void browseColoredOrbCollection(LevelMandatoryData& levelData, OrbsPackage& orbsPackage, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage, std::size_t abilityIndex)
+void browseColoredOrbCollection(LevelMandatoryData& levelData, OrbsPackage& orbsPackage, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage, std::size_t abilityIndex)
 {
 	orbsPackage.createOrbs( levelData.zonesFences.getMatchingCoordinates(levelData.playerData.move.getMatrixPosition() ), levelData.gameMap, demoDataPackage, 
 							levelData.gameSoundSystem.soundSystem.soundPlayer );
@@ -13,7 +13,7 @@ void browseColoredOrbCollection(LevelMandatoryData& levelData, OrbsPackage& orbs
 	handleOrbsAccordingToDemoValue(levelData.playerData, orbsPackage, playerAttributes, demoDataPackage, abilityIndex);
 }
 
-void handleOrbsAccordingToDemoValue(SinglePlayerData& player, OrbsPackage& orbsPackage, PlayerAttributes& playerAttributes, demos::DataPackage* demoDataPackage, std::size_t abilityIndex)
+void handleOrbsAccordingToDemoValue(SinglePlayerData& player, OrbsPackage& orbsPackage, PlayerAttributes& playerAttributes, std::optional<demos::DataPackage>& demoDataPackage, std::size_t abilityIndex)
 {
 	switch( demos::getGameStatus(demoDataPackage) )
 	{
