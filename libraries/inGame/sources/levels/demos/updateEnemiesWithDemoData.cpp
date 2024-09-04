@@ -1,8 +1,10 @@
 #include "levels/demos/updateEnemiesWithDemoData.h"
 #include "levels/gameActors/bobThings/bobsPackage.h"
-#include "levels/monstersMoves/monstersMovesConsts.h"
+#include "levels/maps/gameMap.h"
+#include "levels/gameActors/playerThings/playerMoving.h"
 #include "levels/demosRecordingAndPlaying/templates/demoStack.h"
 #include "levels/demosRecordingAndPlaying/dataToRecord/moveAndPosition.h"
+#include "levels/monstersMoves/monstersMovesConsts.h"
 #include <cassert>
 
 void demos::checkNewBobbyPositionEvent(BobsPackage& bobsPackage, std::vector< demos::Stack< demos::MoveAndPosition > >& movesStacks)
@@ -102,5 +104,13 @@ void demos::makeBobbysStartMoving(BobsPackage& bobsPackage, std::vector< demos::
 			}
 		}
 		haveBobbysStartMoving = true;
+	}
+}
+
+void demos::makeBobbysStopSeekingPlayer(PlayerMoving& playerMoving, BobsPackage& bobsPackage, const GameMap& gameMap)
+{
+	if( playerMoving.hasReachOutsideOfMap(gameMap) )
+	{
+		bobsPackage.makeBobsNotSeekingPlayer();
 	}
 }

@@ -90,6 +90,7 @@ void updateEnemyProtagonists(LevelMandatoryData& levelData, demos::DataPackage* 
 			break;
 		case demos::GameIsDemo:
 			demoGameEnemyUpdate(levelData, demoDataPackage);
+			demos::makeBobbysStopSeekingPlayer(levelData.playerData.move, levelData.bobsPackage, levelData.gameMap);
 			break;
 	}
 }

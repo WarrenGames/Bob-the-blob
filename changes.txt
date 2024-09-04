@@ -1,3 +1,12 @@
+version 0.1.13
+	- Bug fix: (sdl2_wrapper library)
+		Warren custom libs v1.0.9 changes
+			- A bug in the 'boxEvents.h' and 'boxEvents.cpp' has been fixed (the size of alpha characters was set with "'z' - 'a'" 
+				which sets the size to 25 whereas the good value must be 26 ).
+
+version 0.1.12
+	- Bug fix: in demo playing mode the light bulb keeps displaying above bobbys after player left zone from any side.
+	
 version 0.1.11
 	- A joystick support has been added (hats, axes and/or buttons). See the options menu in game.
 
