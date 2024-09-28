@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 3.13)
 
-project( levelsHints LANGUAGES CXX )
+project( hintsScreens LANGUAGES CXX)
 
-set( HEADERS
-	sources/hintsScreen/mexican/mexicanHintsData.h
-	sources/hintsScreen/mexican/mexicanHintScreen.h
-	sources/hintsScreen/blueCastle/blueCastleHintsData.h
-	sources/hintsScreen/blueCastle/blueCastleHintContext.h
+set(HEADERS
+	sources/hints/mainMenu/hintsMainMenuContext.h
+	sources/hints/mainMenu/hintsMainMenuElements.h
+	sources/hints/fleeFoes/fleeFoesHintScreenContext.h
+	sources/hints/fleeFoes/fleeFoesHintScreenElements.h
 )
 
-set( SOURCES
-	sources/hintsScreen/mexican/mexicanHintScreen.cpp
-	sources/hintsScreen/mexican/mexicanHintsData.cpp
-	sources/hintsScreen/blueCastle/blueCastleHintsData.cpp
-	sources/hintsScreen/blueCastle/blueCastleHintContext.cpp
+set(SOURCES
+	sources/hints/mainMenu/hintsMainMenuElements.cpp
+	sources/hints/mainMenu/hintsMainMenuContext.cpp
+	sources/hints/fleeFoes/fleeFoesHintScreenContext.cpp
+	sources/hints/fleeFoes/fleeFoesHintScreenElements.cpp
 )
 
 add_library(
@@ -42,6 +42,7 @@ target_link_libraries(
 	PRIVATE genericLib
 	PRIVATE sdl2_wrapper
 	PRIVATE commonFiles
+	PRIVATE inGame
 	PRIVATE graphicalTextParagraph
 )
 

@@ -8,18 +8,16 @@ void hintScreen::displayMexicanLevelHelp(Essentials& essentials)
 {
 	MexicanHintsData mexicanHintsData{essentials};
 	
-	mexicanHintsData.drawEverything(essentials);
-	
 	while( false == mexicanHintsData.quitScreen )
 	{
 		essentials.inputs.updateEvents();
 		mexicanHintsData.okButton.updateButton(essentials.inputs.getMousePosition(), essentials.inputs.getMouseButtonState(SDL_BUTTON_LEFT) );
-		hintScreen::carryOnToGame(essentials, mexicanHintsData);
+		hintScreen::carryOnToMexicanGame(essentials, mexicanHintsData);
 		hintScreen::drawScreenElements(essentials, mexicanHintsData);
 	}
 }
 
-void hintScreen::carryOnToGame(Essentials& essentials, MexicanHintsData& mexicanHintsData)
+void hintScreen::carryOnToMexicanGame(Essentials& essentials, MexicanHintsData& mexicanHintsData)
 {
 	if( mexicanHintsData.okButton.buttonClicked() || essentials.inputs.isKeyDown(KEY_ESCAPE) || essentials.inputs.getSdlQuit() )
 	{

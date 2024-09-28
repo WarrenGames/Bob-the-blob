@@ -37,6 +37,7 @@ add_subdirectory(executables/game)
 add_subdirectory(libraries/inGame)
 add_subdirectory(libraries/levelsHints)
 add_subdirectory(libraries/gameOptions)
+add_subdirectory(libraries/hintsScreens)
 add_subdirectory(libraries/commonFiles)
 
 if(UNIX)

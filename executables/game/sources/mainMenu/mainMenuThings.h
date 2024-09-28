@@ -15,6 +15,7 @@ enum{
 	TxtRecordDemo,
 	TxtPlayDemo,
 	TxtOptionsMenu,
+	TxtHelp,
 	TxtMax
 };
 	
@@ -28,6 +29,7 @@ struct MenuThings
 	TextButton recordDemo;
 	TextButton playDemo;
 	TextButton optionsMenu;
+	TextButton helpMenu;
 	bool quitMenu;
 	
 	explicit MenuThings(Essentials& essentials);

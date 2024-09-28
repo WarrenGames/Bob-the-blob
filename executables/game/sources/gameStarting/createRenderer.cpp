@@ -5,9 +5,11 @@
 #include "logging/logsStruct.h"
 #include "consts/screenConsts.h"
 
+constexpr char GameIconPath[] = "textures/sprites/bobPlayer/bobPlayer_0.png";
+
 void createRenderer(const PrefPathFinder& prefPath, AppLogFiles& logs)
 {
-	if( sdl2::RendererWindow rndWnd{logs.error, MiniScreenWidth, MiniScreenHeight, "Bob the blob", ""} )
+	if( sdl2::RendererWindow rndWnd{logs.error, MiniScreenWidth, MiniScreenHeight, "Bob the blob", GameIconPath} )
 	{
 		packageEssentials(prefPath, logs, rndWnd);
 	}

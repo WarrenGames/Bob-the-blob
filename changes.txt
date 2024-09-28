@@ -1,3 +1,7 @@
+version 0.1.14
+	- Some help has been added in the main menu ('help' menu) and the objectives in the 'blue castle missions' are now displayed
+		at the screen (which was the case already for the 'mexican' level).
+
 version 0.1.13
 	- Bug fix: (sdl2_wrapper library)
 		Warren custom libs v1.0.9 changes

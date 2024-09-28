@@ -74,12 +74,14 @@ target_include_directories(
 	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdlLogoDisplay
 	PRIVATE ../../libraries/commonFiles/sources
 	PRIVATE ../../libraries/levelsHints/sources
+	PRIVATE ../../libraries/hintsScreens/sources
 	PRIVATE ../../libraries/inGame/sources
 	PRIVATE ../../libraries/gameOptions/sources
 )
 
 target_link_libraries(	
 	${PROJECT_NAME}
+	PRIVATE hintsScreens
 	PRIVATE inGame
 	PRIVATE gameOptions
 	PRIVATE levelsHints
