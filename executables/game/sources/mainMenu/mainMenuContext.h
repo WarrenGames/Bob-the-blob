@@ -22,6 +22,8 @@ void runDemoPlaying(Essentials& essentials, const MenuThings& menuThings);
 
 void runOptionsMenu(Essentials& essentials, const MenuThings& menuThings);
 
+void runHelpMenu(Essentials& essentials, const MenuThings& menuThings);
+
 void quitMenu(Essentials& essentials, MenuThings& menuThings);
 
 }

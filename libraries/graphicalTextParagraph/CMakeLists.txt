@@ -1,23 +1,19 @@
 cmake_minimum_required(VERSION 3.13)
 
-project( levelsHints LANGUAGES CXX)
+project( graphicalTextParagraph LANGUAGES CXX)
 
 if(UNIX)
 	include(GNUInstallDirs)
 endif(UNIX)
 
 set(HEADERS
-	sources/hintsScreen/mexican/mexicanHintsData.h
-	sources/hintsScreen/mexican/mexicanHintScreen.h
-	sources/hintsScreen/blueCastle/blueCastleHintsData.h
-	sources/hintsScreen/blueCastle/blueCastleHintContext.h
+	sources/paragraph/makeTextTextures.h
+	sources/paragraph/paragraphData.h
 )
 
 set(SOURCES
-	sources/hintsScreen/mexican/mexicanHintScreen.cpp
-	sources/hintsScreen/mexican/mexicanHintsData.cpp
-	sources/hintsScreen/blueCastle/blueCastleHintsData.cpp
-	sources/hintsScreen/blueCastle/blueCastleHintContext.cpp
+	sources/paragraph/makeTextTextures.cpp
+	sources/paragraph/paragraphData.cpp
 )
 
 add_library(
@@ -36,17 +32,15 @@ target_include_directories(
 	PRIVATE sources
 	PRIVATE ../genericLib/sources
 	PRIVATE ../sdl2_wrapper/sources
-	PRIVATE ../graphicalTextParagraph/sources
-	PRIVATE ../commonFiles/sources
-	PRIVATE ../inGame/sources
 )
 
 target_link_libraries(	
 	${PROJECT_NAME} 
+	PRIVATE ${SDL2_LIBRARIES} 
+	PRIVATE ${SDL2_IMAGE_LIBRARIES} 
+	PRIVATE ${SDL2_TTF_LIBRARIES} 
 	PRIVATE genericLib
 	PRIVATE sdl2_wrapper
-	PRIVATE commonFiles
-	PRIVATE graphicalTextParagraph
 )
 
 set_target_properties(	
@@ -56,4 +50,12 @@ set_target_properties(
 	CXX_STANDARD_REQUIRED YES 
 	CXX_EXTENSIONS ON
 	LINKER_LANGUAGE CXX
+)
+
+install( DIRECTORY sources/ DESTINATION includes/graphicalTextParagraph FILES_MATCHING PATTERN "*.h" )
+
+install(
+	TARGETS ${PROJECT_NAME}
+	LIBRARY DESTINATION ${BuiltSharedLibsDir}
+	ARCHIVE DESTINATION ${BuiltStaticLibsDir}
 )

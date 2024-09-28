@@ -15,10 +15,11 @@ mainMenu::MenuThings::MenuThings(Essentials& essentials):
 	arial{ essentials.logs.error, ArialFontPath, BigFontSize },
 	wallpaper{ essentials.logs, essentials.rndWnd, WallpaperImagePath },
 	gameTitle{ essentials.logs, essentials.rndWnd, arial, menuTexts[TxtTitle], GrayCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE, true, true } },
-	levelChoice{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtLevelMenu], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 8, true, true } },
-	recordDemo{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtRecordDemo], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 10, true, true } },
-	playDemo{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtPlayDemo], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 12, true, true } },
-	optionsMenu{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtOptionsMenu], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 14, true, true } },
+	levelChoice{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtLevelMenu], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 6, true, true } },
+	recordDemo{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtRecordDemo], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 8, true, true } },
+	playDemo{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtPlayDemo], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 10, true, true } },
+	optionsMenu{essentials.logs, essentials.rndWnd, arial, menuTexts[TxtOptionsMenu], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 12, true, true } },
+	helpMenu{essentials.logs, essentials.rndWnd, arial, menuTexts[mainMenu::TxtHelp], GreenCol, WhiteCol, TexturePosition{ GameScreenWidth / 2, SQR_SIZE * 14, true, true } },
 	quitMenu{ false }
 {
 	
@@ -30,6 +31,7 @@ void mainMenu::MenuThings::updateButtons(const Offset& mousePosition, bool isMou
 	recordDemo.updateButton(mousePosition, isMouseButtonPushed);
 	playDemo.updateButton(mousePosition, isMouseButtonPushed);
 	optionsMenu.updateButton(mousePosition, isMouseButtonPushed);
+	helpMenu.updateButton(mousePosition, isMouseButtonPushed);
 }
 
 void mainMenu::MenuThings::drawEverything(Essentials& essentials) const
@@ -40,4 +42,5 @@ void mainMenu::MenuThings::drawEverything(Essentials& essentials) const
 	recordDemo.drawButton(essentials.rndWnd);
 	playDemo.drawButton(essentials.rndWnd);
 	optionsMenu.drawButton(essentials.rndWnd);
+	helpMenu.drawButton(essentials.rndWnd);
 }

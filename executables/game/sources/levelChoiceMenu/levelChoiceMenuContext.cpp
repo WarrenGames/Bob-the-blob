@@ -3,6 +3,7 @@
 #include "package/essentials.h"
 #include "levels/gameContexts/levelContext.h"
 #include "levels/gameContexts/mexicanZone.h"
+#include "hintsScreen/blueCastle/blueCastleHintContext.h"
 #include "hintsScreen/mexican/mexicanHintScreen.h"
 #include "levels/playerAttributes/playerAttributes.h"
 #include "levels/demosRecordingAndPlaying/data/dataPackage.h"
@@ -86,6 +87,7 @@ void levelChoice::runLevel(Essentials& essentials, const levelChoice::MenuElemen
 				switch( level.levelType )
 				{
 					case LevelBlueBrick:
+						hintScreen::displayBlueCastleLevelHelp(essentials);
 						standardLevel::levelContext(essentials, playerAttributes, level.levelName, demoPackage);
 						break;
 					case LevelMexican:

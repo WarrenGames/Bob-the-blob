@@ -76,16 +76,19 @@ target_include_directories(
 	PRIVATE ../../libraries/levelsHints/sources
 	PRIVATE ../../libraries/inGame/sources
 	PRIVATE ../../libraries/gameOptions/sources
+	PRIVATE ../../libraries/hintsScreens/sources
 )
 
 target_link_libraries(	
 	${PROJECT_NAME}
+	PRIVATE hintsScreens
 	PRIVATE inGame
 	PRIVATE gameOptions
 	PRIVATE levelsHints
 	PRIVATE commonFiles
 	PRIVATE joystickTests
 	PRIVATE sdlLogoDisplay
+	PRIVATE graphicalTextParagraph
 	PRIVATE soundSystem
 	PRIVATE sdl2_wrapper
 	PRIVATE genericLib

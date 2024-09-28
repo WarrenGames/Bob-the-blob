@@ -8,7 +8,7 @@ namespace hintScreen{
 
 void displayMexicanLevelHelp(Essentials& essentials);
 
-void carryOnToGame(Essentials& essentials, MexicanHintsData& mexicanHintsData);
+void carryOnToMexicanGame(Essentials& essentials, MexicanHintsData& mexicanHintsData);
 
 void drawScreenElements(Essentials& essentials, const MexicanHintsData& mexicanHintsData);
 
