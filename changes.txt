@@ -6,6 +6,7 @@ version 0.1.15
 		FILES ${HEADERS} ${SOURCES}
 		)
 		------------------------------
+	
 
 version 0.1.14
 	- Some help has been added in the main menu ('help' menu) and the objectives in the 'blue castle missions' are now displayed
