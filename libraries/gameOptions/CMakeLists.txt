@@ -23,7 +23,6 @@ set( SOURCES
 	sources/gameOptions/inputs/inputsInterface/inputsContext.cpp
 	sources/gameOptions/inputs/joystick/joystickOptions.cpp
 	sources/gameOptions/inputs/keyboard/keyboardOptions.cpp
-
 )
 
 add_library(	
@@ -32,6 +31,10 @@ add_library(
 	${SOURCES} 
 	${HEADERS} 
 	${INC_DIRS}
+)
+
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}
+	FILES ${HEADERS} ${SOURCES}
 )
 
 target_include_directories(

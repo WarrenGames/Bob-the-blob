@@ -61,6 +61,10 @@ add_executable(
 	${INC_DIRS}
 )
 
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}
+	FILES ${HEADERS} ${SOURCES}
+)
+
 target_include_directories(
 	${PROJECT_NAME}
 	PRIVATE ${SDL2_INCLUDE_DIRS}
@@ -74,14 +78,14 @@ target_include_directories(
 	PRIVATE ${WARREN_LIBS_INCLUDES_PATH}/sdlLogoDisplay
 	PRIVATE ../../libraries/commonFiles/sources
 	PRIVATE ../../libraries/levelsHints/sources
-	PRIVATE ../../libraries/hintsScreens/sources
 	PRIVATE ../../libraries/inGame/sources
 	PRIVATE ../../libraries/gameOptions/sources
+	PRIVATE ../../libraries/hintsScreens/sources
 )
 
 target_link_libraries(	
 	${PROJECT_NAME}
-	PRIVATE hintsScreens
+	PRIVATE helpScreens
 	PRIVATE inGame
 	PRIVATE gameOptions
 	PRIVATE levelsHints
@@ -89,6 +93,7 @@ target_link_libraries(
 	PRIVATE joystickTests
 	PRIVATE sdlLogoDisplay
 	PRIVATE soundSystem
+	PRIVATE graphicalTextParagraph
 	PRIVATE sdl2_wrapper
 	PRIVATE genericLib
 	PRIVATE ${SDL2_LIBRARIES} 

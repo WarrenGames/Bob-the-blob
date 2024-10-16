@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project( hintsScreens LANGUAGES CXX)
+project( helpScreens LANGUAGES CXX)
 
 set(HEADERS
 	sources/hints/mainMenu/hintsMainMenuContext.h
@@ -22,6 +22,10 @@ add_library(
 	${SOURCES} 
 	${HEADERS} 
 	${INC_DIRS}
+)
+
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}
+	FILES ${HEADERS} ${SOURCES}
 )
 
 target_include_directories(
