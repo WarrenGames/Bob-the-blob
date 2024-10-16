@@ -16,7 +16,7 @@ struct ParagraphData
 	int textWidth;
 	std::vector< std::string > paragraphWords;
 	
-	explicit ParagraphData(AppLogFiles& logs, const fs::path& textFilePath, const std::string& fontPath, unsigned fontSize, const SDL_Color& color, int textWidth_);
+	explicit ParagraphData(AppLogFiles& logs, const fs::path& textFilePath, const std::string& fontPath, int fontSize, const SDL_Color& color, int textWidthParam);
 	~ParagraphData() = default;
 	ParagraphData( const ParagraphData& ) = delete;
 	ParagraphData& operator= ( const ParagraphData& ) = delete;

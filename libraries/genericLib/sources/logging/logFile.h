@@ -27,7 +27,7 @@ public:
 	void wrFileOpeningError(const fs::path& filePath, const std::string& fileGoal);
 	void wrFileOpeningError(const fs::path& filePath, const std::string& fileGoal, const std::string& reason);
 	void wrReadErrorMessage(const fs::path& filePath, const std::string& dataType);
-	void wrReadErrorMessage(const fs::path& filePath, const std::string& dataType, unsigned fileLine);
+	void wrReadErrorMessage(const fs::path& filePath, const std::string& dataType, std::size_t fileLine);
 	void wrRessourceCreationError(const std::string& ressourceType, const std::string& reason);
 	void wrRessourceInitError(const std::string& ressourceType, const std::string& reason);
 	void wrPrefixAndSimpleMessage(const std::string& message);

@@ -38,7 +38,7 @@ void LogFile::wrReadErrorMessage(const fs::path& filePath, const std::string& da
 	log << prefix << "couldn't read " << dataType << " in '" << filePath.string() << "' file.\n";
 }
 
-void LogFile::wrReadErrorMessage(const fs::path& filePath, const std::string& dataType, unsigned fileLine)
+void LogFile::wrReadErrorMessage(const fs::path& filePath, const std::string& dataType, std::size_t fileLine)
 {
 	log << prefix << "couldn't read " << dataType << " in '" << filePath.string() << "' file at line " << fileLine << ".\n";
 }

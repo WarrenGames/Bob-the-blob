@@ -17,7 +17,7 @@ class JoystickCalibration
 private:
 	int movesSquareSide;
 	int editBoxesHeight;
-	const TextsBlocks languagesTexts;
+	TextsBlocks languagesTexts;
 	TextureCombo moveSquare;
 	TextureCombo reticule;
 	TexturePosition reticulePos;
@@ -34,16 +34,16 @@ private:
 	unsigned verticalAxisNumber;
 	TextureCombo thresholdHelpText;
 	SintEditBox thresholdBox;
-	const TextureCombo horizontalHelpText; 
+	TextureCombo horizontalHelpText; 
 	UintEditBox horizontalAxisNumberBox;
-	const TextureCombo verticalHelpText;
+	TextureCombo verticalHelpText;
 	UintEditBox verticalAxisNumberBox;
 	
 	bool escapeState;
 	bool sdlQuit;
 	AccurateTimeDelay moveTime;
-	const TextureCombo calibrationHelp;
-	const TextureCombo quitScreenKey;
+	TextureCombo calibrationHelp;
+	TextureCombo quitScreenKey;
 	
 public:
 	explicit JoystickCalibration(AppLogFiles& logs, sdl2::RendererWindow& rndWnd, const sdl2::Font& arialFont, const fs::path& languageTextsPath, int SquareSize);

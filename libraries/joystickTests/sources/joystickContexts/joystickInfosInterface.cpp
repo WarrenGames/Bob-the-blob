@@ -7,8 +7,6 @@
 #include "texturing/rendererWindow.h"
 #include "logging/logsStruct.h"
 
-constexpr SDL_Color BlackCol = { 0, 0, 0, 255 };
-
 void joyElementView::mainContext(AppLogFiles& logs, sdl2::RendererWindow& rndWnd, const sdl2::Font& arial, const fs::path& languageTextsPath, const sdl2::JoystickEntity& joyEnt,
 								int squareSize)
 {

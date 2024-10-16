@@ -1,3 +1,13 @@
+version 0.1.15
+	- The following lines have been added in all sub 'CMakeLists.txt' files to keep directories tree structure in generated project files 
+		(Visual Studio solution files for example, useless in Makefile projects):
+		----CMakeLists.txt excerpt----
+		source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}
+		FILES ${HEADERS} ${SOURCES}
+		)
+		------------------------------
+	
+
 version 0.1.14
 	- Some help has been added in the main menu ('help' menu) and the objectives in the 'blue castle missions' are now displayed
 		at the screen (which was the case already for the 'mexican' level).

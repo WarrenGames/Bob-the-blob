@@ -31,15 +31,15 @@ class JoystickValuesTextures
 {
 private:
 	int squareSize;
-	const TextsBlocks joyLangTexts;
+	TextsBlocks joyLangTexts;
 	TextureCombo hatsSquare;
 	TextureCombo buttonOff;
 	TextureCombo buttonPushed;
 	TextureCombo axisGradientOff;
 	TextureCombo axisGradientRed;
-	const TextureCombo buttonsText;
-	const TextureCombo hatsText;
-	const TextureCombo axisText;
+	TextureCombo buttonsText;
+	TextureCombo hatsText;
+	TextureCombo axisText;
 	JoyEventsInfos joyEventsInfos;
 	std::vector< TextureCombo > numbersTextures;
 
